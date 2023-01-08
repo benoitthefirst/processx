@@ -61,13 +61,17 @@ export default function SignIn() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="sm">
+      <Container component="main" maxWidth="sm" sx={{height: {xs: "100vh", sm: "100%"},padding: {xs: 0,sm: 5}}}>
         <CssBaseline />
         <Paper
+        square
           sx={{
             backgroundColor: "#fff",
-            marginTop: 8,
+            marginTop: {sm: 5},
+            elevation:{xs:0},
             padding: 5,
+            paddingTop: {xs: 8, sm: 5},
+            height: {xs: "100%"},
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -80,7 +84,7 @@ export default function SignIn() {
           <Typography
             component="h1"
             variant="h4"
-            sx={{ fontSize: 40, fontWeight: 800, mt: 5 }}
+            sx={{ fontSize: 50, fontWeight: 800, mt: 4 }}
           >
             Let's Grow
           </Typography>
@@ -95,7 +99,7 @@ export default function SignIn() {
             component="form"
             onSubmit={handleSubmit}
             noValidate
-            sx={{ mt: 5 }}
+            sx={{ mt: 4 }}
           >
             <FormControl variant="standard" fullWidth>
               <InputLabel shrink htmlFor="bootstrap-input">
