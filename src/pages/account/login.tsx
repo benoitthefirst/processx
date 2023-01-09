@@ -41,10 +41,14 @@ const theme = createTheme({
       default: "#e7edeb",
     },
     primary: {
-      main: "#0052cc",
+      main: "#018567",
     },
     secondary: {
-      main: "#edf2ff",
+      main: "#ff0038",
+    },
+    text: {
+        primary: "#000",
+        secondary: "#018567",
     },
   },
 });
@@ -91,6 +95,7 @@ export default function SignIn() {
           <Typography
             component="h2"
             variant="h5"
+            color="textSecondary"
             sx={{ fontWeight: 600, mt: 1 }}
           >
             The easiest way to accept payments
@@ -102,7 +107,7 @@ export default function SignIn() {
             sx={{ mt: 4 }}
           >
             <FormControl variant="standard" fullWidth>
-              <InputLabel shrink htmlFor="bootstrap-input">
+              <InputLabel shrink color="primary" htmlFor="bootstrap-input">
                 Email Address
               </InputLabel>
               <BootstrapInput
@@ -133,7 +138,7 @@ export default function SignIn() {
                 </Link>
               </Grid>
               <Grid item>
-                <Button type="submit" fullWidth variant="contained">
+                <Button color="primary" type="submit" fullWidth variant="contained">
                   Sign In
                 </Button>
               </Grid>
