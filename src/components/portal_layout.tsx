@@ -14,6 +14,12 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import MailIcon from "@mui/icons-material/Mail";
 import MenuIcon from "@mui/icons-material/Menu";
+import {
+  HelpOutlineOutlined as HelpOutlineOutlinedIcon,
+  AccountCircleOutlined as AccountCircleOutlinedIcon,
+  SourceOutlined as SourceOutlinedIcon,
+  Logout as LogoutIcon
+} from "@mui/icons-material";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { AccountCircle } from "@mui/icons-material";
@@ -52,9 +58,26 @@ export default function PortalLayout({ window, children }: any) {
     setMobileOpen(!mobileOpen);
   };
 
+  const _menuData = [
+    {value: "Complete Setup", icon: <InboxIcon/>},
+    {value: "Dashboard", icon: <InboxIcon/>},
+    {value: "Referrals", icon: <InboxIcon/>},
+    {value: "Sales and Refunds", icon: <InboxIcon/>},
+    {value: "Manage My Store", icon: <InboxIcon/>},
+    {value: "Invoices", icon: <InboxIcon/>},
+    {value: "Sell Online", icon: <InboxIcon/>},
+    {value: "Business Settings", icon: <InboxIcon/>},
+    {value: "Capital", icon: <InboxIcon/>},
+    {value: "Buy Card Machines", icon: <InboxIcon/>},
+    {value: "Get Help", icon: <HelpOutlineOutlinedIcon/>},
+    {value: "Profile", icon: <AccountCircleOutlinedIcon/>},
+    {value: "Legal", icon: <SourceOutlinedIcon/>},
+    {value: "Logout", icon: <LogoutIcon/>},
+  ];
+
   const drawer = (
     <div>
-      <Toolbar sx={{paddingTop:5,paddingBottom:5}}>
+      <Toolbar sx={{ paddingTop: 5, paddingBottom: 5 }}>
         {/* <Image src="/logo.png" width={130} height={60} alt="ProcessX Logo" /> */}
         <img
           src="/logo.png"
@@ -66,24 +89,13 @@ export default function PortalLayout({ window, children }: any) {
       </Toolbar>
       <Divider />
       <List>
-        {[
-          "Complete Setup",
-          "Dashboard",
-          "Referrals",
-          "Sales and Refunds",
-          "Manage My Store",
-          "Invoices",
-          "Sell Online",
-          "Business Settings",
-          "Capital",
-          "Buy Card Machines",
-        ].map((text, index) => (
-          <ListItem key={text} disablePadding>
+        {_menuData.map((item, index) => (
+          <ListItem key={item.value} disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                {item.icon}
               </ListItemIcon>
-              <ListItemText primary={text} />
+              <ListItemText primary={item.value} />
             </ListItemButton>
           </ListItem>
         ))}
