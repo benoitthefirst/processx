@@ -15,6 +15,7 @@ import ListItemText from "@mui/material/ListItemText";
 import MailIcon from "@mui/icons-material/Mail";
 import MenuIcon from "@mui/icons-material/Menu";
 import {
+  DashboardOutlined as DashboardOutlinedIcon,
   HelpOutlineOutlined as HelpOutlineOutlinedIcon,
   AccountCircleOutlined as AccountCircleOutlinedIcon,
   SourceOutlined as SourceOutlinedIcon,
@@ -59,20 +60,20 @@ export default function PortalLayout({ window, children }: any) {
   };
 
   const _menuData = [
-    {value: "Complete Setup", icon: <InboxIcon/>},
-    {value: "Dashboard", icon: <InboxIcon/>},
-    {value: "Referrals", icon: <InboxIcon/>},
-    {value: "Sales and Refunds", icon: <InboxIcon/>},
-    {value: "Manage My Store", icon: <InboxIcon/>},
-    {value: "Invoices", icon: <InboxIcon/>},
-    {value: "Sell Online", icon: <InboxIcon/>},
-    {value: "Business Settings", icon: <InboxIcon/>},
-    {value: "Capital", icon: <InboxIcon/>},
-    {value: "Buy Card Machines", icon: <InboxIcon/>},
-    {value: "Get Help", icon: <HelpOutlineOutlinedIcon/>},
-    {value: "Profile", icon: <AccountCircleOutlinedIcon/>},
-    {value: "Legal", icon: <SourceOutlinedIcon/>},
-    {value: "Logout", icon: <LogoutIcon/>},
+    {value: "Complete Setup",slug: "onboarding", icon: <InboxIcon/>},
+    {value: "Dashboard",slug: "dashboard", icon: <InboxIcon/>},
+    {value: "Referrals",slug: "onboarding", icon: <InboxIcon/>},
+    {value: "Sales and Refunds",slug: "onboarding", icon: <InboxIcon/>},
+    {value: "Manage My Store",slug: "onboarding", icon: <InboxIcon/>},
+    {value: "Invoices",slug: "onboarding", icon: <InboxIcon/>},
+    {value: "Sell Online",slug: "onboarding", icon: <InboxIcon/>},
+    {value: "Business Settings",slug: "onboarding", icon: <InboxIcon/>},
+    {value: "Capital",slug: "onboarding", icon: <InboxIcon/>},
+    {value: "Buy Card Machines",slug: "onboarding", icon: <InboxIcon/>},
+    {value: "Get Help",slug: "onboarding", icon: <HelpOutlineOutlinedIcon/>},
+    {value: "Profile",slug: "onboarding", icon: <AccountCircleOutlinedIcon/>},
+    {value: "Legal",slug: "onboarding", icon: <SourceOutlinedIcon/>},
+    {value: "Logout",slug: "onboarding", icon: <LogoutIcon/>},
   ];
 
   const drawer = (
@@ -89,7 +90,7 @@ export default function PortalLayout({ window, children }: any) {
       </Toolbar>
       <Divider />
       <List>
-        {_menuData.map((item, index) => (
+        {_menuData.slice(0,10).map((item, index) => (
           <ListItem key={item.value} disablePadding>
             <ListItemButton>
               <ListItemIcon>
@@ -102,7 +103,7 @@ export default function PortalLayout({ window, children }: any) {
       </List>
       <Divider />
       <List>
-        {["Get Help", "Profile", "Legal", "Logout"].map((text, index) => (
+        {_menuData.slice(10,14).map((text, index) => (
           <ListItem key={text} disablePadding>
             <ListItemButton>
               <ListItemIcon>
