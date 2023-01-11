@@ -1,3 +1,4 @@
+"use client"
 import * as React from "react";
 import Image from "next/image";
 import Avatar from "@mui/material/Avatar";
@@ -15,7 +16,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { FormControl, InputLabel } from "@mui/material";
-import BootstrapInput from "../../components/BootstrapInput";
+import BootstrapInput from "../../../components/BootstrapInput";
 
 function Copyright(props: any) {
   return (
