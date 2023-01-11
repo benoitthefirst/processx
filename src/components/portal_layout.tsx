@@ -14,8 +14,18 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import MailIcon from "@mui/icons-material/Mail";
 import MenuIcon from "@mui/icons-material/Menu";
+import AppRegistrationOutlinedIcon from '@mui/icons-material/AppRegistrationOutlined';
 import {
-  DashboardOutlined as DashboardOutlinedIcon,
+  AppRegistrationOutlined as OnBoardingIcon,
+  DashboardOutlined as DashboardIcon,
+  RecommendOutlined as ReferralIcon,
+  ReceiptOutlined as SalesIcon,
+  StorefrontOutlined as StoreIcon,
+  Description as InvoiceIcon,
+  Store as SellOnlineIcon,
+  AddBusiness as BusinessSettingsIcon,
+  CreditScore as CapitalIcon,
+  ShoppingCartOutlined as CardMachineIcon,
   HelpOutlineOutlined as HelpOutlineOutlinedIcon,
   AccountCircleOutlined as AccountCircleOutlinedIcon,
   SourceOutlined as SourceOutlinedIcon,
@@ -60,20 +70,20 @@ export default function PortalLayout({ window, children }: any) {
   };
 
   const _menuData = [
-    {value: "Complete Setup",slug: "onboarding", icon: <InboxIcon/>},
-    {value: "Dashboard",slug: "dashboard", icon: <InboxIcon/>},
-    {value: "Referrals",slug: "onboarding", icon: <InboxIcon/>},
-    {value: "Sales and Refunds",slug: "onboarding", icon: <InboxIcon/>},
-    {value: "Manage My Store",slug: "onboarding", icon: <InboxIcon/>},
-    {value: "Invoices",slug: "onboarding", icon: <InboxIcon/>},
-    {value: "Sell Online",slug: "onboarding", icon: <InboxIcon/>},
-    {value: "Business Settings",slug: "onboarding", icon: <InboxIcon/>},
-    {value: "Capital",slug: "onboarding", icon: <InboxIcon/>},
-    {value: "Buy Card Machines",slug: "onboarding", icon: <InboxIcon/>},
-    {value: "Get Help",slug: "onboarding", icon: <HelpOutlineOutlinedIcon/>},
-    {value: "Profile",slug: "onboarding", icon: <AccountCircleOutlinedIcon/>},
-    {value: "Legal",slug: "onboarding", icon: <SourceOutlinedIcon/>},
-    {value: "Logout",slug: "onboarding", icon: <LogoutIcon/>},
+    {value: "Complete Setup",slug: "onboarding", icon: <OnBoardingIcon/>},
+    {value: "Dashboard",slug: "dashboard", icon: <DashboardIcon/>},
+    {value: "Referrals",slug: "lets-grow", icon: <ReferralIcon/>},
+    {value: "Sales and Refunds",slug: "sales/reports", icon: <SalesIcon/>},
+    {value: "Manage My Store",slug: "store/products", icon: <StoreIcon/>},
+    {value: "Invoices",slug: "invoice/invoices", icon: <InvoiceIcon/>},
+    {value: "Sell Online",slug: "online/payment-links", icon: <SellOnlineIcon/>},
+    {value: "Business Settings",slug: "business/details", icon: <BusinessSettingsIcon/>},
+    {value: "Capital",slug: "capital/offers", icon: <CapitalIcon/>},
+    {value: "Buy Card Machines",slug: "card-machines", icon: <CardMachineIcon/>},
+    {value: "Get Help",slug: "https://support.processx.help/s/", icon: <HelpOutlineOutlinedIcon/>},
+    {value: "Profile",slug: "profile", icon: <AccountCircleOutlinedIcon/>},
+    {value: "Legal",slug: "https://www.processx.co.za/za/terms", icon: <SourceOutlinedIcon/>},
+    {value: "Logout",slug: "logout", icon: <LogoutIcon/>},
   ];
 
   const drawer = (
@@ -103,15 +113,15 @@ export default function PortalLayout({ window, children }: any) {
       </List>
       <Divider />
       <List>
-        {_menuData.slice(10,14).map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
+        {_menuData.slice(10,14).map((item, index) => (
+          <ListItem key={item.value} disablePadding>
+          <ListItemButton>
+            <ListItemIcon>
+              {item.icon}
+            </ListItemIcon>
+            <ListItemText primary={item.value} />
+          </ListItemButton>
+        </ListItem>
         ))}
       </List>
     </div>
