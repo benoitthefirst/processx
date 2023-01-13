@@ -93,13 +93,21 @@ export default function PortalLayout({
     <div>
       <Toolbar sx={{ paddingTop: 5, paddingBottom: 5 }}>
         {/* <Image src="/logo.png" width={130} height={60} alt="ProcessX Logo" /> */}
-        <img
+        {/* <img
           src="/logo.png"
           height="60"
           width="140"
           alt=""
           style={{ display: "inline" }}
-        ></img>
+        ></img> */}
+        <Typography
+          component="h1"
+          variant="h4"
+          color="primary"
+          sx={{ fontSize: 30, fontWeight:800 }}
+        >
+         PROCESSX
+        </Typography>
       </Toolbar>
       <Divider />
       <List>
@@ -206,6 +214,7 @@ export default function PortalLayout({
       </MenuItem>
     </Menu>
   );
+
   return (
     <Box sx={{ display: "flex" }}>
       <AppBar
@@ -215,7 +224,7 @@ export default function PortalLayout({
           ml: { sm: `${drawerWidth}px` },
         }}
       >
-        <Toolbar variant="dense">
+        <Toolbar>
           <IconButton
             color="inherit"
             aria-label="open drawer"
