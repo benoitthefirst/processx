@@ -1,5 +1,5 @@
-"use client"
-import React,{useState} from "react";
+"use client";
+import React, { useState } from "react";
 import Image from "next/image";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -28,22 +28,27 @@ import {
   HelpOutlineOutlined as HelpOutlineOutlinedIcon,
   AccountCircleOutlined as AccountCircleOutlinedIcon,
   SourceOutlined as SourceOutlinedIcon,
-  Logout as LogoutIcon
+  Logout as LogoutIcon,
+  ExpandLess,
+  ExpandMore,
+  KeyboardArrowDown,
 } from "@mui/icons-material";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { AccountCircle } from "@mui/icons-material";
-import { Badge, Menu, MenuItem } from "@mui/material";
+import { Badge, Collapse, Menu, MenuItem } from "@mui/material";
 import NotificationsIcon from "@mui/icons-material/Notifications";
+import CircleIcon from "@mui/icons-material/Circle";
 
 const drawerWidth = 240;
 
-export default function PortalLayout({
+export default function portalLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-    const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [open, setOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
     useState<null | HTMLElement>(null);
@@ -72,21 +77,47 @@ export default function PortalLayout({
     setMobileOpen(!mobileOpen);
   };
 
+  const handleClick = () => {
+    setOpen(!open);
+  };
+
   const _menuData = [
-    {value: "Complete Setup",slug: "onboarding", icon: <OnBoardingIcon/>},
-    {value: "Dashboard",slug: "dashboard", icon: <DashboardIcon/>},
-    /* {value: "Referrals",slug: "lets-grow", icon: <ReferralIcon/>},
-    {value: "Sales and Refunds",slug: "sales/reports", icon: <SalesIcon/>}, */
-    {value: "Manage My Store",slug: "store/products", icon: <StoreIcon/>},
-    /* {value: "Invoices",slug: "invoice/invoices", icon: <InvoiceIcon/>},
-    {value: "Sell Online",slug: "online/payment-links", icon: <SellOnlineIcon/>}, */
-    {value: "Business Settings",slug: "business/details", icon: <BusinessSettingsIcon/>},
-    /* {value: "Capital",slug: "capital/offers", icon: <CapitalIcon/>},
-    {value: "Buy Card Machines",slug: "card-machines", icon: <CardMachineIcon/>}, */
-    {value: "Get Help",slug: "https://support.processx.help/s/", icon: <HelpOutlineOutlinedIcon/>},
-    {value: "Profile",slug: "profile", icon: <AccountCircleOutlinedIcon/>},
-    {value: "Legal",slug: "https://www.processx.co.za/za/terms", icon: <SourceOutlinedIcon/>},
-    {value: "Logout",slug: "logout", icon: <LogoutIcon/>},
+    { value: "Complete Setup", slug: "/portal/onboarding", icon: <OnBoardingIcon /> },
+    { value: "Dashboard", slug: "/portal/dashboard", icon: <DashboardIcon /> },
+    /* {value: "Referrals",slug: "/portal/lets-grow", icon: <ReferralIcon/>},
+    {value: "Sales and Refunds",slug: "/portal/sales/reports", icon: <SalesIcon/>}, */
+    { 
+      value: "Manage My Store", 
+      slug: "/portal/store/products", 
+      icon: <StoreIcon />,
+      subs: [
+        {value: "Products",slug: "/portal/store/products"},
+        {value: "Brands and Categories",slug: "/portal/strore/brands-and-categories"},
+        {value: "Staff",slug: "/portal/store/staff"},
+        {value: "store/customers",slug: "/portal/store/customers"},
+      ]
+    },
+    /* {value: "Invoices",slug: "/portal/invoice/invoices", icon: <InvoiceIcon/>},
+    {value: "Sell Online",slug: "/portal/online/payment-links", icon: <SellOnlineIcon/>}, */
+    {
+      value: "Business Settings",
+      slug: "/portal/business/details",
+      icon: <BusinessSettingsIcon />,
+    },
+    /* {value: "Capital",slug: "/portal/capital/offers", icon: <CapitalIcon/>},
+    {value: "Buy Card Machines",slug: "/portal/card-machines", icon: <CardMachineIcon/>}, */
+    {
+      value: "Get Help",
+      slug: "/portal/https://support.processx.help/s/",
+      icon: <HelpOutlineOutlinedIcon />,
+    },
+    { value: "Profile", slug: "/portal/profile", icon: <AccountCircleOutlinedIcon /> },
+    {
+      value: "Legal",
+      slug: "/portal/https://www.processx.co.za/za/terms",
+      icon: <SourceOutlinedIcon />,
+    },
+    { value: "Logout", slug: "/portal/logout", icon: <LogoutIcon /> },
   ];
 
   const drawer = (
@@ -104,35 +135,45 @@ export default function PortalLayout({
           component="h1"
           variant="h4"
           color="primary"
-          sx={{ fontSize: 30, fontWeight:800 }}
+          sx={{ fontSize: 30, fontWeight: 800 }}
         >
-         PROCESSX
+          PROCESSX
         </Typography>
       </Toolbar>
       <Divider />
-      <List>
-        {_menuData.slice(0,4).map((item, index) => (
-          <ListItem key={item.value} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {item.icon}
-              </ListItemIcon>
+      <List >
+        {_menuData.slice(0, 4).map((item, index) => (
+          <div key={item.value}>
+            <ListItemButton onClick={item?.subs && handleClick}  href={item?.slug}>
+              <ListItemIcon>{item.icon}</ListItemIcon>
               <ListItemText primary={item.value} />
+              {item?.subs && (open ? <ExpandLess /> : <ExpandMore />)}
             </ListItemButton>
-          </ListItem>
+            {item?.subs && <Collapse in={open} timeout="auto" unmountOnExit>
+              <List component="div" disablePadding>
+                {item?.subs.map((subItem,subIndex)=>(
+                  <ListItemButton key={subIndex} sx={{ pl: 4 }} href={subItem.slug}>
+                    <ListItemIcon>
+                      <CircleIcon />
+                    </ListItemIcon>
+                    <ListItemText primary={subItem.value}/>
+                  </ListItemButton>
+                ))}
+              </List>
+            </Collapse>}
+          </div>
         ))}
       </List>
       <Divider />
       <List>
-        {_menuData.slice(4,8).map((item, index) => (
+        {_menuData.slice(4, 8).map((item, index) => (
           <ListItem key={item.value} disablePadding>
-          <ListItemButton>
-            <ListItemIcon>
-              {item.icon}
-            </ListItemIcon>
-            <ListItemText primary={item.value} />
-          </ListItemButton>
-        </ListItem>
+            <ListItemButton>
+              <ListItemIcon>{item.icon}</ListItemIcon>
+              <ListItemText primary={item.value} />
+            </ListItemButton>
+            
+          </ListItem>
         ))}
       </List>
     </div>
