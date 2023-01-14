@@ -2,7 +2,6 @@
 import Head from "next/head";
 import Image from "next/image";
 import { Container, Divider, Grid, Paper, Typography } from "@mui/material";
-import styles from "../../../styles/Home.module.css";
 import CustomizedTabs from "../../../components/antTab";
 import { useState } from "react";
 
