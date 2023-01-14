@@ -10,6 +10,7 @@ import {
 import Head from "next/head";
 import Image from "next/image";
 import React from "react";
+import Empty from "../../../../components/empty";
 
 export default function Products() {
   return (
@@ -43,32 +44,12 @@ export default function Products() {
             Add Product
           </Button>
         </Stack>
-        <Stack
-          direction="column"
-          justifyContent="center"
-          alignItems="center"
-          spacing={4}
-          sx={{ mt: 4 }}
-        >
-          <Typography
-            component="h2"
-            variant="h5"
-            textAlign="center"
-            sx={{ fontSize: 30, fontWeight: 600, mt: 4 }}
-          >
-            Your business currently has no products or <br />
-            you may need to change your filter'
-          </Typography>
-          <Image src="/no_items.png" alt="No Iteams" width={60} height={60} />
-          <Typography
-            component="p"
-            variant="body1"
-            textAlign="center"
-            sx={{ fontSize: 18, mt: 4 }}
-          >
-            Click Add Product to add products to your store
-          </Typography>
-        </Stack>
+        <Empty
+          title="Your business currently has no products or 
+            "
+          subtitle="you may need to change your filter'"
+          action="Click Add Product to add products to your store"
+        />
       </Container>
     </>
   );
