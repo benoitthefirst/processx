@@ -92,7 +92,7 @@ export default function portalLayout({
       icon: <StoreIcon />,
       subs: [
         {value: "Products",slug: "/portal/store/products"},
-        {value: "Brands and Categories",slug: "/portal/strore/brands-and-categories"},
+        {value: "Brands and Categories",slug: "/portal/store/brands-and-categories"},
         {value: "Staff",slug: "/portal/store/staff"},
         {value: "store/customers",slug: "/portal/store/customers"},
       ]
