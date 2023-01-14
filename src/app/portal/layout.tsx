@@ -44,8 +44,11 @@ const drawerWidth = 240;
 
 export default function portalLayout({
   children,
+  window
 }: {
   children: React.ReactNode;
+  window?: () => Window;
+
 }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [open, setOpen] = React.useState(false);
@@ -169,7 +172,7 @@ export default function portalLayout({
         {_menuData.slice(4, 8).map((item, index) => (
           <ListItem key={item.value} disablePadding>
             <ListItemButton>
-              <ListItemIcon>{item.icon}</ListItemIcon>
+              <ListItemIcon sx={{height: 14, width: 14}}>{item.icon}</ListItemIcon>
               <ListItemText primary={item.value} />
             </ListItemButton>
             
@@ -179,8 +182,8 @@ export default function portalLayout({
     </div>
   );
 
-  /* const container =
-    window !== undefined ? () => window().document.body : undefined; */
+  const container =
+    window !== undefined ? () => window().document.body : undefined;
 
   const menuId = "primary-search-account-menu";
   const renderMenu = (
@@ -319,7 +322,7 @@ export default function portalLayout({
       >
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Drawer
-          /* container={container} */
+          container={container}
           variant="temporary"
           open={mobileOpen}
           onClose={handleDrawerToggle}
