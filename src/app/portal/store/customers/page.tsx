@@ -1,18 +1,62 @@
 "use client";
+import { Anchor } from "@mui/icons-material";
 import {
   Box,
   Button,
   Container,
   Divider,
+  Unstable_Grid2 as Grid,
+  Drawer,
+  Paper,
   Stack,
   Typography,
+  FormControl,
+  InputLabel,
+  Theme,
+  Breakpoints,
+  Breakpoint,
 } from "@mui/material";
 import Head from "next/head";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect } from "react";
+import BootstrapInput from "../../../../components/BootstrapInput";
 import Empty from "../../../../components/empty";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { useTheme } from "@mui/material/styles";
+import ResponsiveDialog from "../../../../components/responsiveDialog";
+
+type Anchor = "top" | "left" | "bottom" | "right";
 
 export default function Customers() {
+  const [state, setState] = React.useState({
+    bottom: false,
+    right: false,
+  });
+  const [open, setOpen] = React.useState(false);
+  
+
+  const toggleDrawer =
+    (anchor: Anchor, open: boolean) =>
+    (event: React.KeyboardEvent | React.MouseEvent) => {
+      if (
+        event.type === "keydown" &&
+        ((event as React.KeyboardEvent).key === "Tab" ||
+          (event as React.KeyboardEvent).key === "Shift")
+      ) {
+        return;
+      }
+
+      setState({ ...state, [anchor]: open });
+    };
+
+  const onAdd = () => {
+    setOpen(true);
+  };
+
+  const onSave = () => {
+    setOpen(false);
+  };
+
   return (
     <>
       <Head>
@@ -31,7 +75,7 @@ export default function Customers() {
           direction={{ xs: "column", sm: "row" }}
           spacing={{ xs: 1, sm: 2, md: 4 }}
           justifyContent={{ xs: "flex-start", sm: "space-between" }}
-          mt={4}
+          mt={{xs:5,sm:4}}
         >
           <Typography
             component="h1"
@@ -40,16 +84,109 @@ export default function Customers() {
           >
             Customers
           </Typography>
-          <Button size="medium" variant="contained" disableElevation>
+          <Button
+            size="medium"
+            variant="contained"
+            disableElevation
+            onClick={onAdd}
+          >
             Add
           </Button>
         </Stack>
-        <Empty
-          title="Your business currently has no customers or 
-            "
-          subtitle="you may need to change your filter'"
-        />
+        <Empty title="No customers found" subtitle="" />
       </Container>
+      
+      <ResponsiveDialog
+        title="Add A Customer"
+        open={open}
+        setOpen={setOpen}
+        actionBtnText="Save"
+        onClick={onSave}
+      >
+        <Box padding={{ xs: 2, md: 2 }}>
+          <Grid container spacing={2} mt={2}>
+            <Grid xs={12}>
+              <FormControl variant="standard" fullWidth>
+                <InputLabel shrink color="primary" htmlFor="bootstrap-input">
+                  Customer name
+                </InputLabel>
+                <BootstrapInput
+                  placeholder="Product name"
+                  id="name"
+                  name="name"
+                  autoFocus
+                  required
+                />
+              </FormControl>
+            </Grid>
+            <Grid xs={12}>
+              <FormControl variant="standard" fullWidth>
+                <InputLabel shrink color="primary" htmlFor="bootstrap-input">
+                  Company (optional)
+                </InputLabel>
+                <BootstrapInput
+                  placeholder="Price"
+                  id="price"
+                  name="price"
+                  required
+                />
+              </FormControl>
+            </Grid>
+            <Grid xs={12}>
+              <FormControl variant="standard" fullWidth>
+                <InputLabel shrink color="primary" htmlFor="bootstrap-input">
+                  Email address
+                </InputLabel>
+                <BootstrapInput
+                  placeholder="Default: No Tax(0%)"
+                  id="tax"
+                  name="tax"
+                />
+              </FormControl>
+            </Grid>
+            <Grid xs={12}>
+              <FormControl variant="standard" fullWidth>
+                <InputLabel shrink color="primary" htmlFor="bootstrap-input">
+                  Phone number
+                </InputLabel>
+                <BootstrapInput
+                  placeholder="Description"
+                  id="description"
+                  name="description"
+                />
+              </FormControl>
+            </Grid>
+            <Grid xs={12}>
+              <FormControl variant="standard" fullWidth>
+                <InputLabel shrink color="primary" htmlFor="bootstrap-input">
+                  Physical address (optional)
+                </InputLabel>
+                <BootstrapInput
+                  placeholder="Select a Brand"
+                  id="email"
+                  name="email"
+                  autoFocus
+                  required
+                />
+              </FormControl>
+            </Grid>
+            <Grid xs={12}>
+              <FormControl variant="standard" fullWidth>
+                <InputLabel shrink color="primary" htmlFor="bootstrap-input">
+                  VAT Number (optional)
+                </InputLabel>
+                <BootstrapInput
+                  placeholder="Select a Category"
+                  id="email"
+                  name="email"
+                  autoFocus
+                  required
+                />
+              </FormControl>
+            </Grid>
+          </Grid>
+        </Box>
+      </ResponsiveDialog>
     </>
-  )
+  );
 }
