@@ -91,7 +91,7 @@ export default function SignIn() {
             variant="h4"
             sx={{ fontSize: 50, fontWeight: 800, mt: 4 }}
           >
-            Let's Grow
+            Let&apos;s Grow
           </Typography>
           <Typography
             component="h2"

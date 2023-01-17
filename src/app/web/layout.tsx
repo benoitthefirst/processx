@@ -1,8 +1,6 @@
-"use client";
-import "../styles/scss/main.scss";
+"use client"
 import React from "react";
 import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
-import Footer from "./web/templates/footer";
 
 const themeDark = createTheme({
   palette: {
@@ -118,20 +116,19 @@ const themeDark = createTheme({
   },
 });
 
-export default function RootLayout({
+export default function WebLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <ThemeProvider theme={themeDark}>
-      <CssBaseline />
-      <html lang="en">
-        <body>
+    <html lang="en">
+      <body>
+        <ThemeProvider theme={themeDark}>
+          <CssBaseline />
           {children}
-          <Footer />
-        </body>
-      </html>
-    </ThemeProvider>
+        </ThemeProvider>
+      </body>
+    </html>
   );
 }

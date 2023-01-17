@@ -42,13 +42,10 @@ import CircleIcon from "@mui/icons-material/Circle";
 
 const drawerWidth = 240;
 
-export default function portalLayout({
-  children,
-  window
+export default function PortalLayout({
+  children
 }: {
   children: React.ReactNode;
-  window?: () => Window;
-
 }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [open, setOpen] = React.useState(false);
