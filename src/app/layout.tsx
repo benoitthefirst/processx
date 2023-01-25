@@ -2,7 +2,7 @@
 import "../styles/scss/main.scss";
 import React from "react";
 import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
-import Footer from "./web/templates/footer";
+//import Footer from "./web/templates/footer";
 
 const themeDark = createTheme({
   palette: {
@@ -129,7 +129,7 @@ export default function RootLayout({
       <html lang="en">
         <body>
           {children}
-          <Footer />
+          {/* <Footer /> */}
         </body>
       </html>
     </ThemeProvider>
