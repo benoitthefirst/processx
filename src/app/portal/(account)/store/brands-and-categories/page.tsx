@@ -4,15 +4,97 @@ import {
   Button,
   Container,
   Divider,
+  Unstable_Grid2 as Grid,
+  Tab,
+  Tabs,
   Stack,
   Typography,
+  Paper,
 } from "@mui/material";
+import { styled } from "@mui/material/styles";
 import Head from "next/head";
 import Image from "next/image";
 import React from "react";
 import Empty from "../../../../../components/empty";
+import BrandCard from "../../templates/brandCard";
+
+const AntTabs = styled(Tabs)({
+  borderBottom: "1px solid #e8e8e8",
+  "& .MuiTabs-indicator": {
+    backgroundColor: "#1890ff",
+  },
+});
+
+const AntTab = styled((props: StyledTabProps) => (
+  <Tab disableRipple {...props} />
+))(({ theme }) => ({
+  textTransform: "none",
+  minWidth: 0,
+  [theme.breakpoints.up("sm")]: {
+    minWidth: 0,
+  },
+  fontWeight: theme.typography.fontWeightRegular,
+  marginRight: theme.spacing(1),
+  color: "rgba(0, 0, 0, 0.85)",
+  fontFamily: [
+    "-apple-system",
+    "BlinkMacSystemFont",
+    '"Segoe UI"',
+    "Roboto",
+    '"Helvetica Neue"',
+    "Arial",
+    "sans-serif",
+    '"Apple Color Emoji"',
+    '"Segoe UI Emoji"',
+    '"Segoe UI Symbol"',
+  ].join(","),
+  "&:hover": {
+    color: "#40a9ff",
+    opacity: 1,
+  },
+  "&.Mui-selected": {
+    color: "primary",
+    fontWeight: theme.typography.fontWeightMedium,
+  },
+  "&.Mui-focusVisible": {
+    backgroundColor: "primary",
+  },
+}));
+
+interface StyledTabProps {
+  label: string;
+}
+
+interface TabPanelProps {
+  children?: React.ReactNode;
+  index: number;
+  value: number;
+}
+
+function TabPanel(props: TabPanelProps) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`vertical-tabpanel-${index}`}
+      aria-labelledby={`vertical-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box sx={{ p: 0, backgroundColor: "transparent" }}>{children}</Box>
+      )}
+    </div>
+  );
+}
 
 export default function BrandsAndCategories() {
+  const [value, setValue] = React.useState(0);
+
+  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+    setValue(newValue);
+  };
   return (
     <>
       <Head>
@@ -25,7 +107,7 @@ export default function BrandsAndCategories() {
       <Container
         component="main"
         maxWidth="xl"
-        sx={{ height: { xs: "100vh", sm: "100%" }, padding: { xs: 0, sm: 5 } }}
+        sx={{ height: { xs: "100vh", sm: "100%" }, mt: { xs: 7, sm: 10 } }}
       >
         <Stack
           direction={{ xs: "column", sm: "row" }}
@@ -36,20 +118,105 @@ export default function BrandsAndCategories() {
           <Typography
             component="h1"
             variant="h4"
-            sx={{ fontSize: 30, fontWeight: 600 }}
+            sx={{ fontSize: { xs: 24, sm: 30 }, fontWeight: 700 }}
           >
             Brands And Categories
           </Typography>
-          <Button size="medium" variant="contained" disableElevation>
+          <Button
+            size="medium"
+            variant="contained"
+            disableElevation
+            sx={{ mt: { xs: 2, sm: 0 } }}
+          >
             Add
           </Button>
         </Stack>
-        <Empty
+        <Box sx={{ width: "100%" }}>
+          <Box sx={{ bgcolor: "#fff", mt: 3 }}>
+            <AntTabs
+              centered
+              value={value}
+              onChange={handleChange}
+              aria-label="ant example"
+              variant="fullWidth"
+            >
+              <AntTab label="Brands" />
+              <AntTab label="Categories" />
+            </AntTabs>
+          </Box>
+          <Grid container spacing={2} my={1}>
+            <Grid xs={6}>
+              <Typography
+                variant="subtitle1"
+                align="center"
+                sx={{ fontSize: 14, fontWeight: 400 }}
+              >
+                NAME
+              </Typography>
+            </Grid>
+            <Grid xs={6}>
+              <Typography
+                variant="subtitle1"
+                align="center"
+                sx={{ fontSize: 14, fontWeight: 400 }}
+              >
+                ITEMS
+              </Typography>
+            </Grid>
+          </Grid>
+          <TabPanel value={value} index={0}>
+            <Box sx={{ bgcolor: "#fff", p: 1 }}>
+              <Grid container spacing={2}>
+                <Grid xs={2} lg={1}>
+                  <Paper
+                    elevation={0}
+                    sx={{
+                      bgcolor: "primary.main",
+                      height: 60,
+                      width: 60,
+                      pt:1
+                    }}
+                  >
+                    <Typography
+                      variant="subtitle1"
+                      align="center"
+                      sx={{ color: "white", fontSize: 24, fontWeight: 600 }}
+                    >
+                      Jo
+                    </Typography>
+                  </Paper>
+                </Grid>
+                <Grid xs={4} lg={5}>
+                  <Typography
+                    variant="subtitle1"
+                    align="left"
+                    sx={{ fontSize: 14, fontWeight: 400,mt:2 }}
+                  >
+                    Jordan
+                  </Typography>
+                </Grid>
+                <Grid xs={6}>
+                  <Typography
+                    variant="subtitle1"
+                    align="center"
+                    sx={{ fontSize: 14, fontWeight: 400,mt:2 }}
+                  >
+                    1 Products
+                  </Typography>
+                </Grid>
+              </Grid>
+            </Box>
+          </TabPanel>
+          <TabPanel value={value} index={1}>
+            <BrandCard/>
+          </TabPanel>
+        </Box>
+        {/* <Empty
           title="Your business currently has no brands and categories or 
             "
           subtitle="you may need to change your filter'"
-        />
+        /> */}
       </Container>
     </>
-  )
+  );
 }

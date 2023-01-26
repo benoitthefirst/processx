@@ -58,7 +58,7 @@ export default function Products() {
       <Container
         component="main"
         maxWidth="xl"
-        sx={{ height: { xs: "100vh", sm: "100%" }, padding: { xs: 0, sm: 5 } }}
+        sx={{ height: { xs: "100vh", sm: "100%" }, mt: 2, padding: { xs: 0, sm: 3 } }}
       >
         <Stack
           direction={{ xs: "column", sm: "row" }}
@@ -394,10 +394,10 @@ export default function Products() {
             boxSizing: "border-box",
             maxWidth: 500,
             backgroundColor: "background.default",
-          },
+          }
         }}
       >
-        <Box padding={2}>
+        <Box padding={2} mb={10}>
           <Typography
             component="h3"
             variant="h5"
