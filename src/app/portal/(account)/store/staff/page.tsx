@@ -10,7 +10,7 @@ import {
 import Head from "next/head";
 import Image from "next/image";
 import React from "react";
-import Empty from "../../../../components/empty";
+import Empty from "../../../../../components/empty";
 
 export default function Staff() {
   return (

@@ -20,9 +20,9 @@ import {
 import Head from "next/head";
 import Image from "next/image";
 import React from "react";
-import BootstrapInput from "../../../../components/BootstrapInput";
-import Empty from "../../../../components/empty";
-import FormDrawer from "../../../../components/formDrawer";
+import BootstrapInput from "../../../../../components/BootstrapInput";
+import Empty from "../../../../../components/empty";
+import FormDrawer from "../../../../../components/formDrawer";
 
 export default function Products() {
   const [state, setState] = React.useState(true);
@@ -30,13 +30,15 @@ export default function Products() {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const toggleDrawer =
     (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
-      if (
+      /* if (
         event.type === "keydown" &&
         ((event as React.KeyboardEvent).key === "Tab" ||
           (event as React.KeyboardEvent).key === "Shift")
       ) {
         return;
-      }
+      } */
+
+      console.log("isOpen: ", open);
 
       setState(open);
     };

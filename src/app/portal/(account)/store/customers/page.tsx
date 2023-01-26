@@ -19,11 +19,11 @@ import {
 import Head from "next/head";
 import Image from "next/image";
 import React, { useEffect } from "react";
-import BootstrapInput from "../../../../components/BootstrapInput";
-import Empty from "../../../../components/empty";
+import BootstrapInput from "../../../../../components/BootstrapInput";
+import Empty from "../../../../../components/empty";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
-import ResponsiveDialog from "../../../../components/responsiveDialog";
+import ResponsiveDialog from "../../../../../components/responsiveDialog";
 
 type Anchor = "top" | "left" | "bottom" | "right";
 

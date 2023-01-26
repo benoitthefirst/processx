@@ -1,37 +1,98 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# ProcessX Retail Softare
 
-## Getting Started
+It's a pretty simple web-based point-of-sale, customer loyalty, online-menu system.
+It integrates with BioTrack, MJ Freeway/LeafData and Franwell/METRC or can be used stand-alone.
 
-First, run the development server:
+## Installation
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+    git clone {this repo}
+    
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Once the system is installed you'll have to configure it for your environment.
+That is, connect to the government CRE if you have one - configure license information, etc.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## Features
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+ * Point of Sale (POS)
+ * Instore Signage (ChromeCast, Tablet)
+ * Online Ordering, In-Store Kiosk
+ * Customer Loyalty Program (CRM)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
+## Point of Sale
 
-To learn more about Next.js, take a look at the following resources:
+ * Auto-Print Pick Ticket
+ * Save/Transfer Sale in Progress (Cart)
+ * Customizable Receipt
+ * Android and iOS Compatible (coming soon)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Loyalty Program
 
-## Deploy on Vercel
+ * SMS Campaigns
+ * Email Loyalty Campaign
+ * Participant Facets: Revenue, Specials, Concentrate, Edible, Flower, etc
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-# processx
+## Vendor Management System
+
+Allows a Retail business to create their own Vendor Portal
+
+Vendor can visit and see when their Sample Day is / could be, sees instructions, request a time to stop by.
+Vendor can be rejected with a simple button press.
+
+
+## Vendor Database
+
+Just supplemental data on the main dir.openthc.com
+
+
+## Relationships
+
+Calendar, Terms, Vendor Notes
+
+
+## Sample Processing
+
+Sample Calendar, Vendors Feedback
+
+
+## Joint Inventory
+
+Shared Inventory between Retailer and Supplier
+
+
+## Alternatives
+
+In case free & open-source software is not to your taste,
+or maybe you're just looking for more information,
+here are other offerings.
+
+
+### Point of Sale
+
+* BioTrackTHC - https://www.biotrack.com/
+* Cova - https://www.covasoftware.com/pos
+* GreenBits - https://www.greenbits.com/
+* KlickTrack - https://getklicktrack.io
+
+
+### Loyalty Offering
+
+* 420 Solutions - https://www.4twentysolutions.com/
+* CannaReward - http://www.cannareward.com/
+* SpringBig - https://www.springbig.com/
+* SproutCannabis - http://www.sprout.online
+* TokeIn - https://tokein.com/
+
+
+### Online Ordering
+
+* Eaze - https://www.eaze.com/
+* WoahStork - https://www.woahstork.com/
+
+
+### Hardware
+
+* [Heckler](https://hecklerdesign.com/)
