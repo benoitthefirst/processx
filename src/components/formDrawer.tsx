@@ -34,7 +34,7 @@ export default function FormDrawer({
   return (
     <Drawer
       anchor={isMobile ? "bottom" : "right"}
-      open
+      open={open}
       onClose={()=>onClose()}
       sx={{
         "& .MuiDrawer-paper": {

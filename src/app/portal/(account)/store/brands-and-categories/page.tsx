@@ -77,23 +77,23 @@ interface StyledTabProps {
 const brandsData = [
   {
     name: "Jordan",
-    items: 1,
+    items: ["121233", "121233"],
   },
   {
     name: "Nike",
-    items: 1,
+    items: ["121233"],
   },
   {
     name: "Adidas",
-    items: 1,
+    items: ["121233"],
   },
   {
     name: "Umbro",
-    items: 1,
+    items: ["121233"],
   },
   {
     name: "Uzzi",
-    items: 1,
+    items: ["121233"],
   },
 ];
 const categoriesData = [
@@ -112,7 +112,7 @@ export default function BrandsAndCategories() {
 
   const [brands, setBrands] = React.useState<any[]>(brandsData);
   const [value, setValue] = React.useState(0);
-  const [state, setState] = React.useState(true);
+  const [state, setState] = React.useState(false);
   const [name, setName] = React.useState("");
   const [color, setColor] = React.useState("");
 
@@ -140,10 +140,10 @@ export default function BrandsAndCategories() {
     const payload = {
       name: name,
       color: color,
-      items: [
-        "124434355"
-      ]
-    }
+      items: ["124434355"],
+    };
+    brands.push(payload);
+    setBrands(brands);
     setState(false);
   };
 
@@ -199,21 +199,49 @@ export default function BrandsAndCategories() {
             </AntTabs>
           </Box>
           <CustomizedTables data={value == 0 ? brands : categoriesData} />
-        </Box>
-        {/* <Empty
-          title="Your business currently has no brands and categories or 
+          {!brands && (
+            <Empty
+              title="Your business currently has no brands and categories or 
             "
-          subtitle="you may need to change your filter'"
-        /> */}
+              subtitle="you may need to change your filter'"
+            />
+          )}
+        </Box>
       </Container>
-      <FormDrawer
-        title="Add Brand"
+      <Drawer
+        anchor={isMobile ? "bottom" : "right"}
         open={state}
         onClose={toggleDrawer(false)}
-        actionBtnText="Save"
-        onClick={() => {}}
+        sx={{
+          "& .MuiDrawer-paper": {
+            boxSizing: "border-box",
+            maxWidth: 700,
+            backgroundColor: "background.default",
+          },
+        }}
       >
         <Box padding={2} mb={10}>
+        <Box
+          position="fixed"
+          sx={{
+            display: "flex",
+            ml: "-15px",
+            top: 0,
+            bottom: "auto",
+            backgroundColor: "background.default",
+            width: "100%",
+            padding: 2,
+            zIndex: 1
+          }}
+        >
+          <Typography
+            component="h3"
+            variant="h5"
+            sx={{ fontSize: 18, fontWeight: 600 }}
+          >
+            Add Brand
+          </Typography>
+        </Box>
           <Paper sx={{ mt: 3, padding: 2 }}>
             <Typography
               component="h4"
@@ -233,11 +261,11 @@ export default function BrandsAndCategories() {
                 autoFocus
                 required
                 value={name}
-                onChange={(e)=>setName(e.target.value)}
+                onChange={(e) => setName(e.target.value)}
               />
             </FormControl>
           </Paper>
-          <ProductImage name={name} color={color} setColor={setColor}/>
+          <ProductImage name={name} color={color} setColor={setColor} />
           <Paper sx={{ mt: 3, padding: 1 }}>
             <Typography
               component="h4"
@@ -272,10 +300,13 @@ export default function BrandsAndCategories() {
           <Box
             position="fixed"
             sx={{
+              display: "flex",
+              ml: "-15px",
               top: "auto",
               bottom: 0,
-              backgroundColor: "#fff",
+              backgroundColor: "background.paper",
               width: "100%",
+              padding: 2,
             }}
           >
             <Toolbar>
@@ -291,13 +322,15 @@ export default function BrandsAndCategories() {
                 size="medium"
                 variant="contained"
                 disableElevation
+                sx={{ ml: 2 }}
+                onClick={onSave}
               >
                 Save
               </Button>
             </Toolbar>
           </Box>
         </Box>
-      </FormDrawer>
+      </Drawer>
     </>
   );
 }

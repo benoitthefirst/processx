@@ -49,7 +49,7 @@ export default function CustomizedTables({data}: any) {
                   justifyContent="center"
                   alignItems="center"
                   sx={{
-                    bgcolor: "primary.main",
+                    bgcolor: row?.color ?? "primary.main",
                     height: 60,
                     width: 60,
                   }}
@@ -66,7 +66,7 @@ export default function CustomizedTables({data}: any) {
               <StyledTableCell component="th" scope="row">
                 {row.name}
               </StyledTableCell>
-              <StyledTableCell align="left">{row.items}</StyledTableCell>
+              <StyledTableCell align="left">{row.items.length} products</StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>
