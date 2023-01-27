@@ -111,13 +111,13 @@ export default function BrandsAndCategories() {
   const theme = useTheme();
 
   const [brands, setBrands] = React.useState<any[]>(brandsData);
-  const [value, setValue] = React.useState(0);
+  const [active, setActive] = React.useState(0);
   const [state, setState] = React.useState(false);
   const [name, setName] = React.useState("");
   const [color, setColor] = React.useState("");
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-    setValue(newValue);
+    setActive(newValue);
   };
 
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
@@ -189,7 +189,7 @@ export default function BrandsAndCategories() {
           <Box sx={{ bgcolor: "#fff", mt: 3 }}>
             <AntTabs
               centered
-              value={value}
+              value={active}
               onChange={handleChange}
               aria-label="ant example"
               variant="fullWidth"
@@ -198,7 +198,8 @@ export default function BrandsAndCategories() {
               <AntTab label="Categories" />
             </AntTabs>
           </Box>
-          <CustomizedTables data={value == 0 ? brands : categoriesData} />
+          {/* <CustomizedTables data={active == 0 ? brands : categoriesData} />
+           */}
           {!brands && (
             <Empty
               title="Your business currently has no brands and categories or 

@@ -1,7 +1,7 @@
 import React from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import { styled, alpha } from "@mui/material/styles";
-import { Box, Button, Grid, InputBase } from "@mui/material";
+import { Box, Button, Unstable_Grid2 as Grid, InputBase } from "@mui/material";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -46,13 +46,13 @@ export default function SearchInput() {
         <SearchIcon />
       </SearchIconWrapper>
       <Grid container>
-        <Grid xs={11}>
+        <Grid xs={9} md={11}>
           <StyledInputBase
             placeholder="Search…"
             inputProps={{ "aria-label": "search" }}
           />
         </Grid>
-        <Grid xs={1}>
+        <Grid xs={3} md={1}>
           <Button
             size="large"
             variant="contained"
