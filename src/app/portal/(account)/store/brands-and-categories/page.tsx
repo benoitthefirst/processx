@@ -11,12 +11,13 @@ import {
   Typography,
   Paper,
 } from "@mui/material";
-import { styled } from "@mui/material/styles";
+import { styled, alpha } from "@mui/material/styles";
 import Head from "next/head";
 import Image from "next/image";
 import React from "react";
 import Empty from "../../../../../components/empty";
-import BrandCard from "../../templates/brandCard";
+import CustomizedTables from "../../templates/CustomizedTables";
+import SearchInput from "../../templates/search";
 
 const AntTabs = styled(Tabs)({
   borderBottom: "1px solid #e8e8e8",
@@ -65,31 +66,40 @@ interface StyledTabProps {
   label: string;
 }
 
-interface TabPanelProps {
-  children?: React.ReactNode;
-  index: number;
-  value: number;
-}
+const brandsData = [
+  {
+    name: "Jordan",
+    items: 1,
+  },
+  {
+    name: "Nike",
+    items: 1,
+  },
+  {
+    name: "Adidas",
+    items: 1,
+  },
+  {
+    name: "Umbro",
+    items: 1,
+  },
+  {
+    name: "Uzzi",
+    items: 1,
+  },
+];
+const categoriesData = [
+  {
+    name: "Top",
+    items: 1,
+  },
+  {
+    name: "Shoes",
+    items: 1,
+  },
+];
 
-function TabPanel(props: TabPanelProps) {
-  const { children, value, index, ...other } = props;
-
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`vertical-tabpanel-${index}`}
-      aria-labelledby={`vertical-tab-${index}`}
-      {...other}
-    >
-      {value === index && (
-        <Box sx={{ p: 0, backgroundColor: "transparent" }}>{children}</Box>
-      )}
-    </div>
-  );
-}
-
-export default function BrandsAndCategories() {
+export default function BrandsAndCategories(theme: any) {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -131,6 +141,7 @@ export default function BrandsAndCategories() {
             Add
           </Button>
         </Stack>
+        <SearchInput/>
         <Box sx={{ width: "100%" }}>
           <Box sx={{ bgcolor: "#fff", mt: 3 }}>
             <AntTabs
@@ -144,72 +155,7 @@ export default function BrandsAndCategories() {
               <AntTab label="Categories" />
             </AntTabs>
           </Box>
-          <Grid container spacing={2} my={1}>
-            <Grid xs={6}>
-              <Typography
-                variant="subtitle1"
-                align="center"
-                sx={{ fontSize: 14, fontWeight: 400 }}
-              >
-                NAME
-              </Typography>
-            </Grid>
-            <Grid xs={6}>
-              <Typography
-                variant="subtitle1"
-                align="center"
-                sx={{ fontSize: 14, fontWeight: 400 }}
-              >
-                ITEMS
-              </Typography>
-            </Grid>
-          </Grid>
-          <TabPanel value={value} index={0}>
-            <Box sx={{ bgcolor: "#fff", p: 1 }}>
-              <Grid container spacing={2}>
-                <Grid xs={2} lg={1}>
-                  <Paper
-                    elevation={0}
-                    sx={{
-                      bgcolor: "primary.main",
-                      height: 60,
-                      width: 60,
-                      pt:1
-                    }}
-                  >
-                    <Typography
-                      variant="subtitle1"
-                      align="center"
-                      sx={{ color: "white", fontSize: 24, fontWeight: 600 }}
-                    >
-                      Jo
-                    </Typography>
-                  </Paper>
-                </Grid>
-                <Grid xs={4} lg={5}>
-                  <Typography
-                    variant="subtitle1"
-                    align="left"
-                    sx={{ fontSize: 14, fontWeight: 400,mt:2 }}
-                  >
-                    Jordan
-                  </Typography>
-                </Grid>
-                <Grid xs={6}>
-                  <Typography
-                    variant="subtitle1"
-                    align="center"
-                    sx={{ fontSize: 14, fontWeight: 400,mt:2 }}
-                  >
-                    1 Products
-                  </Typography>
-                </Grid>
-              </Grid>
-            </Box>
-          </TabPanel>
-          <TabPanel value={value} index={1}>
-            <BrandCard/>
-          </TabPanel>
+          <CustomizedTables data={value == 0 ? brandsData : categoriesData} />
         </Box>
         {/* <Empty
           title="Your business currently has no brands and categories or 
