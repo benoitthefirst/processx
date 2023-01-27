@@ -24,22 +24,22 @@ import Image from "next/image";
 export default function FormDrawer({
   title,
   children,
-  state,
+  open,
   onClose,
   actionBtnText,
-  onHandleAction,
+  onHandleAction
 }: any) {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   return (
     <Drawer
       anchor={isMobile ? "bottom" : "right"}
-      open={state}
-      onClose={onClose}
+      open
+      onClose={()=>onClose()}
       sx={{
         "& .MuiDrawer-paper": {
           boxSizing: "border-box",
-          maxWidth: 500,
+          width: 500,
           backgroundColor: "background.default",
         },
       }}

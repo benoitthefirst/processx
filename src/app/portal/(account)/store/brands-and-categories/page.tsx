@@ -10,12 +10,19 @@ import {
   Stack,
   Typography,
   Paper,
+  Drawer,
+  FormControl,
+  InputLabel,
+  Toolbar,
+  useMediaQuery,
 } from "@mui/material";
-import { styled, alpha } from "@mui/material/styles";
+import { styled, alpha, useTheme } from "@mui/material/styles";
 import Head from "next/head";
 import Image from "next/image";
 import React from "react";
+import BootstrapInput from "../../../../../components/BootstrapInput";
 import Empty from "../../../../../components/empty";
+import FormDrawer from "../../../../../components/formDrawer";
 import CustomizedTables from "../../templates/CustomizedTables";
 import SearchInput from "../../templates/search";
 
@@ -99,12 +106,36 @@ const categoriesData = [
   },
 ];
 
-export default function BrandsAndCategories(theme: any) {
+export default function BrandsAndCategories() {
+  const theme = useTheme();
+
   const [value, setValue] = React.useState(0);
+  const [state, setState] = React.useState(true);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
+
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+  const toggleDrawer =
+    (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
+      /* if (
+        event.type === "keydown" &&
+        ((event as React.KeyboardEvent).key === "Tab" ||
+          (event as React.KeyboardEvent).key === "Shift")
+      ) {
+        return;
+      } */
+
+      console.log("isOpen: ", open);
+
+      setState(open);
+    };
+
+  const onSave = () => {
+    setState(false);
+  };
+
   return (
     <>
       <Head>
@@ -137,11 +168,12 @@ export default function BrandsAndCategories(theme: any) {
             variant="contained"
             disableElevation
             sx={{ mt: { xs: 2, sm: 0 } }}
+            onClick={toggleDrawer(true)}
           >
             Add
           </Button>
         </Stack>
-        <SearchInput/>
+        <SearchInput />
         <Box sx={{ width: "100%" }}>
           <Box sx={{ bgcolor: "#fff", mt: 3 }}>
             <AntTabs
@@ -163,6 +195,120 @@ export default function BrandsAndCategories(theme: any) {
           subtitle="you may need to change your filter'"
         /> */}
       </Container>
+      <FormDrawer
+        title="Add Brand"
+        open={state}
+        onClose={toggleDrawer(false)}
+        actionBtnText="Save"
+        onClick={() => {}}
+      >
+        <Box padding={2} mb={10}>
+          <Paper sx={{ mt: 3, padding: 2 }}>
+            <Typography
+              component="h4"
+              variant="h6"
+              sx={{ fontSize: 12, fontWeight: 600, mb: 2 }}
+            >
+              Basic Info
+            </Typography>
+            <FormControl sx={{ mt: 1 }} variant="standard" fullWidth>
+              <InputLabel shrink color="primary" htmlFor="bootstrap-input">
+                Name
+              </InputLabel>
+              <BootstrapInput
+                placeholder="Product name"
+                id="name"
+                name="name"
+                autoFocus
+                required
+              />
+            </FormControl>
+          </Paper>
+          <Paper sx={{ mt: 3, padding: 2 }}>
+            <Typography
+              component="h4"
+              variant="h6"
+              sx={{ fontSize: 12, fontWeight: 600 }}
+            >
+              Product Image
+            </Typography>
+            <Grid container spacing={2} mt={2}>
+              <Grid xs={12}>
+                <FormControl variant="standard" fullWidth>
+                  <InputLabel shrink color="primary" htmlFor="bootstrap-input">
+                    Name
+                  </InputLabel>
+                  <BootstrapInput
+                    placeholder="Product name"
+                    id="name"
+                    name="name"
+                    autoFocus
+                    required
+                  />
+                </FormControl>
+              </Grid>
+            </Grid>
+          </Paper>
+          <Paper sx={{ mt: 3, padding: 2 }}>
+            <Typography
+              component="h4"
+              variant="h6"
+              sx={{ fontSize: 14, fontWeight: 600 }}
+            >
+              Brand Items
+            </Typography>
+            <Typography
+              component="p"
+              align="center"
+              sx={{ fontSize: 14, mt: 2 }}
+            >
+              There are currently no products in this brand
+            </Typography>
+            <Button
+              size="large"
+              variant="contained"
+              disableElevation
+              sx={{
+                bgcolor: "#e4e9f1",
+                color: "#222",
+                width: "100%",
+                height: 48,
+                borderRadius: 0,
+                mt: 2,
+              }}
+            >
+              Add item(s) to brand
+            </Button>
+          </Paper>
+          <Box
+            position="fixed"
+            sx={{
+              top: "auto",
+              bottom: 0,
+              backgroundColor: "#fff",
+              width: "100%",
+            }}
+          >
+            <Toolbar>
+              <Button
+                autoFocus
+                sx={{ backgroundColor: "background.default" }}
+                onClick={toggleDrawer(false)}
+              >
+                Cancel
+              </Button>
+              <Button
+                autoFocus
+                size="medium"
+                variant="contained"
+                disableElevation
+              >
+                Save
+              </Button>
+            </Toolbar>
+          </Box>
+        </Box>
+      </FormDrawer>
     </>
   );
 }
