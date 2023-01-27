@@ -198,8 +198,8 @@ export default function BrandsAndCategories() {
               <AntTab label="Categories" />
             </AntTabs>
           </Box>
-          {/* <CustomizedTables data={active == 0 ? brands : categoriesData} />
-           */}
+          <CustomizedTables data={active == 0 ? brands : categoriesData} />
+          
           {!brands && (
             <Empty
               title="Your business currently has no brands and categories or 
