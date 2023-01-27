@@ -39,7 +39,7 @@ export default function FormDrawer({
       sx={{
         "& .MuiDrawer-paper": {
           boxSizing: "border-box",
-          width: 500,
+          maxWidth: isMobile ? 400 : 700,
           backgroundColor: "background.default",
         },
       }}

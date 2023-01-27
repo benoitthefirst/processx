@@ -24,6 +24,7 @@ import BootstrapInput from "../../../../../components/BootstrapInput";
 import Empty from "../../../../../components/empty";
 import FormDrawer from "../../../../../components/formDrawer";
 import CustomizedTables from "../../templates/CustomizedTables";
+import ProductImage from "../../templates/productImage";
 import SearchInput from "../../templates/search";
 
 const AntTabs = styled(Tabs)({
@@ -109,8 +110,11 @@ const categoriesData = [
 export default function BrandsAndCategories() {
   const theme = useTheme();
 
+  const [brands, setBrands] = React.useState<any[]>(brandsData);
   const [value, setValue] = React.useState(0);
   const [state, setState] = React.useState(true);
+  const [name, setName] = React.useState("");
+  const [color, setColor] = React.useState("");
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
@@ -133,6 +137,13 @@ export default function BrandsAndCategories() {
     };
 
   const onSave = () => {
+    const payload = {
+      name: name,
+      color: color,
+      items: [
+        "124434355"
+      ]
+    }
     setState(false);
   };
 
@@ -187,7 +198,7 @@ export default function BrandsAndCategories() {
               <AntTab label="Categories" />
             </AntTabs>
           </Box>
-          <CustomizedTables data={value == 0 ? brandsData : categoriesData} />
+          <CustomizedTables data={value == 0 ? brands : categoriesData} />
         </Box>
         {/* <Empty
           title="Your business currently has no brands and categories or 
@@ -216,40 +227,18 @@ export default function BrandsAndCategories() {
                 Name
               </InputLabel>
               <BootstrapInput
-                placeholder="Product name"
+                placeholder="Name"
                 id="name"
                 name="name"
                 autoFocus
                 required
+                value={name}
+                onChange={(e)=>setName(e.target.value)}
               />
             </FormControl>
           </Paper>
-          <Paper sx={{ mt: 3, padding: 2 }}>
-            <Typography
-              component="h4"
-              variant="h6"
-              sx={{ fontSize: 12, fontWeight: 600 }}
-            >
-              Product Image
-            </Typography>
-            <Grid container spacing={2} mt={2}>
-              <Grid xs={12}>
-                <FormControl variant="standard" fullWidth>
-                  <InputLabel shrink color="primary" htmlFor="bootstrap-input">
-                    Name
-                  </InputLabel>
-                  <BootstrapInput
-                    placeholder="Product name"
-                    id="name"
-                    name="name"
-                    autoFocus
-                    required
-                  />
-                </FormControl>
-              </Grid>
-            </Grid>
-          </Paper>
-          <Paper sx={{ mt: 3, padding: 2 }}>
+          <ProductImage name={name} color={color} setColor={setColor}/>
+          <Paper sx={{ mt: 3, padding: 1 }}>
             <Typography
               component="h4"
               variant="h6"
