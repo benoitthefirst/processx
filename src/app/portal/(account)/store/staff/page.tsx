@@ -65,9 +65,10 @@ export default function Staff() {
 
   const onSave = () => {
     const payload = {
-      name: "Ben Walker",
-      email: "user@example.com",
-      mobileNumber: "+27800000000",
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      mobileNumber: mobileNumber,
       permissions: "Administrator",
     };
     staffs.push(payload);
