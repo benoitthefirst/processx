@@ -42,7 +42,8 @@ export default function Staff() {
 
   const [staffs, setStaffs] = React.useState<any[]>(staffsData);
   const [state, setState] = React.useState(false);
-  const [name, setName] = React.useState("");
+  const [firstName, setFirstName] = React.useState("");
+  const [lastName, setLastName] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [mobileNumber, setMobileNumber] = React.useState("");
   const [permissions, setPermissions] = React.useState("");
@@ -191,6 +192,8 @@ export default function Staff() {
                     name="firstName"
                     autoFocus
                     required
+                    value={firstName}
+                    onChange={(e)=>setFirstName(e.target.value)}
                   />
                 </FormControl>
               </Grid>
@@ -204,6 +207,8 @@ export default function Staff() {
                     id="lastName"
                     name="lastName"
                     required
+                    value={lastName}
+                    onChange={(e)=>setLastName(e.target.value)}
                   />
                 </FormControl>
               </Grid>
@@ -216,6 +221,9 @@ export default function Staff() {
                     placeholder="staff@example.com"
                     id="email"
                     name="email"
+                    required
+                    value={email}
+                    onChange={(e)=>setEmail(e.target.value)}
                   />
                 </FormControl>
               </Grid>
@@ -228,6 +236,9 @@ export default function Staff() {
                     placeholder="080 000 0000"
                     id="phoneNumber"
                     name="phoneNumber"
+                    required
+                    value={mobileNumber}
+                    onChange={(e)=>setMobileNumber(e.target.value)}
                   />
                 </FormControl>
               </Grid>
@@ -239,7 +250,7 @@ export default function Staff() {
               variant="h6"
               sx={{ fontSize: 14, fontWeight: 600 }}
             >
-              Brand Items
+              Permissions & Security
             </Typography>
             <Typography
               component="p"
