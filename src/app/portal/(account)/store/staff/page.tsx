@@ -7,14 +7,30 @@ import {
   Divider,
   Stack,
   Typography,
+  Checkbox,
   FormControl,
+  FormControlLabel,
+  FormHelperText,
+  FormGroup,
+  FormLabel,
   InputLabel,
   Paper,
   Toolbar,
   Drawer,
   useMediaQuery,
   useTheme,
+  Theme,
+  MenuItem,
 } from "@mui/material";
+import { styled } from "@mui/material/styles";
+import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp";
+import MuiAccordion, { AccordionProps } from "@mui/material/Accordion";
+import MuiAccordionSummary, {
+  AccordionSummaryProps,
+} from "@mui/material/AccordionSummary";
+import MuiAccordionDetails from "@mui/material/AccordionDetails";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
 import Head from "next/head";
 import Image from "next/image";
 import React from "react";
@@ -26,7 +42,25 @@ import {
   StyledTableRow,
   StyledTableCell,
 } from "../../templates/CustomizedTables";
-import ProductImage from "../../templates/productImage";
+
+const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+      width: 250,
+    },
+  },
+};
+
+const permissions = [
+  "Staff Member",
+  "Supervisor",
+  "Manager",
+  "Administrator",
+  "Custom Permissions",
+];
 
 const staffsData: any[] = [
   {
@@ -38,6 +72,110 @@ const staffsData: any[] = [
   },
 ];
 
+const Accordion = styled((props: AccordionProps) => (
+  <MuiAccordion disableGutters elevation={0} square {...props} />
+))(({ theme }) => ({
+  border: `transparent`,
+}));
+
+const AccordionSummary = styled((props: AccordionSummaryProps) => (
+  <MuiAccordionSummary
+    expandIcon={<ArrowForwardIosSharpIcon sx={{ fontSize: "0.9rem" }} />}
+    {...props}
+  />
+))(({ theme }) => ({
+  backgroundColor:
+    theme.palette.mode === "dark" ? "rgba(255, 255, 255, .05)" : "transparent",
+  color: "lightBlue",
+  flexDirection: "row-reverse",
+  "& .MuiAccordionSummary-expandIconWrapper.Mui-expanded": {
+    transform: "rotate(90deg)",
+  },
+  "& .MuiAccordionSummary-content": {
+    marginLeft: theme.spacing(1),
+  },
+}));
+
+const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
+  padding: theme.spacing(1),
+  borderTop: "transparent",
+}));
+
+const salesPermissions = [
+  {
+    name: "Make sales",
+    value: "Make sales",
+    description:
+      "Make card and cash sales and view a history of their own transactions.",
+  },
+  {
+    name: "View all transactions",
+    value: "View all transactions",
+    description:
+      "View all sales, refunds, errors & cancelled transactions in the business.",
+  },
+  {
+    name: "Refund their own last sale",
+    value: "Refund their own last sale",
+    description: "Reverse the last sale made in case of an accidental charge.",
+  },
+  {
+    name: "Refund any sale",
+    value: "Refund any sale",
+    description: "Refund any sale they are allowed to view.",
+  },
+];
+
+const managingPermissions = [
+  {
+    name: "Manage products",
+    value: "Manage products",
+    description: "Add, edit and remove products from the Yoco App or Portal.",
+  },
+  {
+    name: "Manage staff",
+    value: "Manage staff",
+    description:
+      "Add, edit and remove staff from the Yoco App or Portal. A user can only assign permissions they have to other users.",
+  },
+  {
+    name: "View financials",
+    value: "View financials",
+    description:
+      "View account balance and payouts. Invoices and detailed financials can only be accessed on the Yoco Portal.",
+  },
+  {
+    name: "Manage business settings",
+    value: "Manage business settings",
+    description:
+      "Change bank details & business settings such as payment methods.",
+  },
+  {
+    name: "Manage reports",
+    value: "Manage reports",
+    description:
+      "Configure, add or remove users from reports. Reports can only be accessed on the Yoco Portal.",
+  },
+  {
+    name: "Manage external printers",
+    value: "Manage external printers",
+    description: "Add or remove external printers paired to the Yoco App.",
+  },
+];
+
+function getStyles(
+  name: string,
+  permissionName: readonly string[],
+  theme: Theme
+) {
+  return {
+    fontWeight:
+      permissionName.indexOf(name) === -1
+        ? theme.typography.fontWeightRegular
+        : theme.typography.fontWeightMedium,
+  };
+}
+
 export default function Staff() {
   const theme = useTheme();
 
@@ -47,8 +185,13 @@ export default function Staff() {
   const [lastName, setLastName] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [mobileNumber, setMobileNumber] = React.useState("");
-  const [permissions, setPermissions] = React.useState("");
   const [isEdit, setIsEdit] = React.useState(false);
+  const [permissionName, setPermissionName] = React.useState<string>();
+  const [salesPermission, setSalesPermission] = React.useState<string[]>([]);
+  const [managingPermission, setManagingPermissio] = React.useState<string[]>(
+    []
+  );
+  const [expanded, setExpanded] = React.useState<string | false>("");
 
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const toggleDrawer =
@@ -68,6 +211,39 @@ export default function Staff() {
       }
     };
 
+  const handleChange = (event: SelectChangeEvent<typeof salesPermission>) => {
+    const {
+      target: { value },
+    } = event;
+    setSalesPermission(
+      // On autofill we get a stringified value.
+      typeof value === "string" ? value.split(",") : value
+    );
+  };
+
+  const handlePanelChange =
+    (panel: string) => (event: React.SyntheticEvent, newExpanded: boolean) => {
+      setExpanded(newExpanded ? panel : false);
+    };
+
+  const handleSalesPermissions = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    /* setState({
+      ...state,
+      [event.target.name]: event.target.checked,
+    }); */
+  };
+
+  const handleManagingPermissions = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    /* setState({
+      ...state,
+      [event.target.name]: event.target.checked,
+    }); */
+  };
+
   const onEdit = (data: any) => {
     setFirstName(data.firstName);
     setLastName(data.lastName);
@@ -86,7 +262,7 @@ export default function Staff() {
       permissions: "Administrator",
     };
     const index = staffs.findIndex((x: any) => x.email == email);
-    console.log(index)
+    console.log(index);
     if (isEdit && index > -1) {
       staffs[index] = payload;
     } else {
@@ -269,7 +445,7 @@ export default function Staff() {
               </Grid>
             </Grid>
           </Paper>
-          <Paper sx={{ mt: 3, padding: 1 }}>
+          <Paper sx={{ mt: 3, padding: 2, pt: 3 }}>
             <Typography
               component="h4"
               variant="h6"
@@ -277,27 +453,119 @@ export default function Staff() {
             >
               Permissions & Security
             </Typography>
-            <Typography
-              component="p"
-              align="center"
-              sx={{ fontSize: 14, mt: 2 }}
+            <FormControl sx={{ m: 0, p: 0, mt: 3 }} fullWidth size="small">
+              <Typography component="p" align="left" sx={{ fontSize: 12 }}>
+                User Type
+              </Typography>
+              <Select
+                displayEmpty
+                value={permissionName}
+                onChange={(e) => setPermissionName(e.target.value)}
+                input={<OutlinedInput />}
+                MenuProps={MenuProps}
+                inputProps={{ "aria-label": "Without label" }}
+                sx={{ mt: 1 }}
+              >
+                <MenuItem disabled value="">
+                  <em>Select a role for this staff</em>
+                </MenuItem>
+                {permissions.map((name) => (
+                  <MenuItem
+                    key={name}
+                    value={name}
+                    /* style={getStyles(name, permissionName, theme)} */
+                  >
+                    {name}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+            <Accordion
+              expanded={expanded === "panel1"}
+              onChange={handlePanelChange("panel1")}
             >
-              There are currently no products in this brand
-            </Typography>
+              <AccordionSummary
+                aria-controls="panel1d-content"
+                id="panel1d-header"
+              >
+                <Typography color="primary">
+                  {expanded
+                    ? "Hide advanced permissions"
+                    : "Show advanced permissions"}
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <FormControl
+                  sx={{ my: 0, mx: 3 }}
+                  fullWidth
+                  component="fieldset"
+                  variant="standard"
+                >
+                  <FormLabel component="legend" sx={{fontSize: 14,color: "#777"}}>SALES AND REFUNDS</FormLabel>
+                  <FormGroup>
+                    {salesPermissions.map((item: any, index: number) => (
+                      <>
+                        <FormControlLabel
+                          control={
+                            <Checkbox
+                              sx={{ "& .MuiSvgIcon-root": { fontSize: 34 } }}
+                              onChange={handleSalesPermissions}
+                              name={item.value}
+                            />
+                          }
+                          label={<strong>{item.name}</strong>}
+                        />
+                        <FormHelperText sx={{ fontSize: 14, color: "#222", ml: 5,mt:-2 }}>
+                          {item.description}
+                        </FormHelperText>
+                      </>
+                    ))}
+                  </FormGroup>
+                </FormControl>
+                <FormControl
+                  sx={{ mt: 2, mx: 3 }}
+                  fullWidth
+                  component="fieldset"
+                  variant="standard"
+                >
+                  <FormLabel component="legend"  sx={{fontSize: 14,color: "#777"}}>
+                    MANAGING YOUR BUSINESS
+                  </FormLabel>
+                  <FormGroup>
+                    {managingPermissions.map((item: any, index: number) => (
+                      <>
+                        <FormControlLabel
+                          control={
+                            <Checkbox
+                              sx={{ "& .MuiSvgIcon-root": { fontSize: 34 } }}
+                              onChange={handleManagingPermissions}
+                              name={item.value}
+                            />
+                          }
+                          label={<strong>{item.name}</strong>}
+                        />
+                        <FormHelperText sx={{ fontSize: 14, color: "#222", ml: 5,mt:-2 }}>
+                          {item.description}
+                        </FormHelperText>
+                      </>
+                    ))}
+                  </FormGroup>
+                </FormControl>
+              </AccordionDetails>
+            </Accordion>
             <Button
-              size="large"
+              size="medium"
               variant="contained"
               disableElevation
               sx={{
-                bgcolor: "#e4e9f1",
-                color: "#222",
-                width: "100%",
+                bgcolor: "#000",
+                color: "#fff",
                 height: 48,
-                borderRadius: 0,
+                borderRadius: 2,
                 mt: 2,
               }}
             >
-              Add item(s) to brand
+              Set Pin
             </Button>
           </Paper>
           <Box
