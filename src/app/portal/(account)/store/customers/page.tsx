@@ -35,20 +35,6 @@ export default function Customers() {
   const [open, setOpen] = React.useState(false);
   
 
-  const toggleDrawer =
-    (anchor: Anchor, open: boolean) =>
-    (event: React.KeyboardEvent | React.MouseEvent) => {
-      if (
-        event.type === "keydown" &&
-        ((event as React.KeyboardEvent).key === "Tab" ||
-          (event as React.KeyboardEvent).key === "Shift")
-      ) {
-        return;
-      }
-
-      setState({ ...state, [anchor]: open });
-    };
-
   const onAdd = () => {
     setOpen(true);
   };
