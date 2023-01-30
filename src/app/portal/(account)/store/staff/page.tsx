@@ -28,9 +28,10 @@ import {
 } from "../../templates/CustomizedTables";
 import ProductImage from "../../templates/productImage";
 
-const staffsData:any[] = [
+const staffsData: any[] = [
   {
-    name: "Ben Walker",
+    firstName: "Ben",
+    lastName: "Walker",
     email: "user@example.com",
     mobileNumber: "+27800000000",
     permissions: "Administrator",
@@ -47,6 +48,7 @@ export default function Staff() {
   const [email, setEmail] = React.useState("");
   const [mobileNumber, setMobileNumber] = React.useState("");
   const [permissions, setPermissions] = React.useState("");
+  const [isEdit, setIsEdit] = React.useState(false);
 
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const toggleDrawer =
@@ -61,7 +63,19 @@ export default function Staff() {
 
       setState(open);
       //setActiveDrawer(anchor);
+      if (open == false) {
+        setIsEdit(false);
+      }
     };
+
+  const onEdit = (data: any) => {
+    setFirstName(data.firstName);
+    setLastName(data.lastName);
+    setEmail(data.email);
+    setMobileNumber(data.mobileNumber);
+    setIsEdit(true);
+    setState(true);
+  };
 
   const onSave = () => {
     const payload = {
@@ -71,9 +85,19 @@ export default function Staff() {
       mobileNumber: mobileNumber,
       permissions: "Administrator",
     };
-    staffs.push(payload);
+    const index = staffs.findIndex((x: any) => x.email == email);
+    console.log(index)
+    if (isEdit && index > -1) {
+      staffs[index] = payload;
+    } else {
+      staffs.push(payload);
+    }
     setStaffs(staffs);
     setState(false);
+    setFirstName("");
+    setLastName("");
+    setEmail("");
+    setMobileNumber("");
   };
 
   return (
@@ -120,9 +144,9 @@ export default function Staff() {
             sx={{ mt: 2 }}
           >
             {staffs.map((row: any) => (
-              <StyledTableRow key={row.name}>
+              <StyledTableRow key={row.name} onClick={() => onEdit(row)}>
                 <StyledTableCell component="th" scope="row">
-                  {row.name}
+                  {row.firstName + " " + row.lastName}
                 </StyledTableCell>
                 <StyledTableCell scope="row">{row.email}</StyledTableCell>
                 <StyledTableCell scope="row">
@@ -194,7 +218,7 @@ export default function Staff() {
                     autoFocus
                     required
                     value={firstName}
-                    onChange={(e)=>setFirstName(e.target.value)}
+                    onChange={(e) => setFirstName(e.target.value)}
                   />
                 </FormControl>
               </Grid>
@@ -209,7 +233,7 @@ export default function Staff() {
                     name="lastName"
                     required
                     value={lastName}
-                    onChange={(e)=>setLastName(e.target.value)}
+                    onChange={(e) => setLastName(e.target.value)}
                   />
                 </FormControl>
               </Grid>
@@ -224,7 +248,7 @@ export default function Staff() {
                     name="email"
                     required
                     value={email}
-                    onChange={(e)=>setEmail(e.target.value)}
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </FormControl>
               </Grid>
@@ -239,7 +263,7 @@ export default function Staff() {
                     name="phoneNumber"
                     required
                     value={mobileNumber}
-                    onChange={(e)=>setMobileNumber(e.target.value)}
+                    onChange={(e) => setMobileNumber(e.target.value)}
                   />
                 </FormControl>
               </Grid>
