@@ -9,7 +9,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Box, Typography } from "@mui/material";
 
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
+export const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.background.default,
     color: theme.palette.common.black,
@@ -19,7 +19,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   },
 }));
 
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
+export const StyledTableRow = styled(TableRow)(({ theme }) => ({
   "&:nth-of-type(odd)": {
     backgroundColor: theme.palette.action.hover,
   },
@@ -29,7 +29,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-export default function CustomizedTables({data}: any) {
+export default function CustomizedTables({ data }: any) {
   return (
     <TableContainer component={Paper} elevation={0}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -41,7 +41,7 @@ export default function CustomizedTables({data}: any) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {data.map((row:any) => (
+          {data.map((row: any) => (
             <StyledTableRow key={row.name}>
               <StyledTableCell>
                 <Box
@@ -66,9 +66,28 @@ export default function CustomizedTables({data}: any) {
               <StyledTableCell component="th" scope="row">
                 {row.name}
               </StyledTableCell>
-              <StyledTableCell align="left">{row.items.length} products</StyledTableCell>
+              <StyledTableCell align="left">
+                {row.items.length} products
+              </StyledTableCell>
             </StyledTableRow>
           ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
+  );
+}
+
+export function CustomTable({items,children}:any) {
+  return (
+    <TableContainer component={Paper} elevation={0}>
+      <Table sx={{ minWidth: 700 }} aria-label="customized table">
+      <TableHead>
+          <TableRow>
+            {items && items.map((item:any,index:number)=>(<StyledTableCell align="left">{item}</StyledTableCell>))}
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {children}
         </TableBody>
       </Table>
     </TableContainer>
