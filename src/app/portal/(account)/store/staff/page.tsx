@@ -3,16 +3,77 @@ import {
   Box,
   Button,
   Container,
+  Unstable_Grid2 as Grid,
   Divider,
   Stack,
   Typography,
+  FormControl,
+  InputLabel,
+  Paper,
+  Toolbar,
+  Drawer,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
 import Head from "next/head";
 import Image from "next/image";
 import React from "react";
+import BootstrapInput from "../../../../../components/BootstrapInput";
 import Empty from "../../../../../components/empty";
+import ResponsiveDialog from "../../../../../components/responsiveDialog";
+import {
+  CustomTable,
+  StyledTableRow,
+  StyledTableCell,
+} from "../../templates/CustomizedTables";
+import ProductImage from "../../templates/productImage";
+
+const staffsData:any[] = [
+  {
+    name: "Ben Walker",
+    email: "user@example.com",
+    mobileNumber: "+27800000000",
+    permissions: "Administrator",
+  },
+];
 
 export default function Staff() {
+  const theme = useTheme();
+
+  const [staffs, setStaffs] = React.useState<any[]>(staffsData);
+  const [state, setState] = React.useState(false);
+  const [name, setName] = React.useState("");
+  const [email, setEmail] = React.useState("");
+  const [mobileNumber, setMobileNumber] = React.useState("");
+  const [permissions, setPermissions] = React.useState("");
+
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+  const toggleDrawer =
+    (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
+      if (
+        event.type === "keydown" &&
+        ((event as React.KeyboardEvent).key === "Tab" ||
+          (event as React.KeyboardEvent).key === "Shift")
+      ) {
+        return;
+      }
+
+      setState(open);
+      //setActiveDrawer(anchor);
+    };
+
+  const onSave = () => {
+    const payload = {
+      name: "Ben Walker",
+      email: "user@example.com",
+      mobileNumber: "+27800000000",
+      permissions: "Administrator",
+    };
+    staffs.push(payload);
+    setStaffs(staffs);
+    setState(false);
+  };
+
   return (
     <>
       <Head>
@@ -32,24 +93,211 @@ export default function Staff() {
           spacing={{ xs: 1, sm: 2, md: 4 }}
           justifyContent={{ xs: "flex-start", sm: "space-between" }}
           mt={4}
+          mb={2}
         >
           <Typography
             component="h1"
             variant="h4"
-            sx={{ fontSize: 30, fontWeight: 600 }}
+            sx={{ fontSize: 30, fontWeight: 800 }}
           >
-            Staff
+            Manage Staff Members
           </Typography>
-          <Button size="medium" variant="contained" disableElevation>
-            Add Staff
+          <Button
+            size="medium"
+            variant="contained"
+            disableElevation
+            onClick={toggleDrawer(true)}
+          >
+            Invite Staff Members
           </Button>
         </Stack>
-        <Empty
-          title="Your business currently has no staffs or 
-            "
-          subtitle="you may need to change your filter'"
-        />
+
+        {staffs.length > 0 ? (
+          <CustomTable
+            items={["NAME", "EMAIL", "MOBILE NUMBER", "PERMISSIONS"]}
+            sx={{ mt: 2 }}
+          >
+            {staffs.map((row: any) => (
+              <StyledTableRow key={row.name}>
+                <StyledTableCell component="th" scope="row">
+                  {row.name}
+                </StyledTableCell>
+                <StyledTableCell scope="row">{row.email}</StyledTableCell>
+                <StyledTableCell scope="row">
+                  {row.mobileNumber}
+                </StyledTableCell>
+                <StyledTableCell scope="row">{row.permissions}</StyledTableCell>
+              </StyledTableRow>
+            ))}
+          </CustomTable>
+        ) : (
+          <Empty
+            title="Your business currently has no staffs or"
+            subtitle="add staff to manage your business"
+          />
+        )}
       </Container>
+      <Drawer
+        anchor={isMobile ? "bottom" : "right"}
+        open={state}
+        onClose={() => setState(false)}
+        sx={{
+          "& .MuiDrawer-paper": {
+            boxSizing: "border-box",
+            width: 700,
+            backgroundColor: "background.default",
+          },
+        }}
+      >
+        <Box padding={2} mb={10}>
+          <Box
+            position="fixed"
+            sx={{
+              display: "flex",
+              ml: "-15px",
+              top: 0,
+              bottom: "auto",
+              backgroundColor: "background.default",
+              width: "100%",
+              padding: 2,
+              zIndex: 1,
+            }}
+          >
+            <Typography
+              component="h3"
+              variant="h5"
+              sx={{ fontSize: 18, fontWeight: 600 }}
+            >
+              Invite a Staff Member
+            </Typography>
+          </Box>
+          <Paper sx={{ mt: 3, padding: 2, pt: 3 }}>
+            <Typography
+              component="h4"
+              variant="h6"
+              sx={{ fontSize: 14, fontWeight: 600, mb: 2 }}
+            >
+              General Infomation
+            </Typography>
+            <Grid container spacing={2} mt={2}>
+              <Grid xs={12} md={6}>
+                <FormControl variant="standard" fullWidth>
+                  <InputLabel shrink color="primary" htmlFor="bootstrap-input">
+                    First Name
+                  </InputLabel>
+                  <BootstrapInput
+                    placeholder="First Name"
+                    id="firstName"
+                    name="firstName"
+                    autoFocus
+                    required
+                  />
+                </FormControl>
+              </Grid>
+              <Grid xs={12} md={6}>
+                <FormControl variant="standard" fullWidth>
+                  <InputLabel shrink color="primary" htmlFor="bootstrap-input">
+                    Last Name
+                  </InputLabel>
+                  <BootstrapInput
+                    placeholder="Last Name"
+                    id="lastName"
+                    name="lastName"
+                    required
+                  />
+                </FormControl>
+              </Grid>
+              <Grid xs={12} md={6}>
+                <FormControl variant="standard" fullWidth>
+                  <InputLabel shrink color="primary" htmlFor="bootstrap-input">
+                    Staff Email
+                  </InputLabel>
+                  <BootstrapInput
+                    placeholder="staff@example.com"
+                    id="email"
+                    name="email"
+                  />
+                </FormControl>
+              </Grid>
+              <Grid xs={12} md={6}>
+                <FormControl variant="standard" fullWidth>
+                  <InputLabel shrink color="primary" htmlFor="bootstrap-input">
+                    Staff Mobile Number
+                  </InputLabel>
+                  <BootstrapInput
+                    placeholder="080 000 0000"
+                    id="phoneNumber"
+                    name="phoneNumber"
+                  />
+                </FormControl>
+              </Grid>
+            </Grid>
+          </Paper>
+          <Paper sx={{ mt: 3, padding: 1 }}>
+            <Typography
+              component="h4"
+              variant="h6"
+              sx={{ fontSize: 14, fontWeight: 600 }}
+            >
+              Brand Items
+            </Typography>
+            <Typography
+              component="p"
+              align="center"
+              sx={{ fontSize: 14, mt: 2 }}
+            >
+              There are currently no products in this brand
+            </Typography>
+            <Button
+              size="large"
+              variant="contained"
+              disableElevation
+              sx={{
+                bgcolor: "#e4e9f1",
+                color: "#222",
+                width: "100%",
+                height: 48,
+                borderRadius: 0,
+                mt: 2,
+              }}
+            >
+              Add item(s) to brand
+            </Button>
+          </Paper>
+          <Box
+            position="fixed"
+            sx={{
+              display: "flex",
+              ml: "-15px",
+              top: "auto",
+              bottom: 0,
+              backgroundColor: "background.paper",
+              width: "100%",
+              padding: 1,
+            }}
+          >
+            <Toolbar variant="dense">
+              <Button
+                autoFocus
+                sx={{ backgroundColor: "background.default" }}
+                onClick={toggleDrawer(false)}
+              >
+                Cancel
+              </Button>
+              <Button
+                autoFocus
+                size="medium"
+                variant="contained"
+                disableElevation
+                sx={{ ml: 2 }}
+                onClick={onSave}
+              >
+                Save
+              </Button>
+            </Toolbar>
+          </Box>
+        </Box>
+      </Drawer>
     </>
-  )
+  );
 }
