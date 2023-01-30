@@ -186,7 +186,7 @@ export default function Staff() {
   const [email, setEmail] = React.useState("");
   const [mobileNumber, setMobileNumber] = React.useState("");
   const [isEdit, setIsEdit] = React.useState(false);
-  const [permissionName, setPermissionName] = React.useState<string>();
+  const [permissionName, setPermissionName] = React.useState<string>("");
   const [salesPermission, setSalesPermission] = React.useState<string[]>([]);
   const [managingPermission, setManagingPermissio] = React.useState<string[]>(
     []
@@ -274,6 +274,20 @@ export default function Staff() {
     setLastName("");
     setEmail("");
     setMobileNumber("");
+  };
+
+  const onDelete = (id: string) => {
+    const index = staffs.findIndex((x: any) => x.email == id);
+    console.log(index);
+    if (isEdit && index > -1) {
+      staffs.splice(index, 1);
+      setStaffs(staffs);
+      setState(false);
+      setFirstName("");
+      setLastName("");
+      setEmail("");
+      setMobileNumber("");
+    }
   };
 
   return (
@@ -501,7 +515,12 @@ export default function Staff() {
                   component="fieldset"
                   variant="standard"
                 >
-                  <FormLabel component="legend" sx={{fontSize: 14,color: "#777"}}>SALES AND REFUNDS</FormLabel>
+                  <FormLabel
+                    component="legend"
+                    sx={{ fontSize: 14, color: "#777" }}
+                  >
+                    SALES AND REFUNDS
+                  </FormLabel>
                   <FormGroup>
                     {salesPermissions.map((item: any, index: number) => (
                       <>
@@ -515,7 +534,9 @@ export default function Staff() {
                           }
                           label={<strong>{item.name}</strong>}
                         />
-                        <FormHelperText sx={{ fontSize: 14, color: "#222", ml: 5,mt:-2 }}>
+                        <FormHelperText
+                          sx={{ fontSize: 14, color: "#222", ml: 5, mt: -2 }}
+                        >
                           {item.description}
                         </FormHelperText>
                       </>
@@ -528,7 +549,10 @@ export default function Staff() {
                   component="fieldset"
                   variant="standard"
                 >
-                  <FormLabel component="legend"  sx={{fontSize: 14,color: "#777"}}>
+                  <FormLabel
+                    component="legend"
+                    sx={{ fontSize: 14, color: "#777" }}
+                  >
                     MANAGING YOUR BUSINESS
                   </FormLabel>
                   <FormGroup>
@@ -544,7 +568,9 @@ export default function Staff() {
                           }
                           label={<strong>{item.name}</strong>}
                         />
-                        <FormHelperText sx={{ fontSize: 14, color: "#222", ml: 5,mt:-2 }}>
+                        <FormHelperText
+                          sx={{ fontSize: 14, color: "#222", ml: 5, mt: -2 }}
+                        >
                           {item.description}
                         </FormHelperText>
                       </>
@@ -581,6 +607,19 @@ export default function Staff() {
             }}
           >
             <Toolbar variant="dense">
+              {isEdit == true && (
+                <Button
+                  autoFocus
+                  size="medium"
+                  variant="contained"
+                  disableElevation
+                  sx={{ mr: 2 }}
+                  onClick={() => onDelete(email)}
+                >
+                  Delete
+                </Button>
+              )}
+
               <Button
                 autoFocus
                 sx={{ backgroundColor: "background.default" }}
@@ -592,6 +631,7 @@ export default function Staff() {
                 autoFocus
                 size="medium"
                 variant="contained"
+                color="secondary"
                 disableElevation
                 sx={{ ml: 2 }}
                 onClick={onSave}
