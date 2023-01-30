@@ -23,6 +23,7 @@ import React from "react";
 import BootstrapInput from "../../../../../components/BootstrapInput";
 import Empty from "../../../../../components/empty";
 import FormDrawer from "../../../../../components/formDrawer";
+import CustomizedMenus from "../../templates/customizedMenus";
 import CustomizedTables from "../../templates/CustomizedTables";
 import ProductImage from "../../templates/productImage";
 import SearchInput from "../../templates/search";
@@ -112,6 +113,7 @@ export default function BrandsAndCategories() {
 
   const [brands, setBrands] = React.useState<any[]>(brandsData);
   const [active, setActive] = React.useState(0);
+  const [activeDrawer, setActiveDrawer] = React.useState("");
   const [state, setState] = React.useState(false);
   const [name, setName] = React.useState("");
   const [color, setColor] = React.useState("");
@@ -123,17 +125,16 @@ export default function BrandsAndCategories() {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const toggleDrawer =
     (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
-      /* if (
+      if (
         event.type === "keydown" &&
         ((event as React.KeyboardEvent).key === "Tab" ||
           (event as React.KeyboardEvent).key === "Shift")
       ) {
         return;
-      } */
-
-      console.log("isOpen: ", open);
+      }
 
       setState(open);
+      //setActiveDrawer(anchor);
     };
 
   const onSave = () => {
@@ -178,11 +179,15 @@ export default function BrandsAndCategories() {
             size="medium"
             variant="contained"
             disableElevation
-            sx={{ mt: { xs: 2, sm: 0 } }}
             onClick={toggleDrawer(true)}
           >
-            Add
+            Add Product
           </Button>
+          <CustomizedMenus
+            name="Add"
+            items={[{ name: "Brand" }, { name: "Category" }]}
+            setDrawer={()=>toggleDrawer(true)}
+          />
         </Stack>
         <SearchInput />
         <Box sx={{ width: "100%" }}>
@@ -199,7 +204,7 @@ export default function BrandsAndCategories() {
             </AntTabs>
           </Box>
           <CustomizedTables data={active == 0 ? brands : categoriesData} />
-          
+
           {!brands && (
             <Empty
               title="Your business currently has no brands and categories or 
@@ -212,7 +217,7 @@ export default function BrandsAndCategories() {
       <Drawer
         anchor={isMobile ? "bottom" : "right"}
         open={state}
-        onClose={toggleDrawer(false)}
+        onClose={()=>setState(false)}
         sx={{
           "& .MuiDrawer-paper": {
             boxSizing: "border-box",
@@ -222,27 +227,27 @@ export default function BrandsAndCategories() {
         }}
       >
         <Box padding={2} mb={10}>
-        <Box
-          position="fixed"
-          sx={{
-            display: "flex",
-            ml: "-15px",
-            top: 0,
-            bottom: "auto",
-            backgroundColor: "background.default",
-            width: "100%",
-            padding: 2,
-            zIndex: 1
-          }}
-        >
-          <Typography
-            component="h3"
-            variant="h5"
-            sx={{ fontSize: 18, fontWeight: 600 }}
+          <Box
+            position="fixed"
+            sx={{
+              display: "flex",
+              ml: "-15px",
+              top: 0,
+              bottom: "auto",
+              backgroundColor: "background.default",
+              width: "100%",
+              padding: 2,
+              zIndex: 1,
+            }}
           >
-            Add Brand
-          </Typography>
-        </Box>
+            <Typography
+              component="h3"
+              variant="h5"
+              sx={{ fontSize: 18, fontWeight: 600 }}
+            >
+              Add Brand
+            </Typography>
+          </Box>
           <Paper sx={{ mt: 3, padding: 2 }}>
             <Typography
               component="h4"
