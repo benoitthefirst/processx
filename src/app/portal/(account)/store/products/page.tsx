@@ -24,6 +24,7 @@ import BootstrapInput from "../../../../../components/BootstrapInput";
 import Empty from "../../../../../components/empty";
 import FormDrawer from "../../../../../components/formDrawer";
 import ProductImage from "../../templates/productImage";
+import SearchInput from "../../templates/search";
 
 export default function Products() {
   const [state, setState] = React.useState(true);
@@ -105,6 +106,7 @@ export default function Products() {
             Add Product
           </Button>
         </Stack>
+        <SearchInput />
         <Empty
           title="Your business currently has no products or"
           subtitle="you may need to change your filter'"
