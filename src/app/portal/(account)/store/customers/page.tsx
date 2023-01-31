@@ -65,8 +65,8 @@ export default function Customers() {
     setCompany(data.company);
     setEmail(data.email);
     setMobileNumber(data.mobileNumber);
-    setAddress(data.mobileNumber);
-    setVatNumber(data.mobileNumber);
+    setAddress(data.address);
+    setVatNumber(data.vatNumber);
     setIsEdit(true);
     setOpen(true);
   };
@@ -81,7 +81,6 @@ export default function Customers() {
       vatNumber: vatNumber,
     };
     const index = customers.findIndex((x: any) => x.email == email);
-    console.log(index);
     if (isEdit && index > -1) {
       customers[index] = payload;
     } else {
@@ -127,12 +126,13 @@ export default function Customers() {
           direction={{ xs: "column", sm: "row" }}
           spacing={{ xs: 1, sm: 2, md: 4 }}
           justifyContent={{ xs: "flex-start", sm: "space-between" }}
-          mt={{ xs: 5, sm: 4 }}
+          mt={4}
+          mb={2}
         >
           <Typography
             component="h1"
             variant="h4"
-            sx={{ fontSize: 30, fontWeight: 600 }}
+            sx={{ fontSize: 30, fontWeight: 800 }}
           >
             Customers
           </Typography>

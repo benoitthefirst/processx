@@ -365,7 +365,6 @@ export default function Staff() {
       permissions: currentPermission,
     };
     const index = staffs.findIndex((x: any) => x.email == email);
-    console.log(index);
     if (isEdit && index > -1) {
       staffs[index] = payload;
     } else {
