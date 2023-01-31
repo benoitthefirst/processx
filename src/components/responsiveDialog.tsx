@@ -7,6 +7,7 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
+import { Box } from "@mui/material";
 
 export default function ResponsiveDialog({
   title,
@@ -15,6 +16,8 @@ export default function ResponsiveDialog({
   onClick,
   open,
   onClose,
+  showDeleteBtn,
+  onDelete
 }: any) {
   //const [open, setOpen] = React.useState(false);
   const theme = useTheme();
@@ -35,11 +38,17 @@ export default function ResponsiveDialog({
         </DialogContentText>
       </DialogContent>
       <DialogActions>
+      {showDeleteBtn && (
+          <Button onClick={onDelete}  color="primary" autoFocus size="medium" variant="contained" disableElevation>
+            Delete
+          </Button>
+        )}
+        <Box sx={{ flexGrow: 1 }} />
         <Button autoFocus onClick={onClose}>
           Close
         </Button>
         {actionBtnText && (
-          <Button onClick={onClick} autoFocus size="medium" variant="contained" disableElevation>
+          <Button onClick={onClick} color="secondary" autoFocus size="medium" variant="contained" disableElevation>
             {actionBtnText}
           </Button>
         )}

@@ -91,9 +91,9 @@ export default function Customers() {
     clearFields();
   };
 
-  const onDelete = (id: string) => {
+  const onDelete = () => {
     if (isEdit) {
-      setCustomers((x)=>x.filter((a) => a.email != id));
+      setCustomers((x)=>x.filter((a) => a.email != email));
       setOpen(false);
       clearFields();
     }
@@ -106,6 +106,7 @@ export default function Customers() {
     setMobileNumber("");
     setAddress("");
     setVatNumber("");
+    setIsEdit(false);
   };
 
   return (
@@ -183,6 +184,8 @@ export default function Customers() {
         onClose={handleClose}
         actionBtnText="Save"
         onClick={onSave}
+        onDelete={onDelete}
+        showDeleteBtn={isEdit}
       >
         <Box padding={{ xs: 2, md: 2 }}>
           <Grid container spacing={2} mt={2}>
