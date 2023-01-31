@@ -31,11 +31,13 @@ import { CustomSwitch } from "../../templates/switch";
 export default function Products() {
   const [state, setState] = React.useState(true);
   const theme = useTheme();
-  const [firstName, setFirstName] = React.useState("");
-  const [lastName, setLastName] = React.useState("");
   const [email, setEmail] = React.useState("");
-  const [mobileNumber, setMobileNumber] = React.useState("");
   const [name, setName] = React.useState("");
+  const [tax, setTax] = React.useState("");
+  const [description, setDescription] = React.useState("");
+  const [productBrand, setProductBrand] = React.useState("");
+  const [productCategory, setProductCategory] = React.useState("");
+  const [productPrice, setProductPrice] = React.useState("");
   const [productSku, setProductSku] = React.useState("");
   const [productDefaultCost, setProductDefaultCost] = React.useState("");
   const [color, setColor] = React.useState("");
@@ -72,10 +74,7 @@ export default function Products() {
   };
 
   const clearFields = () => {
-    setFirstName("");
-    setLastName("");
-    setEmail("");
-    setMobileNumber("");
+    setName("");
   };
   return (
     <>
@@ -176,80 +175,88 @@ export default function Products() {
             <Grid container spacing={2} mt={2}>
               <Grid xs={12}>
                 <FormControl variant="standard" fullWidth>
-                  <InputLabel shrink color="primary" htmlFor="bootstrap-input">
+                  <InputLabel shrink color="primary" htmlFor="productName">
                     Name
                   </InputLabel>
                   <BootstrapInput
                     placeholder="Product name"
-                    id="name"
-                    name="name"
+                    id="productName"
+                    name="productName"
                     autoFocus
                     required
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
                   />
                 </FormControl>
               </Grid>
               <Grid xs={12} md={6}>
                 <FormControl variant="standard" fullWidth>
-                  <InputLabel shrink color="primary" htmlFor="bootstrap-input">
+                  <InputLabel shrink color="primary" htmlFor="productPrice">
                     Price
                   </InputLabel>
                   <BootstrapInput
                     placeholder="Price"
-                    id="price"
-                    name="price"
+                    id="productPrice"
+                    name="productPrice"
                     required
+                    value={productPrice}
+                    onChange={(e) => setProductPrice(e.target.value)}
                   />
                 </FormControl>
               </Grid>
               <Grid xs={12} md={6}>
                 <FormControl variant="standard" fullWidth>
-                  <InputLabel shrink color="primary" htmlFor="bootstrap-input">
+                  <InputLabel shrink color="primary" htmlFor="tax">
                     Tax
                   </InputLabel>
                   <BootstrapInput
                     placeholder="Default: No Tax(0%)"
                     id="tax"
                     name="tax"
+                    value={tax}
+                    onChange={(e) => setTax(e.target.value)}
                   />
                 </FormControl>
               </Grid>
               <Grid xs={12}>
                 <FormControl variant="standard" fullWidth>
-                  <InputLabel shrink color="primary" htmlFor="bootstrap-input">
+                  <InputLabel shrink color="primary" htmlFor="description">
                     Description
                   </InputLabel>
                   <BootstrapInput
                     placeholder="Description"
                     id="description"
                     name="description"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
                   />
                 </FormControl>
               </Grid>
               <Grid xs={12} md={6}>
                 <FormControl variant="standard" fullWidth>
-                  <InputLabel shrink color="primary" htmlFor="bootstrap-input">
+                  <InputLabel shrink color="primary" htmlFor="productBrand  ">
                     Product Brand
                   </InputLabel>
                   <BootstrapInput
                     placeholder="Select a Brand"
-                    id="email"
-                    name="email"
-                    autoFocus
-                    required
+                    id="productBrand"
+                    name="productBrand"
+                    value={productBrand}
+                    onChange={(e) => setProductBrand(e.target.value)}
                   />
                 </FormControl>
               </Grid>
               <Grid xs={12} md={6}>
                 <FormControl variant="standard" fullWidth>
-                  <InputLabel shrink color="primary" htmlFor="bootstrap-input">
+                  <InputLabel shrink color="primary" htmlFor="productCategory">
                     Product Category
                   </InputLabel>
                   <BootstrapInput
                     placeholder="Select a Category"
-                    id="email"
-                    name="email"
-                    autoFocus
-                    required
+                    id="productCategory"
+                    name="productCategory"
+                    value={productCategory}
+                    onChange={(e) => setProductCategory(e.target.value)}
                   />
                 </FormControl>
               </Grid>
