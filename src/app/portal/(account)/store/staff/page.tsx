@@ -378,7 +378,7 @@ export default function Staff() {
 
   const onDelete = (id: string) => {
     if (isEdit) {
-      setStaffs((x)=>x.filter((a) => x.email != id));
+      setStaffs((x)=>x.filter((a) => a.email != id));
       setState(false);
       clearFields();
     }
