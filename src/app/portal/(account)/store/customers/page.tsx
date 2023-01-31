@@ -29,6 +29,7 @@ import {
   StyledTableRow,
   StyledTableCell,
 } from "../../templates/CustomizedTables";
+import SearchInput from "../../templates/search";
 
 const customersData: any[] = [
   {
@@ -146,6 +147,7 @@ export default function Customers() {
             Add
           </Button>
         </Stack>
+        <SearchInput />
         {customers.length > 0 ? (
           <CustomTable
             items={[
@@ -156,7 +158,7 @@ export default function Customers() {
               "ADDRESS",
               "VAT NUMBER",
             ]}
-            sx={{ mt: 2 }}
+            sx={{ mt: 3 }}
           >
             {customers.map((row: any, index: number) => (
               <StyledTableRow key={index} onClick={() => onEdit(row)}>

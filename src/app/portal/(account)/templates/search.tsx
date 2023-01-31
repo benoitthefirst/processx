@@ -41,7 +41,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export default function SearchInput() {
   return (
-    <Search>
+    <Search sx={{mb: 2}}>
       <SearchIconWrapper>
         <SearchIcon />
       </SearchIconWrapper>
