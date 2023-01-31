@@ -72,7 +72,24 @@ export default function Customers() {
   };
 
   const onSave = () => {
+    const payload = {
+      name: name,
+      company: company,
+      email: email,
+      mobileNumber: mobileNumber,
+      address: address,
+      vatNumber: vatNumber,
+    };
+    const index = customers.findIndex((x: any) => x.email == email);
+    console.log(index);
+    if (isEdit && index > -1) {
+      customers[index] = payload;
+    } else {
+      customers.push(payload);
+    }
+    setCustomers(customers);
     setOpen(false);
+    clearFields();
   };
 
   const onDelete = (id: string) => {
