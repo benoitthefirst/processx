@@ -24,13 +24,27 @@ import React from "react";
 import BootstrapInput from "../../../../../components/BootstrapInput";
 import Empty from "../../../../../components/empty";
 import FormDrawer from "../../../../../components/formDrawer";
+import {
+  CustomTable,
+  StyledTableCell,
+  StyledTableRow,
+} from "../../templates/CustomizedTables";
 import ProductImage from "../../templates/productImage";
 import SearchInput from "../../templates/search";
 import { CustomSwitch } from "../../templates/switch";
 
+const productsData = [
+  {
+    name: "Jordan",
+    description: "Jordan",
+    price: "R120"
+  },
+];
+
 export default function Products() {
-  const [state, setState] = React.useState(true);
   const theme = useTheme();
+  const [products, setProducts] = React.useState<any[]>(productsData);
+  const [state, setState] = React.useState(false);
   const [email, setEmail] = React.useState("");
   const [name, setName] = React.useState("");
   const [tax, setTax] = React.useState("");
@@ -117,11 +131,49 @@ export default function Products() {
           </Button>
         </Stack>
         <SearchInput />
-        <Empty
-          title="Your business currently has no products or"
-          subtitle="you may need to change your filter'"
-          action="Click Add Product to add products to your store"
-        />
+        {products.length > 0 ? (
+          <CustomTable
+            items={["", "NAME", "DESCRIPTION", "PRICE"]}
+            last={true}
+            sx={{ mt: 2 }}
+          >
+            {products.map((row: any, index: number) => (
+              <StyledTableRow key={index} /* onClick={() => onEdit(row)} */>
+                <StyledTableCell width={80}>
+                  <Box
+                    display="flex"
+                    justifyContent="center"
+                    alignItems="center"
+                    sx={{
+                      bgcolor: row?.color ?? "primary.main",
+                      height: 60,
+                      width: 60,
+                    }}
+                  >
+                    <Typography
+                      variant="subtitle1"
+                      align="center"
+                      sx={{ color: "white", fontSize: 24, fontWeight: 600 }}
+                    >
+                      Jo
+                    </Typography>
+                  </Box>
+                </StyledTableCell>
+                <StyledTableCell component="th" scope="row">
+                  {row.name}
+                </StyledTableCell>
+                <StyledTableCell scope="row">{row.description}</StyledTableCell>
+                <StyledTableCell scope="row" width={120}>{row.price}</StyledTableCell>
+              </StyledTableRow>
+            ))}
+          </CustomTable>
+        ) : (
+          <Empty
+            title="Your business currently has no products or"
+            subtitle="you may need to change your filter'"
+            action="Click Add Product to add products to your store"
+          />
+        )}
       </Container>
       <Drawer
         anchor={isMobile ? "bottom" : "right"}

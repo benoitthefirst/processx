@@ -77,18 +77,23 @@ export default function CustomizedTables({ data }: any) {
   );
 }
 
-export function CustomTable({items,children}:any) {
+export function CustomTable({ items, children,last }: any) {
   return (
     <TableContainer component={Paper} elevation={0}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
-      <TableHead>
+        <TableHead>
           <TableRow>
-            {items && items.map((item:any,index:number)=>(<StyledTableCell align="left">{item}</StyledTableCell>))}
+            {items &&
+              items.map((item: any, index: number) =>
+                item.length == 0 && index == 0 ? (
+                  <StyledTableCell width={80}></StyledTableCell>
+                ) : (
+                  <StyledTableCell align="left">{item}</StyledTableCell>
+                )
+              )}
           </TableRow>
         </TableHead>
-        <TableBody>
-          {children}
-        </TableBody>
+        <TableBody>{children}</TableBody>
       </Table>
     </TableContainer>
   );
