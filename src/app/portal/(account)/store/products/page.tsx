@@ -23,10 +23,18 @@ import React from "react";
 import BootstrapInput from "../../../../../components/BootstrapInput";
 import Empty from "../../../../../components/empty";
 import FormDrawer from "../../../../../components/formDrawer";
+import ProductImage from "../../templates/productImage";
 
 export default function Products() {
   const [state, setState] = React.useState(true);
   const theme = useTheme();
+  const [firstName, setFirstName] = React.useState("");
+  const [lastName, setLastName] = React.useState("");
+  const [email, setEmail] = React.useState("");
+  const [mobileNumber, setMobileNumber] = React.useState("");
+  const [name, setName] = React.useState("");
+  const [color, setColor] = React.useState("");
+  const [isEdit, setIsEdit] = React.useState(false);
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const toggleDrawer =
     (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
@@ -46,6 +54,21 @@ export default function Products() {
     const onSave = () => {
       setState(false);
     };
+
+    const onDelete = (id: string) => {
+      if (isEdit) {
+        //setStaffs((x)=>x.filter((a) => a.email != id));
+        setState(false);
+        clearFields();
+      }
+    };
+  
+    const clearFields = () => {
+      setFirstName("");
+      setLastName("");
+      setEmail("");
+      setMobileNumber("");
+    }
   return (
     <>
       <Head>
@@ -88,303 +111,6 @@ export default function Products() {
           action="Click Add Product to add products to your store"
         />
       </Container>
-      {/* <FormDrawer title="Add Product"
-        state={open}
-        onClose={toggleDrawer(false)}
-        actionBtnText="Save"
-        onClick={onSave}>
-          <Box>
-          <Paper sx={{ mt: 3, padding: 2 }}>
-            <Typography
-              component="h4"
-              variant="h6"
-              sx={{ fontSize: 12, fontWeight: 600 }}
-            >
-              Basic Info
-            </Typography>
-            <Grid container spacing={2} mt={2}>
-              <Grid xs={12}>
-                <FormControl variant="standard" fullWidth>
-                  <InputLabel shrink color="primary" htmlFor="bootstrap-input">
-                    Name
-                  </InputLabel>
-                  <BootstrapInput
-                    placeholder="Product name"
-                    id="name"
-                    name="name"
-                    autoFocus
-                    required
-                  />
-                </FormControl>
-              </Grid>
-              <Grid xs={12} md={6}>
-                <FormControl variant="standard" fullWidth>
-                  <InputLabel shrink color="primary" htmlFor="bootstrap-input">
-                    Price
-                  </InputLabel>
-                  <BootstrapInput
-                    placeholder="Price"
-                    id="price"
-                    name="price"
-                    required
-                  />
-                </FormControl>
-              </Grid>
-              <Grid xs={12} md={6}>
-                <FormControl variant="standard" fullWidth>
-                  <InputLabel shrink color="primary" htmlFor="bootstrap-input">
-                    Tax
-                  </InputLabel>
-                  <BootstrapInput
-                    placeholder="Default: No Tax(0%)"
-                    id="tax"
-                    name="tax"
-                  />
-                </FormControl>
-              </Grid>
-              <Grid xs={12}>
-                <FormControl variant="standard" fullWidth>
-                  <InputLabel shrink color="primary" htmlFor="bootstrap-input">
-                    Description
-                  </InputLabel>
-                  <BootstrapInput
-                    placeholder="Description"
-                    id="description"
-                    name="description"
-                  />
-                </FormControl>
-              </Grid>
-              <Grid xs={12} md={6}>
-                <FormControl variant="standard" fullWidth>
-                  <InputLabel shrink color="primary" htmlFor="bootstrap-input">
-                    Product Brand
-                  </InputLabel>
-                  <BootstrapInput
-                    placeholder="Select a Brand"
-                    id="email"
-                    name="email"
-                    autoFocus
-                    required
-                  />
-                </FormControl>
-              </Grid>
-              <Grid xs={12} md={6}>
-                <FormControl variant="standard" fullWidth>
-                  <InputLabel shrink color="primary" htmlFor="bootstrap-input">
-                    Product Category
-                  </InputLabel>
-                  <BootstrapInput
-                    placeholder="Select a Category"
-                    id="email"
-                    name="email"
-                    autoFocus
-                    required
-                  />
-                </FormControl>
-              </Grid>
-              <Grid xs={12} md={6}>
-                <Button size="medium" variant="contained" disableElevation>
-                  Advanced Options
-                </Button>
-              </Grid>
-            </Grid>
-          </Paper>
-          <Paper sx={{ mt: 3, padding: 2 }}>
-            <Typography
-              component="h4"
-              variant="h6"
-              sx={{ fontSize: 12, fontWeight: 600 }}
-            >
-              Product Image
-            </Typography>
-            <Typography component="p" sx={{ fontSize: 12 }}>
-              For best results, your image should be square and atleast
-              1200x1200 pixels.
-            </Typography>
-            <Grid container spacing={2} mt={2}>
-              <Grid xs={12}>
-                <FormControl variant="standard" fullWidth>
-                  <InputLabel shrink color="primary" htmlFor="bootstrap-input">
-                    Name
-                  </InputLabel>
-                  <BootstrapInput
-                    placeholder="Product name"
-                    id="name"
-                    name="name"
-                    autoFocus
-                    required
-                  />
-                </FormControl>
-              </Grid>
-              <Grid xs={12} md={6}>
-                <FormControl variant="standard" fullWidth>
-                  <InputLabel shrink color="primary" htmlFor="bootstrap-input">
-                    Price
-                  </InputLabel>
-                  <BootstrapInput
-                    placeholder="Price"
-                    id="price"
-                    name="price"
-                    required
-                  />
-                </FormControl>
-              </Grid>
-              <Grid xs={12} md={6}>
-                <FormControl variant="standard" fullWidth>
-                  <InputLabel shrink color="primary" htmlFor="bootstrap-input">
-                    Tax
-                  </InputLabel>
-                  <BootstrapInput
-                    placeholder="Default: No Tax(0%)"
-                    id="tax"
-                    name="tax"
-                  />
-                </FormControl>
-              </Grid>
-              <Grid xs={12}>
-                <FormControl variant="standard" fullWidth>
-                  <InputLabel shrink color="primary" htmlFor="bootstrap-input">
-                    Description
-                  </InputLabel>
-                  <BootstrapInput
-                    placeholder="Description"
-                    id="description"
-                    name="description"
-                  />
-                </FormControl>
-              </Grid>
-              <Grid xs={12} md={6}>
-                <FormControl variant="standard" fullWidth>
-                  <InputLabel shrink color="primary" htmlFor="bootstrap-input">
-                    Product Brand
-                  </InputLabel>
-                  <BootstrapInput
-                    placeholder="Select a Brand"
-                    id="email"
-                    name="email"
-                    autoFocus
-                    required
-                  />
-                </FormControl>
-              </Grid>
-              <Grid xs={12} md={6}>
-                <FormControl variant="standard" fullWidth>
-                  <InputLabel shrink color="primary" htmlFor="bootstrap-input">
-                    Product Category
-                  </InputLabel>
-                  <BootstrapInput
-                    placeholder="Select a Category"
-                    id="email"
-                    name="email"
-                    autoFocus
-                    required
-                  />
-                </FormControl>
-              </Grid>
-              <Grid xs={12} md={6}>
-                <Button size="medium" variant="contained" disableElevation>
-                  Advanced Options
-                </Button>
-              </Grid>
-            </Grid>
-          </Paper>
-          <Paper sx={{ mt: 3, padding: 2 }}>
-            <Typography
-              component="h4"
-              variant="h6"
-              sx={{ fontSize: 12, fontWeight: 600 }}
-            >
-              Stock
-            </Typography>
-            <Grid container spacing={2} mt={2}>
-              <Grid xs={12}>
-                <FormControl variant="standard" fullWidth>
-                  <InputLabel shrink color="primary" htmlFor="bootstrap-input">
-                    Name
-                  </InputLabel>
-                  <BootstrapInput
-                    placeholder="Product name"
-                    id="name"
-                    name="name"
-                    autoFocus
-                    required
-                  />
-                </FormControl>
-              </Grid>
-              <Grid xs={12} md={6}>
-                <FormControl variant="standard" fullWidth>
-                  <InputLabel shrink color="primary" htmlFor="bootstrap-input">
-                    Price
-                  </InputLabel>
-                  <BootstrapInput
-                    placeholder="Price"
-                    id="price"
-                    name="price"
-                    required
-                  />
-                </FormControl>
-              </Grid>
-              <Grid xs={12} md={6}>
-                <FormControl variant="standard" fullWidth>
-                  <InputLabel shrink color="primary" htmlFor="bootstrap-input">
-                    Tax
-                  </InputLabel>
-                  <BootstrapInput
-                    placeholder="Default: No Tax(0%)"
-                    id="tax"
-                    name="tax"
-                  />
-                </FormControl>
-              </Grid>
-              <Grid xs={12}>
-                <FormControl variant="standard" fullWidth>
-                  <InputLabel shrink color="primary" htmlFor="bootstrap-input">
-                    Description
-                  </InputLabel>
-                  <BootstrapInput
-                    placeholder="Description"
-                    id="description"
-                    name="description"
-                  />
-                </FormControl>
-              </Grid>
-              <Grid xs={12} md={6}>
-                <FormControl variant="standard" fullWidth>
-                  <InputLabel shrink color="primary" htmlFor="bootstrap-input">
-                    Product Brand
-                  </InputLabel>
-                  <BootstrapInput
-                    placeholder="Select a Brand"
-                    id="email"
-                    name="email"
-                    autoFocus
-                    required
-                  />
-                </FormControl>
-              </Grid>
-              <Grid xs={12} md={6}>
-                <FormControl variant="standard" fullWidth>
-                  <InputLabel shrink color="primary" htmlFor="bootstrap-input">
-                    Product Category
-                  </InputLabel>
-                  <BootstrapInput
-                    placeholder="Select a Category"
-                    id="email"
-                    name="email"
-                    autoFocus
-                    required
-                  />
-                </FormControl>
-              </Grid>
-              <Grid xs={12} md={6}>
-                <Button size="medium" variant="contained" disableElevation>
-                  Advanced Options
-                </Button>
-              </Grid>
-            </Grid>
-          </Paper>
-          </Box>
-      </FormDrawer> */}
       <Drawer
         anchor={isMobile ? "bottom" : "right"}
         open={state}
@@ -392,7 +118,7 @@ export default function Products() {
         sx={{
           "& .MuiDrawer-paper": {
             boxSizing: "border-box",
-            maxWidth: 500,
+            maxWidth: 700,
             backgroundColor: "background.default",
           }
         }}
@@ -521,105 +247,7 @@ export default function Products() {
               </Grid>
             </Grid>
           </Paper>
-          <Paper sx={{ mt: 3, padding: 2 }}>
-            <Typography
-              component="h4"
-              variant="h6"
-              sx={{ fontSize: 12, fontWeight: 600 }}
-            >
-              Product Image
-            </Typography>
-            <Typography component="p" sx={{ fontSize: 12 }}>
-              For best results, your image should be square and atleast
-              1200x1200 pixels.
-            </Typography>
-            <Grid container spacing={2} mt={2}>
-              <Grid xs={12}>
-                <FormControl variant="standard" fullWidth>
-                  <InputLabel shrink color="primary" htmlFor="bootstrap-input">
-                    Name
-                  </InputLabel>
-                  <BootstrapInput
-                    placeholder="Product name"
-                    id="name"
-                    name="name"
-                    autoFocus
-                    required
-                  />
-                </FormControl>
-              </Grid>
-              <Grid xs={12} md={6}>
-                <FormControl variant="standard" fullWidth>
-                  <InputLabel shrink color="primary" htmlFor="bootstrap-input">
-                    Price
-                  </InputLabel>
-                  <BootstrapInput
-                    placeholder="Price"
-                    id="price"
-                    name="price"
-                    required
-                  />
-                </FormControl>
-              </Grid>
-              <Grid xs={12} md={6}>
-                <FormControl variant="standard" fullWidth>
-                  <InputLabel shrink color="primary" htmlFor="bootstrap-input">
-                    Tax
-                  </InputLabel>
-                  <BootstrapInput
-                    placeholder="Default: No Tax(0%)"
-                    id="tax"
-                    name="tax"
-                  />
-                </FormControl>
-              </Grid>
-              <Grid xs={12}>
-                <FormControl variant="standard" fullWidth>
-                  <InputLabel shrink color="primary" htmlFor="bootstrap-input">
-                    Description
-                  </InputLabel>
-                  <BootstrapInput
-                    placeholder="Description"
-                    id="description"
-                    name="description"
-                  />
-                </FormControl>
-              </Grid>
-              <Grid xs={12} md={6}>
-                <FormControl variant="standard" fullWidth>
-                  <InputLabel shrink color="primary" htmlFor="bootstrap-input">
-                    Product Brand
-                  </InputLabel>
-                  <BootstrapInput
-                    placeholder="Select a Brand"
-                    id="email"
-                    name="email"
-                    autoFocus
-                    required
-                  />
-                </FormControl>
-              </Grid>
-              <Grid xs={12} md={6}>
-                <FormControl variant="standard" fullWidth>
-                  <InputLabel shrink color="primary" htmlFor="bootstrap-input">
-                    Product Category
-                  </InputLabel>
-                  <BootstrapInput
-                    placeholder="Select a Category"
-                    id="email"
-                    name="email"
-                    autoFocus
-                    required
-                  />
-                </FormControl>
-              </Grid>
-              <Grid xs={12} md={6}>
-                <Button size="medium" variant="contained" disableElevation>
-                  Advanced Options
-                </Button>
-              </Grid>
-            </Grid>
-          </Paper>
+          <ProductImage name={name} color={color} setColor={setColor} />
           <Paper sx={{ mt: 3, padding: 2 }}>
             <Typography
               component="h4"
@@ -720,14 +348,37 @@ export default function Products() {
             sx={{ top: "auto", bottom: 0, backgroundColor: "#fff", width: "100%" }}
           >
             <Toolbar>
-            <Button autoFocus sx={{backgroundColor: "background.default"}} onClick={toggleDrawer(false)}>
-              Close
-            </Button>
-          {/* {actionBtnText && (
-            <Button onClick={onHandleAction} autoFocus size="medium" variant="contained" disableElevation>
-              {actionBtnText}
-            </Button>
-          )} */}
+            {isEdit == true && (
+                <Button
+                  autoFocus
+                  size="medium"
+                  variant="contained"
+                  disableElevation
+                  sx={{ mr: 2 }}
+                  onClick={() => onDelete(email)}
+                >
+                  Delete
+                </Button>
+              )}
+
+              <Button
+                autoFocus
+                sx={{ backgroundColor: "background.default" }}
+                onClick={toggleDrawer(false)}
+              >
+                Cancel
+              </Button>
+              <Button
+                autoFocus
+                size="medium"
+                variant="contained"
+                color="secondary"
+                disableElevation
+                sx={{ ml: 2 }}
+                onClick={onSave}
+              >
+                Save
+              </Button>
             </Toolbar>
           </Box>
         </Box>
