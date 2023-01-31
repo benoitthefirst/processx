@@ -17,7 +17,7 @@ const colors = [
   "rgb(232, 80, 60)",
 ];
 
-export default function ProductImage({name, color, setColor }: any) {
+export default function ProductImage({name, subtitle, color, setColor }: any) {
   return (
     <Paper sx={{ mt: 3, p: 2 }}>
       <Typography
@@ -27,6 +27,13 @@ export default function ProductImage({name, color, setColor }: any) {
       >
         Product Image
       </Typography>
+      {subtitle && <Typography
+        variant="body1"
+        sx={{ fontSize: 12}}
+      >
+        {subtitle}
+      </Typography>}
+      
       <Grid container spacing={2} mt={2}>
         <Grid xs={12} md={4}>
           <Box sx={{ bgcolor: "#f7f7f7", padding: "32px 26px", width: 180 }}>
