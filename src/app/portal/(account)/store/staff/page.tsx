@@ -22,13 +22,6 @@ import {
   Theme,
   MenuItem,
 } from "@mui/material";
-import { styled } from "@mui/material/styles";
-import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp";
-import MuiAccordion, { AccordionProps } from "@mui/material/Accordion";
-import MuiAccordionSummary, {
-  AccordionSummaryProps,
-} from "@mui/material/AccordionSummary";
-import MuiAccordionDetails from "@mui/material/AccordionDetails";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import Head from "next/head";
@@ -42,6 +35,11 @@ import {
   StyledTableRow,
   StyledTableCell,
 } from "../../templates/CustomizedTables";
+import {
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+} from "../../templates/customAccordion";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -54,12 +52,94 @@ const MenuProps = {
   },
 };
 
-const permissions = [
-  "Staff Member",
-  "Supervisor",
-  "Manager",
-  "Administrator",
-  "Custom Permissions",
+enum IPermissionType {
+  staffMember = "staffMember",
+  supervisor = "supervisor",
+  manager = "manager",
+  administrator = "administrator",
+  custom = "custom",
+}
+enum ISalesPermissionType {
+  makeSales = "makeSales",
+  viewTransactions = "viewTransactions",
+  refundOwnLastSale = "refundOwnLastSale",
+  refundAnySale = "refundAnySale",
+}
+enum IManagingPermissionType {
+  manageProducts = "manageProducts",
+  manageStaff = "manageStaff",
+  viewFinancials = "viewFinancials",
+  manageBusinessSettings = "manageBusinessSettings",
+  manageReports = "manageReports",
+  manageExternalPrinters = "manageExternalPrinters",
+}
+type IPermission = {
+  name: string;
+  type: IPermissionType;
+  salesAccess: string[];
+  managingAccess: string[];
+};
+
+const permissions: IPermission[] = [
+  {
+    name: "Staff Member",
+    type: IPermissionType.staffMember,
+    salesAccess: [
+      ISalesPermissionType.makeSales,
+      ISalesPermissionType.refundOwnLastSale,
+    ],
+    managingAccess: [],
+  },
+  {
+    name: "Supervisor",
+    type: IPermissionType.supervisor,
+    salesAccess: [
+      ISalesPermissionType.makeSales,
+      ISalesPermissionType.viewTransactions,
+      ISalesPermissionType.refundOwnLastSale,
+      ISalesPermissionType.refundAnySale,
+    ],
+    managingAccess: [IManagingPermissionType.manageExternalPrinters],
+  },
+  {
+    name: "Manager",
+    type: IPermissionType.manager,
+    salesAccess: [
+      ISalesPermissionType.makeSales,
+      ISalesPermissionType.viewTransactions,
+      ISalesPermissionType.refundOwnLastSale,
+      ISalesPermissionType.refundAnySale,
+    ],
+    managingAccess: [
+      IManagingPermissionType.manageProducts,
+      IManagingPermissionType.manageStaff,
+      IManagingPermissionType.manageExternalPrinters,
+    ],
+  },
+  {
+    name: "Administrator",
+    type: IPermissionType.administrator,
+    salesAccess: [
+      ISalesPermissionType.makeSales,
+      ISalesPermissionType.viewTransactions,
+      ISalesPermissionType.refundOwnLastSale,
+      ISalesPermissionType.refundAnySale,
+    ],
+    managingAccess: [
+      IManagingPermissionType.manageProducts,
+      IManagingPermissionType.manageStaff,
+      IManagingPermissionType.viewFinancials,
+      IManagingPermissionType.manageBusinessSettings,
+      IManagingPermissionType.manageReports,
+      IManagingPermissionType.manageExternalPrinters,
+    ],
+  },
+  {
+    name: "Custom Permissions",
+    type: IPermissionType.custom,
+    salesAccess: [],
+    managingAccess: [],
+  },
 ];
 
 const staffsData: any[] = [
@@ -72,56 +152,27 @@ const staffsData: any[] = [
   },
 ];
 
-const Accordion = styled((props: AccordionProps) => (
-  <MuiAccordion disableGutters elevation={0} square {...props} />
-))(({ theme }) => ({
-  border: `transparent`,
-}));
-
-const AccordionSummary = styled((props: AccordionSummaryProps) => (
-  <MuiAccordionSummary
-    expandIcon={<ArrowForwardIosSharpIcon sx={{ fontSize: "0.9rem" }} />}
-    {...props}
-  />
-))(({ theme }) => ({
-  backgroundColor:
-    theme.palette.mode === "dark" ? "rgba(255, 255, 255, .05)" : "transparent",
-  color: "lightBlue",
-  flexDirection: "row-reverse",
-  "& .MuiAccordionSummary-expandIconWrapper.Mui-expanded": {
-    transform: "rotate(90deg)",
-  },
-  "& .MuiAccordionSummary-content": {
-    marginLeft: theme.spacing(1),
-  },
-}));
-
-const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
-  padding: theme.spacing(1),
-  borderTop: "transparent",
-}));
-
 const salesPermissions = [
   {
     name: "Make sales",
-    value: "Make sales",
+    value: ISalesPermissionType.makeSales,
     description:
       "Make card and cash sales and view a history of their own transactions.",
   },
   {
     name: "View all transactions",
-    value: "View all transactions",
+    value: ISalesPermissionType.viewTransactions,
     description:
       "View all sales, refunds, errors & cancelled transactions in the business.",
   },
   {
     name: "Refund their own last sale",
-    value: "Refund their own last sale",
+    value: ISalesPermissionType.refundOwnLastSale,
     description: "Reverse the last sale made in case of an accidental charge.",
   },
   {
     name: "Refund any sale",
-    value: "Refund any sale",
+    value: ISalesPermissionType.refundAnySale,
     description: "Refund any sale they are allowed to view.",
   },
 ];
@@ -129,67 +180,55 @@ const salesPermissions = [
 const managingPermissions = [
   {
     name: "Manage products",
-    value: "Manage products",
+    value: IManagingPermissionType.manageProducts,
     description: "Add, edit and remove products from the Yoco App or Portal.",
   },
   {
     name: "Manage staff",
-    value: "Manage staff",
+    value: IManagingPermissionType.manageStaff,
     description:
       "Add, edit and remove staff from the Yoco App or Portal. A user can only assign permissions they have to other users.",
   },
   {
     name: "View financials",
-    value: "View financials",
+    value: IManagingPermissionType.viewFinancials,
     description:
       "View account balance and payouts. Invoices and detailed financials can only be accessed on the Yoco Portal.",
   },
   {
     name: "Manage business settings",
-    value: "Manage business settings",
+    value: IManagingPermissionType.manageBusinessSettings,
     description:
       "Change bank details & business settings such as payment methods.",
   },
   {
     name: "Manage reports",
-    value: "Manage reports",
+    value: IManagingPermissionType.manageReports,
     description:
       "Configure, add or remove users from reports. Reports can only be accessed on the Yoco Portal.",
   },
   {
     name: "Manage external printers",
-    value: "Manage external printers",
+    value: IManagingPermissionType.manageExternalPrinters,
     description: "Add or remove external printers paired to the Yoco App.",
   },
 ];
-
-function getStyles(
-  name: string,
-  permissionName: readonly string[],
-  theme: Theme
-) {
-  return {
-    fontWeight:
-      permissionName.indexOf(name) === -1
-        ? theme.typography.fontWeightRegular
-        : theme.typography.fontWeightMedium,
-  };
-}
 
 export default function Staff() {
   const theme = useTheme();
 
   const [staffs, setStaffs] = React.useState<any[]>(staffsData);
+  const [currentPermission, setCurrentPermission] = React.useState<IPermission>(
+    {...permissions.find((x) => x.type == IPermissionType.staffMember)!}
+  );
   const [state, setState] = React.useState(false);
   const [firstName, setFirstName] = React.useState("");
   const [lastName, setLastName] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [mobileNumber, setMobileNumber] = React.useState("");
   const [isEdit, setIsEdit] = React.useState(false);
-  const [permissionName, setPermissionName] = React.useState<string>("");
-  const [salesPermission, setSalesPermission] = React.useState<string[]>([]);
-  const [managingPermission, setManagingPermissio] = React.useState<string[]>(
-    []
+  const [permissionName, setPermissionName] = React.useState<IPermissionType>(
+    IPermissionType.staffMember
   );
   const [expanded, setExpanded] = React.useState<string | false>("");
 
@@ -211,14 +250,24 @@ export default function Staff() {
       }
     };
 
-  const handleChange = (event: SelectChangeEvent<typeof salesPermission>) => {
+  function getPermission(value: string) {
+    const c = currentPermission;
+    if (c && (c.salesAccess.find(x => x == value) || c.managingAccess.find(x => x == value))) {
+      return true;
+    }
+
+    return false;
+  }
+
+  const handleChange = (event: any) => {
     const {
       target: { value },
     } = event;
-    setSalesPermission(
-      // On autofill we get a stringified value.
-      typeof value === "string" ? value.split(",") : value
-    );
+    console.log("value: ", value);
+    const p = permissions.find((x) => x.type == value)!
+    console.log("p: ", p);
+    setPermissionName(value);
+    setCurrentPermission({...p});
   };
 
   const handlePanelChange =
@@ -229,19 +278,43 @@ export default function Staff() {
   const handleSalesPermissions = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    /* setState({
-      ...state,
-      [event.target.name]: event.target.checked,
-    }); */
+    const {
+      target: { name, checked },
+    } = event;
+
+    setPermissionName(IPermissionType.custom);
+
+    if(checked)
+    {
+        setCurrentPermission((x) => ({
+          ...x,
+          salesAccess: [...x.salesAccess, name],
+        }));
+
+    }else{
+      setCurrentPermission((x) => ({...x, salesAccess: x.salesAccess.filter(x => x != name)}));
+    }
   };
 
   const handleManagingPermissions = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    /* setState({
-      ...state,
-      [event.target.name]: event.target.checked,
-    }); */
+    const {
+      target: { name, checked },
+    } = event;
+
+    setPermissionName(IPermissionType.custom);
+
+    if(checked)
+    {
+      setCurrentPermission((x) => ({
+        ...x,
+        managingAccess: [...x.managingAccess, name],
+      }));
+
+    }else{
+      setCurrentPermission((x) => ({...x, managingAccess: x.managingAccess.filter(x => x != name)}));
+    }
   };
 
   const onEdit = (data: any) => {
@@ -333,8 +406,8 @@ export default function Staff() {
             items={["NAME", "EMAIL", "MOBILE NUMBER", "PERMISSIONS"]}
             sx={{ mt: 2 }}
           >
-            {staffs.map((row: any) => (
-              <StyledTableRow key={row.name} onClick={() => onEdit(row)}>
+            {staffs.map((row: any,index:number) => (
+              <StyledTableRow key={index} onClick={() => onEdit(row)}>
                 <StyledTableCell component="th" scope="row">
                   {row.firstName + " " + row.lastName}
                 </StyledTableCell>
@@ -474,7 +547,7 @@ export default function Staff() {
               <Select
                 displayEmpty
                 value={permissionName}
-                onChange={(e) => setPermissionName(e.target.value)}
+                onChange={handleChange}
                 input={<OutlinedInput />}
                 MenuProps={MenuProps}
                 inputProps={{ "aria-label": "Without label" }}
@@ -483,13 +556,13 @@ export default function Staff() {
                 <MenuItem disabled value="">
                   <em>Select a role for this staff</em>
                 </MenuItem>
-                {permissions.map((name) => (
+                {permissions.map((item) => (
                   <MenuItem
-                    key={name}
-                    value={name}
-                    /* style={getStyles(name, permissionName, theme)} */
+                    key={item.name}
+                    value={item.type}
+                    /*  style={getStyles(item.type.toString(), [permissionName], theme)} */
                   >
-                    {name}
+                    {item.name}
                   </MenuItem>
                 ))}
               </Select>
@@ -523,13 +596,16 @@ export default function Staff() {
                   </FormLabel>
                   <FormGroup>
                     {salesPermissions.map((item: any, index: number) => (
-                      <>
+                      <div key={item.name}>
                         <FormControlLabel
                           control={
                             <Checkbox
                               sx={{ "& .MuiSvgIcon-root": { fontSize: 34 } }}
                               onChange={handleSalesPermissions}
                               name={item.value}
+                              checked={getPermission(
+                                item.value
+                              )}
                             />
                           }
                           label={<strong>{item.name}</strong>}
@@ -539,7 +615,7 @@ export default function Staff() {
                         >
                           {item.description}
                         </FormHelperText>
-                      </>
+                      </div>
                     ))}
                   </FormGroup>
                 </FormControl>
@@ -557,13 +633,16 @@ export default function Staff() {
                   </FormLabel>
                   <FormGroup>
                     {managingPermissions.map((item: any, index: number) => (
-                      <>
+                      <div key={item.name}>
                         <FormControlLabel
                           control={
                             <Checkbox
                               sx={{ "& .MuiSvgIcon-root": { fontSize: 34 } }}
                               onChange={handleManagingPermissions}
                               name={item.value}
+                              checked={getPermission(
+                                item.value
+                              )}
                             />
                           }
                           label={<strong>{item.name}</strong>}
@@ -573,7 +652,7 @@ export default function Staff() {
                         >
                           {item.description}
                         </FormHelperText>
-                      </>
+                      </div>
                     ))}
                   </FormGroup>
                 </FormControl>
