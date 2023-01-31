@@ -37,6 +37,7 @@ export default function Products() {
   const [mobileNumber, setMobileNumber] = React.useState("");
   const [name, setName] = React.useState("");
   const [color, setColor] = React.useState("");
+  const [lowStock, setLowStock] = React.useState("");
   const [isEdit, setIsEdit] = React.useState(false);
   const [trackStock, setTrackStock] = React.useState(false);
   const [trackVarientLevel, setTrackVarientLevel] = React.useState(false);
@@ -358,8 +359,8 @@ export default function Products() {
                         placeholder="0"
                         id="lowStockLevel"
                         name="lowStockLevel"
-                        autoFocus
-                        required
+                        value={lowStock}
+                        onChange={(e)=>setLowStock(e.target.value)}
                       />
                       <Typography variant="body1" my={1}>
                         Alert me when stock falls below this level. Configure
@@ -416,7 +417,7 @@ export default function Products() {
               padding: 1,
             }}
           >
-            <Toolbar>
+            <Toolbar variant="dense">
               {isEdit == true && (
                 <Button
                   autoFocus
