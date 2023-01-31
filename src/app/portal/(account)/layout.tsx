@@ -231,7 +231,7 @@ export default function PortalLayout({
           slug: "/portal/store/brands-and-categories",
         },
         { value: "Staff", slug: "/portal/store/staff" },
-        { value: "store/customers", slug: "/portal/store/customers" },
+        { value: "Customers", slug: "/portal/store/customers" },
       ],
     },
     /* {value: "Invoices",slug: "/portal/invoice/invoices", icon: <InvoiceIcon/>},
