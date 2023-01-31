@@ -14,21 +14,17 @@ export default function ResponsiveDialog({
   actionBtnText,
   onClick,
   open,
-  setOpen,
+  onClose,
 }: any) {
   //const [open, setOpen] = React.useState(false);
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
 
-  const handleClose = () => {
-    setOpen(false);
-  };
-
   return (
     <Dialog
       fullScreen={fullScreen}
       open={open}
-      onClose={handleClose}
+      onClose={onClose}
       color="background.default"
       aria-labelledby="responsive-dialog-title"
     >
@@ -39,7 +35,7 @@ export default function ResponsiveDialog({
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button autoFocus onClick={handleClose}>
+        <Button autoFocus onClick={onClose}>
           Close
         </Button>
         {actionBtnText && (

@@ -24,24 +24,61 @@ import Empty from "../../../../../components/empty";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 import ResponsiveDialog from "../../../../../components/responsiveDialog";
+import { CustomTable, StyledTableRow, StyledTableCell } from "../../templates/CustomizedTables";
 
-type Anchor = "top" | "left" | "bottom" | "right";
+const customersData: any[] = [
+  {
+    name: "Bernadette Kanku",
+    company: "Walker Inc",
+    email: "user@example.com",
+    mobileNumber: "+27800000000",
+    address: "22 Bree Street, Cape Town, 7405",
+    vatNumber: "5468481166"
+  },
+];
 
 export default function Customers() {
-  const [state, setState] = React.useState({
-    bottom: false,
-    right: false,
-  });
   const [open, setOpen] = React.useState(false);
+  const [customers, setCustomers] = React.useState<any[]>(customersData);
+  const [name, setName] = React.useState("");
+  const [company, setCompany] = React.useState("");
+  const [email, setEmail] = React.useState("");
+  const [mobileNumber, setMobileNumber] = React.useState("");
+  const [address, setAddress] = React.useState("");
+  const [vatNumber, setVatNumber] = React.useState("");
+  const [isEdit, setIsEdit] = React.useState(false);
   
-
+  const handleClose = () => {
+    setOpen(false);
+    clearFields();
+  }
   const onAdd = () => {
+    setOpen(true);
+  };
+
+  const onEdit = (data: any) => {
+    setName(data.name);
+    setCompany(data.company);
+    setEmail(data.email);
+    setMobileNumber(data.mobileNumber);
+    setAddress(data.mobileNumber);
+    setVatNumber(data.mobileNumber);
+    setIsEdit(true);
     setOpen(true);
   };
 
   const onSave = () => {
     setOpen(false);
   };
+
+  const clearFields = () => {
+    setName("");
+    setCompany("");
+    setEmail("");
+    setMobileNumber("");
+    setAddress("");
+    setVatNumber("");
+  }
 
   return (
     <>
@@ -79,13 +116,40 @@ export default function Customers() {
             Add
           </Button>
         </Stack>
-        <Empty title="No customers found" subtitle="" />
+        {customers.length > 0 ? (
+          <CustomTable
+            items={["NAME", "COMPANY", "EMAIL", "MOBILE NUMBER", "ADDRESS", "VAT NUMBER"]}
+            sx={{ mt: 2 }}
+          >
+            {customers.map((row: any, index: number) => (
+              <StyledTableRow key={index} onClick={() => onEdit(row)}>
+                <StyledTableCell component="th" scope="row">
+                  {row.name}
+                </StyledTableCell>
+                <StyledTableCell scope="row">{row.company}</StyledTableCell>
+                <StyledTableCell scope="row">{row.email}</StyledTableCell>
+                <StyledTableCell scope="row">
+                  {row.mobileNumber}
+                </StyledTableCell>
+                <StyledTableCell scope="row">
+                  {row.address}
+                </StyledTableCell>
+                <StyledTableCell scope="row">
+                  {row.vatNumber}
+                </StyledTableCell>
+              </StyledTableRow>
+            ))}
+          </CustomTable>
+        ) : (
+          <Empty title="No customers found" subtitle="" />
+        )}
+        
       </Container>
       
       <ResponsiveDialog
         title="Add A Customer"
         open={open}
-        setOpen={setOpen}
+        onClose={handleClose}
         actionBtnText="Save"
         onClick={onSave}
       >
@@ -97,7 +161,7 @@ export default function Customers() {
                   Customer name
                 </InputLabel>
                 <BootstrapInput
-                  placeholder="Product name"
+                  placeholder="Customer name"
                   id="name"
                   name="name"
                   autoFocus
@@ -111,9 +175,9 @@ export default function Customers() {
                   Company (optional)
                 </InputLabel>
                 <BootstrapInput
-                  placeholder="Price"
-                  id="price"
-                  name="price"
+                  placeholder="Company name"
+                  id="company"
+                  name="company"
                   required
                 />
               </FormControl>
@@ -124,9 +188,9 @@ export default function Customers() {
                   Email address
                 </InputLabel>
                 <BootstrapInput
-                  placeholder="Default: No Tax(0%)"
-                  id="tax"
-                  name="tax"
+                  placeholder="customer@example.com"
+                  id="email"
+                  name="email"
                 />
               </FormControl>
             </Grid>
@@ -136,9 +200,9 @@ export default function Customers() {
                   Phone number
                 </InputLabel>
                 <BootstrapInput
-                  placeholder="Description"
-                  id="description"
-                  name="description"
+                  placeholder="Phone number"
+                  id="phoneNumber"
+                  name="phoneNumber"
                 />
               </FormControl>
             </Grid>
@@ -148,9 +212,9 @@ export default function Customers() {
                   Physical address (optional)
                 </InputLabel>
                 <BootstrapInput
-                  placeholder="Select a Brand"
-                  id="email"
-                  name="email"
+                  placeholder="Enter physical address"
+                  id="address"
+                  name="address"
                   autoFocus
                   required
                 />
@@ -162,9 +226,9 @@ export default function Customers() {
                   VAT Number (optional)
                 </InputLabel>
                 <BootstrapInput
-                  placeholder="Select a Category"
-                  id="email"
-                  name="email"
+                  placeholder="VAT Number"
+                  id="vatNumber"
+                  name="vatNumber"
                   autoFocus
                   required
                 />
