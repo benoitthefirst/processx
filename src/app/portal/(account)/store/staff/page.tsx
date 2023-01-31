@@ -148,7 +148,24 @@ const staffsData: any[] = [
     lastName: "Walker",
     email: "user@example.com",
     mobileNumber: "+27800000000",
-    permissions: "Administrator",
+    permissions: {
+      name: "Administrator",
+      type: IPermissionType.administrator,
+      salesAccess: [
+        ISalesPermissionType.makeSales,
+        ISalesPermissionType.viewTransactions,
+        ISalesPermissionType.refundOwnLastSale,
+        ISalesPermissionType.refundAnySale,
+      ],
+      managingAccess: [
+        IManagingPermissionType.manageProducts,
+        IManagingPermissionType.manageStaff,
+        IManagingPermissionType.viewFinancials,
+        IManagingPermissionType.manageBusinessSettings,
+        IManagingPermissionType.manageReports,
+        IManagingPermissionType.manageExternalPrinters,
+      ],
+    },
   },
 ];
 
@@ -219,7 +236,7 @@ export default function Staff() {
 
   const [staffs, setStaffs] = React.useState<any[]>(staffsData);
   const [currentPermission, setCurrentPermission] = React.useState<IPermission>(
-    {...permissions.find((x) => x.type == IPermissionType.staffMember)!}
+    { ...permissions.find((x) => x.type == IPermissionType.staffMember)! }
   );
   const [state, setState] = React.useState(false);
   const [firstName, setFirstName] = React.useState("");
@@ -248,11 +265,17 @@ export default function Staff() {
       if (open == false) {
         setIsEdit(false);
       }
+
+      clearFields();
     };
 
   function getPermission(value: string) {
     const c = currentPermission;
-    if (c && (c.salesAccess.find(x => x == value) || c.managingAccess.find(x => x == value))) {
+    if (
+      c &&
+      (c.salesAccess.find((x) => x == value) ||
+        c.managingAccess.find((x) => x == value))
+    ) {
       return true;
     }
 
@@ -264,10 +287,10 @@ export default function Staff() {
       target: { value },
     } = event;
     console.log("value: ", value);
-    const p = permissions.find((x) => x.type == value)!
+    const p = permissions.find((x) => x.type == value)!;
     console.log("p: ", p);
     setPermissionName(value);
-    setCurrentPermission({...p});
+    setCurrentPermission({ ...p });
   };
 
   const handlePanelChange =
@@ -284,15 +307,16 @@ export default function Staff() {
 
     setPermissionName(IPermissionType.custom);
 
-    if(checked)
-    {
-        setCurrentPermission((x) => ({
-          ...x,
-          salesAccess: [...x.salesAccess, name],
-        }));
-
-    }else{
-      setCurrentPermission((x) => ({...x, salesAccess: x.salesAccess.filter(x => x != name)}));
+    if (checked) {
+      setCurrentPermission((x) => ({
+        ...x,
+        salesAccess: [...x.salesAccess, name],
+      }));
+    } else {
+      setCurrentPermission((x) => ({
+        ...x,
+        salesAccess: x.salesAccess.filter((x) => x != name),
+      }));
     }
   };
 
@@ -305,15 +329,16 @@ export default function Staff() {
 
     setPermissionName(IPermissionType.custom);
 
-    if(checked)
-    {
+    if (checked) {
       setCurrentPermission((x) => ({
         ...x,
         managingAccess: [...x.managingAccess, name],
       }));
-
-    }else{
-      setCurrentPermission((x) => ({...x, managingAccess: x.managingAccess.filter(x => x != name)}));
+    } else {
+      setCurrentPermission((x) => ({
+        ...x,
+        managingAccess: x.managingAccess.filter((x) => x != name),
+      }));
     }
   };
 
@@ -324,6 +349,11 @@ export default function Staff() {
     setMobileNumber(data.mobileNumber);
     setIsEdit(true);
     setState(true);
+    setCurrentPermission((x) => ({
+      ...data.permissions
+    }));
+    console.log("Type: ", data.permissions.type)
+    setPermissionName(data.permissions.type);
   };
 
   const onSave = () => {
@@ -332,7 +362,7 @@ export default function Staff() {
       lastName: lastName,
       email: email,
       mobileNumber: mobileNumber,
-      permissions: "Administrator",
+      permissions: currentPermission,
     };
     const index = staffs.findIndex((x: any) => x.email == email);
     console.log(index);
@@ -343,10 +373,7 @@ export default function Staff() {
     }
     setStaffs(staffs);
     setState(false);
-    setFirstName("");
-    setLastName("");
-    setEmail("");
-    setMobileNumber("");
+    clearFields();
   };
 
   const onDelete = (id: string) => {
@@ -356,12 +383,18 @@ export default function Staff() {
       staffs.splice(index, 1);
       setStaffs(staffs);
       setState(false);
-      setFirstName("");
-      setLastName("");
-      setEmail("");
-      setMobileNumber("");
+      clearFields();
     }
   };
+
+  const clearFields = () => {
+    setFirstName("");
+    setLastName("");
+    setEmail("");
+    setMobileNumber("");
+    setCurrentPermission({ ...permissions.find((x) => x.type == IPermissionType.staffMember)! });
+    setPermissionName(IPermissionType.staffMember);
+  }
 
   return (
     <>
@@ -406,7 +439,7 @@ export default function Staff() {
             items={["NAME", "EMAIL", "MOBILE NUMBER", "PERMISSIONS"]}
             sx={{ mt: 2 }}
           >
-            {staffs.map((row: any,index:number) => (
+            {staffs.map((row: any, index: number) => (
               <StyledTableRow key={index} onClick={() => onEdit(row)}>
                 <StyledTableCell component="th" scope="row">
                   {row.firstName + " " + row.lastName}
@@ -415,7 +448,9 @@ export default function Staff() {
                 <StyledTableCell scope="row">
                   {row.mobileNumber}
                 </StyledTableCell>
-                <StyledTableCell scope="row">{row.permissions}</StyledTableCell>
+                <StyledTableCell scope="row">
+                  {row.permissions.name}
+                </StyledTableCell>
               </StyledTableRow>
             ))}
           </CustomTable>
@@ -603,9 +638,7 @@ export default function Staff() {
                               sx={{ "& .MuiSvgIcon-root": { fontSize: 34 } }}
                               onChange={handleSalesPermissions}
                               name={item.value}
-                              checked={getPermission(
-                                item.value
-                              )}
+                              checked={getPermission(item.value)}
                             />
                           }
                           label={<strong>{item.name}</strong>}
@@ -640,9 +673,7 @@ export default function Staff() {
                               sx={{ "& .MuiSvgIcon-root": { fontSize: 34 } }}
                               onChange={handleManagingPermissions}
                               name={item.value}
-                              checked={getPermission(
-                                item.value
-                              )}
+                              checked={getPermission(item.value)}
                             />
                           }
                           label={<strong>{item.name}</strong>}
