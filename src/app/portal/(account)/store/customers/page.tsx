@@ -24,7 +24,11 @@ import Empty from "../../../../../components/empty";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 import ResponsiveDialog from "../../../../../components/responsiveDialog";
-import { CustomTable, StyledTableRow, StyledTableCell } from "../../templates/CustomizedTables";
+import {
+  CustomTable,
+  StyledTableRow,
+  StyledTableCell,
+} from "../../templates/CustomizedTables";
 
 const customersData: any[] = [
   {
@@ -33,7 +37,7 @@ const customersData: any[] = [
     email: "user@example.com",
     mobileNumber: "+27800000000",
     address: "22 Bree Street, Cape Town, 7405",
-    vatNumber: "5468481166"
+    vatNumber: "5468481166",
   },
 ];
 
@@ -47,11 +51,11 @@ export default function Customers() {
   const [address, setAddress] = React.useState("");
   const [vatNumber, setVatNumber] = React.useState("");
   const [isEdit, setIsEdit] = React.useState(false);
-  
+
   const handleClose = () => {
     setOpen(false);
     clearFields();
-  }
+  };
   const onAdd = () => {
     setOpen(true);
   };
@@ -78,7 +82,7 @@ export default function Customers() {
     setMobileNumber("");
     setAddress("");
     setVatNumber("");
-  }
+  };
 
   return (
     <>
@@ -98,7 +102,7 @@ export default function Customers() {
           direction={{ xs: "column", sm: "row" }}
           spacing={{ xs: 1, sm: 2, md: 4 }}
           justifyContent={{ xs: "flex-start", sm: "space-between" }}
-          mt={{xs:5,sm:4}}
+          mt={{ xs: 5, sm: 4 }}
         >
           <Typography
             component="h1"
@@ -118,7 +122,14 @@ export default function Customers() {
         </Stack>
         {customers.length > 0 ? (
           <CustomTable
-            items={["NAME", "COMPANY", "EMAIL", "MOBILE NUMBER", "ADDRESS", "VAT NUMBER"]}
+            items={[
+              "NAME",
+              "COMPANY",
+              "EMAIL",
+              "MOBILE NUMBER",
+              "ADDRESS",
+              "VAT NUMBER",
+            ]}
             sx={{ mt: 2 }}
           >
             {customers.map((row: any, index: number) => (
@@ -131,21 +142,16 @@ export default function Customers() {
                 <StyledTableCell scope="row">
                   {row.mobileNumber}
                 </StyledTableCell>
-                <StyledTableCell scope="row">
-                  {row.address}
-                </StyledTableCell>
-                <StyledTableCell scope="row">
-                  {row.vatNumber}
-                </StyledTableCell>
+                <StyledTableCell scope="row">{row.address}</StyledTableCell>
+                <StyledTableCell scope="row">{row.vatNumber}</StyledTableCell>
               </StyledTableRow>
             ))}
           </CustomTable>
         ) : (
           <Empty title="No customers found" subtitle="" />
         )}
-        
       </Container>
-      
+
       <ResponsiveDialog
         title="Add A Customer"
         open={open}
@@ -166,6 +172,8 @@ export default function Customers() {
                   name="name"
                   autoFocus
                   required
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                 />
               </FormControl>
             </Grid>
@@ -178,7 +186,8 @@ export default function Customers() {
                   placeholder="Company name"
                   id="company"
                   name="company"
-                  required
+                  value={company}
+                  onChange={(e) => setCompany(e.target.value)}
                 />
               </FormControl>
             </Grid>
@@ -191,6 +200,10 @@ export default function Customers() {
                   placeholder="customer@example.com"
                   id="email"
                   name="email"
+                  type="email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </FormControl>
             </Grid>
@@ -203,6 +216,9 @@ export default function Customers() {
                   placeholder="Phone number"
                   id="phoneNumber"
                   name="phoneNumber"
+                  required
+                  value={mobileNumber}
+                  onChange={(e) => setMobileNumber(e.target.value)}
                 />
               </FormControl>
             </Grid>
@@ -215,8 +231,8 @@ export default function Customers() {
                   placeholder="Enter physical address"
                   id="address"
                   name="address"
-                  autoFocus
-                  required
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
                 />
               </FormControl>
             </Grid>
@@ -229,8 +245,8 @@ export default function Customers() {
                   placeholder="VAT Number"
                   id="vatNumber"
                   name="vatNumber"
-                  autoFocus
-                  required
+                  value={vatNumber}
+                  onChange={(e) => setVatNumber(e.target.value)}
                 />
               </FormControl>
             </Grid>
