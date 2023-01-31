@@ -16,6 +16,7 @@ import {
   AppBar,
   IconButton,
   Toolbar,
+  FormControlLabel,
 } from "@mui/material";
 import Head from "next/head";
 import Image from "next/image";
@@ -25,6 +26,7 @@ import Empty from "../../../../../components/empty";
 import FormDrawer from "../../../../../components/formDrawer";
 import ProductImage from "../../templates/productImage";
 import SearchInput from "../../templates/search";
+import { CustomSwitch } from "../../templates/switch";
 
 export default function Products() {
   const [state, setState] = React.useState(true);
@@ -36,6 +38,8 @@ export default function Products() {
   const [name, setName] = React.useState("");
   const [color, setColor] = React.useState("");
   const [isEdit, setIsEdit] = React.useState(false);
+  const [trackStock, setTrackStock] = React.useState(false);
+  const [trackVarientLevel, setTrackVarientLevel] = React.useState(false);
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const toggleDrawer =
     (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
@@ -311,51 +315,63 @@ export default function Products() {
                   <InputLabel shrink color="primary" htmlFor="bootstrap-input">
                     Enable Stock Tracking
                   </InputLabel>
-                  <BootstrapInput
-                    placeholder="Default: No Tax(0%)"
-                    id="tax"
-                    name="tax"
+                  <CustomSwitch
+                    sx={{ m: 0, mt: 3 }}
+                    checked={trackStock}
+                    onChange={(e) => setTrackStock(e.target.checked)}
                   />
                 </FormControl>
               </Grid>
-              <Grid xs={12}>
-                <FormControl variant="standard" fullWidth>
-                  <InputLabel shrink color="primary" htmlFor="bootstrap-input">
-                    Track Stock at Variant Level
-                  </InputLabel>
-                  <BootstrapInput
-                    placeholder="Description"
-                    id="description"
-                    name="description"
-                  />
-                  <Typography variant="body1" my={1}>
-                    If the stock for variants of this product are tracked
-                    separately, or you have separate SKU's you should enable
-                    this option.
-                  </Typography>
-                </FormControl>
-              </Grid>
-              <Grid xs={12}>
-                <FormControl variant="standard" fullWidth>
-                  <InputLabel shrink color="primary" htmlFor="lowStockLevel">
-                    Low Stock Alert
-                  </InputLabel>
-                  <BootstrapInput
-                    placeholder="0"
-                    id="lowStockLevel"
-                    name="lowStockLevel"
-                    autoFocus
-                    required
-                  />
-                  <Typography variant="body1" my={1}>
-                    Alert me when stock falls below this level. Configure who
-                    gets these alerts.
-                  </Typography>
-                </FormControl>
-              </Grid>
+              {trackStock == true && (
+                <>
+                  <Grid xs={12}>
+                    <FormControl variant="standard" fullWidth>
+                      <InputLabel
+                        shrink
+                        color="primary"
+                        htmlFor="bootstrap-input"
+                      >
+                        Track Stock at Variant Level
+                      </InputLabel>
+                      <CustomSwitch
+                        sx={{ m: 0, mt: 3 }}
+                        checked={trackVarientLevel}
+                        onChange={(e) => setTrackVarientLevel(e.target.checked)}
+                      />
+                      <Typography variant="body1" my={1}>
+                        If the stock for variants of this product are tracked
+                        separately, or you have separate SKU's you should enable
+                        this option.
+                      </Typography>
+                    </FormControl>
+                  </Grid>
+                  <Grid xs={12}>
+                    <FormControl variant="standard" fullWidth>
+                      <InputLabel
+                        shrink
+                        color="primary"
+                        htmlFor="lowStockLevel"
+                      >
+                        Low Stock Alert
+                      </InputLabel>
+                      <BootstrapInput
+                        placeholder="0"
+                        id="lowStockLevel"
+                        name="lowStockLevel"
+                        autoFocus
+                        required
+                      />
+                      <Typography variant="body1" my={1}>
+                        Alert me when stock falls below this level. Configure
+                        who gets these alerts.
+                      </Typography>
+                    </FormControl>
+                  </Grid>
+                </>
+              )}
             </Grid>
           </Paper>
-          <Paper sx={{ mt: 3, padding: 2 , display: "block"}}>
+          <Paper sx={{ mt: 3, padding: 2, display: "block" }}>
             <Typography
               component="h4"
               variant="h6"
@@ -365,11 +381,11 @@ export default function Products() {
             </Typography>
             <Grid>
               <Grid>
-            <Typography variant="body1" my={1}>
-              Create multiple variants of your products based on size, colour,
-              material and other categories. Separate options with a comma.
-            </Typography>
-                
+                <Typography variant="body1" my={1}>
+                  Create multiple variants of your products based on size,
+                  colour, material and other categories. Separate options with a
+                  comma.
+                </Typography>
               </Grid>
               <Grid>
                 <Button
@@ -385,7 +401,6 @@ export default function Products() {
                 >
                   Add New Attribute
                 </Button>
-
               </Grid>
             </Grid>
           </Paper>
