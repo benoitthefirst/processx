@@ -377,11 +377,8 @@ export default function Staff() {
   };
 
   const onDelete = (id: string) => {
-    const index = staffs.findIndex((x: any) => x.email == id);
-    console.log(index);
-    if (isEdit && index > -1) {
-      staffs.splice(index, 1);
-      setStaffs(staffs);
+    if (isEdit) {
+      setStaffs((x)=>x.filter((a) => x.email != id));
       setState(false);
       clearFields();
     }

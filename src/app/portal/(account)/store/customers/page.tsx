@@ -75,6 +75,14 @@ export default function Customers() {
     setOpen(false);
   };
 
+  const onDelete = (id: string) => {
+    if (isEdit) {
+      setCustomers((x)=>x.filter((a) => x.email != id));
+      setOpen(false);
+      clearFields();
+    }
+  };
+
   const clearFields = () => {
     setName("");
     setCompany("");
