@@ -163,7 +163,7 @@ export default function Products() {
           <Typography
             component="h1"
             variant="h4"
-            sx={{ fontSize: 30, fontWeight: 600 }}
+            sx={{ fontSize: 30, fontWeight: 800 }}
           >
             Products
           </Typography>
