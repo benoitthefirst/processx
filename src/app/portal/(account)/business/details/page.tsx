@@ -34,7 +34,7 @@ export default function ProfilePage() {
         <Typography
           component="h1"
           variant="h3"
-          sx={{ fontSize: 40, fontWeight: 800, mb: 3 }}
+          sx={{ fontSize: 40, fontWeight: 800, mb: 5 }}
         >
           Business Details
         </Typography>
@@ -117,7 +117,7 @@ export default function ProfilePage() {
         <Typography
           component="h4"
           variant="h4"
-          sx={{ fontSize: 30, fontWeight: 800, mt: 3 }}
+          sx={{ fontSize: 30, fontWeight: 800, mt: 4 }}
         >
           Trading Address
         </Typography>
