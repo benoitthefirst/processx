@@ -54,7 +54,8 @@ const themeDark = createTheme({
   palette: {
     // mode: "dark",
     background: {
-      default: "#e7edeb",
+      default: "rgb(248, 249, 251)",
+      //default: "#e7edeb",
       //paper: "#e4e9f1"
     },
     primary: {
@@ -85,16 +86,18 @@ const themeDark = createTheme({
   },
   typography: {
     fontFamily: [
-      "-apple-system",
+      /* "-apple-system",
       "BlinkMacSystemFont",
       '"Segoe UI"',
-      "Roboto",
-      '"Helvetica Neue"',
-      "Arial",
+      "Roboto", */
+      "SharpGrotesk",
+      "Inter",
+      "Helvetica Neue",
+      /* "Arial", */
       "sans-serif",
-      '"Apple Color Emoji"',
+      /* '"Apple Color Emoji"',
       '"Segoe UI Emoji"',
-      '"Segoe UI Symbol"',
+      '"Segoe UI Symbol"', */
     ].join(","),
   },
   components: {
@@ -265,21 +268,21 @@ export default function PortalLayout({
     <div>
       <Toolbar sx={{ paddingTop: 5, paddingBottom: 5 }}>
         {/* <Image src="/logo.png" width={130} height={60} alt="ProcessX Logo" /> */}
-        {/* <img
-          src="/logo.png"
+        <img
+          src="/Px_Logo_Black_Red.png"
           height="60"
-          width="140"
-          alt=""
+          width="100%"
+          alt="ProcessX Logo Black and Red"
           style={{ display: "inline" }}
-        ></img> */}
-        <Typography
+        ></img>
+        {/* <Typography
           component="h1"
           variant="h4"
           color="primary"
           sx={{ fontSize: 30, fontWeight: 800 }}
         >
           PROCESSX
-        </Typography>
+        </Typography> */}
       </Toolbar>
       <Divider />
       <List>
