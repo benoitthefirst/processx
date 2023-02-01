@@ -213,7 +213,7 @@ export default function ProfilePage() {
               }}
               onClick={() => {}}
             >
-              Change Password
+              Save
             </Button>
           </Grid>
         </Grid>
