@@ -58,7 +58,7 @@ export default function ProductImage({name, subtitle, color, setColor }: any) {
                   justifyContent="center"
                   alignItems="center"
                   sx={{
-                    bgcolor: color.length > 0 ? color : colors[0],
+                    bgcolor: color?.length > 0 ? color : colors[0],
                     height: 60,
                     width: 60,
                   }}
@@ -77,8 +77,8 @@ export default function ProductImage({name, subtitle, color, setColor }: any) {
                 justifyContent="center"
                 alignItems="center"
                 sx={{
-                  borderTop: `0.01px solid ${color.length > 0 ? color : colors[0]}`,
-                  borderBottom: `0.01px solid ${color.length > 0 ? color : colors[0]}`,
+                  borderTop: `0.01px solid ${color?.length > 0 ? color : colors[0]}`,
+                  borderBottom: `0.01px solid ${color?.length > 0 ? color : colors[0]}`,
                   py: 1,
                   height: 40
                 }}
@@ -95,7 +95,7 @@ export default function ProductImage({name, subtitle, color, setColor }: any) {
               </Box>
               <Box
                 sx={{
-                  bgcolor: color.length > 0 ? color : colors[0],
+                  bgcolor: color?.length > 0 ? color : colors[0],
                   height: 5,
                   mt: 1,
                 }}

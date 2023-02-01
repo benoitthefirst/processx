@@ -37,7 +37,7 @@ const productsData = [
   {
     name: "Jordan",
     description: "Jordan",
-    price: "R120"
+    price: "R120",
   },
 ];
 
@@ -45,7 +45,6 @@ export default function Products() {
   const theme = useTheme();
   const [products, setProducts] = React.useState<any[]>(productsData);
   const [state, setState] = React.useState(false);
-  const [email, setEmail] = React.useState("");
   const [name, setName] = React.useState("");
   const [tax, setTax] = React.useState("");
   const [description, setDescription] = React.useState("");
@@ -56,27 +55,62 @@ export default function Products() {
   const [productDefaultCost, setProductDefaultCost] = React.useState("");
   const [color, setColor] = React.useState("");
   const [lowStock, setLowStock] = React.useState("");
-  const [isEdit, setIsEdit] = React.useState(false);
   const [trackStock, setTrackStock] = React.useState(false);
   const [trackVarientLevel, setTrackVarientLevel] = React.useState(false);
+  const [isEdit, setIsEdit] = React.useState(false);
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const toggleDrawer =
     (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
-      /* if (
+      if (
         event.type === "keydown" &&
         ((event as React.KeyboardEvent).key === "Tab" ||
           (event as React.KeyboardEvent).key === "Shift")
       ) {
         return;
-      } */
+      }
 
-      console.log("isOpen: ", open);
+      //console.log("isOpen: ", open);
 
       setState(open);
+      clearFields();
     };
 
+  const onEdit = (data: any) => {
+    setName(data.name);
+    setTax(data.taxNumber);
+    setDescription(data.description);
+    setProductBrand(data.productBrand);
+    setProductCategory(data.productCategory);
+    setProductPrice(data.price);
+    setProductSku(data.productSku);
+    setProductDefaultCost(data.productDefaultCost);
+    setColor(data.color);
+    setLowStock(data.lowStock);
+    setTrackStock(data.trackStock);
+    setTrackVarientLevel(data.trackVarientLevel);
+    setIsEdit(true);
+    setState(true);
+  };
+
   const onSave = () => {
+    const payload = {
+      name: name,
+      color: color,
+      description: description,
+      price: productPrice,
+      productBrand: productBrand,
+      productCategory: productCategory,
+      taxNumber: tax,
+      productSku: productSku,
+      productDefaultCost: productDefaultCost,
+      lowStock:lowStock,
+      trackStock:trackStock,
+      trackVarientLevel:trackVarientLevel,
+    };
+    products.push(payload);
+    setProducts(products);
     setState(false);
+    clearFields();
   };
 
   const onDelete = (id: string) => {
@@ -89,6 +123,18 @@ export default function Products() {
 
   const clearFields = () => {
     setName("");
+    setTax("");
+    setDescription("");
+    setProductBrand("");
+    setProductCategory("");
+    setProductPrice("");
+    setProductSku("");
+    setProductDefaultCost("");
+    setColor("");
+    setLowStock("");
+    setTrackStock(false);
+    setTrackVarientLevel(false);
+    setIsEdit(false);
   };
   return (
     <>
@@ -138,7 +184,7 @@ export default function Products() {
             sx={{ mt: 2 }}
           >
             {products.map((row: any, index: number) => (
-              <StyledTableRow key={index} /* onClick={() => onEdit(row)} */>
+              <StyledTableRow key={index} onClick={() => onEdit(row)}>
                 <StyledTableCell width={80}>
                   <Box
                     display="flex"
@@ -163,7 +209,9 @@ export default function Products() {
                   {row.name}
                 </StyledTableCell>
                 <StyledTableCell scope="row">{row.description}</StyledTableCell>
-                <StyledTableCell scope="row" width={120}>{row.price}</StyledTableCell>
+                <StyledTableCell scope="row" width={120}>
+                  {row.price}
+                </StyledTableCell>
               </StyledTableRow>
             ))}
           </CustomTable>
@@ -487,7 +535,7 @@ export default function Products() {
                   variant="contained"
                   disableElevation
                   sx={{ mr: 2 }}
-                  onClick={() => onDelete(email)}
+                  onClick={() => onDelete(productSku)}
                 >
                   Delete
                 </Button>
