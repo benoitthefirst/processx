@@ -48,8 +48,9 @@ import {
 } from "@mui/material";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import CircleIcon from "@mui/icons-material/Circle";
+import { useRouter, usePathname } from "next/navigation";
 
-const drawerWidth = 240;
+const drawerWidth = 250;
 const themeDark = createTheme({
   palette: {
     // mode: "dark",
@@ -62,7 +63,7 @@ const themeDark = createTheme({
       // light: will be calculated from palette.primary.main,
       main: "#ff0038",
       /* main: "#018567", */
-      dark: "#d30334",//will be calculated from palette.primary.main,
+      dark: "#d30334", //will be calculated from palette.primary.main,
       // contrastText: will be calculated to contrast with palette.primary.main
     },
     secondary: {
@@ -173,8 +174,10 @@ export default function PortalLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const router = useRouter();
+  const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState("NotFound");
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
     useState<null | HTMLElement>(null);
@@ -206,20 +209,37 @@ export default function PortalLayout({
     setMobileOpen(!mobileOpen);
   };
 
-  const handleClick = () => {
-    setOpen(!open);
+  const handleClick = (slug: string) => {
+    //setOpen(!open);
+    if (pathname == slug) return;
+    router.push(slug);
+
+    if(slug.includes("/store/")){
+      setOpen("store");
+    }else if(slug.includes("/business/")){
+      setOpen("business");
+    }
+    console.log("slug: ", slug);
   };
 
   /* useEffect(() => {
     //if(router.asPath)
-  }, []); */
+    console.log("Path: ", pathname);
+    if(pathname && pathname.includes("/store/")){
+      setOpen("store");
+    }else if(pathname && pathname.includes("/business/")){
+      setOpen("business");
+    }else{
+      setOpen("NotFound");
+    }
+  }, [pathname]); */
 
   const _menuData = [
-    {
+    /* {
       value: "Complete Setup",
       slug: "/portal/onboarding",
       icon: <OnBoardingIcon />,
-    },
+    }, */
     { value: "Dashboard", slug: "/portal/dashboard", icon: <DashboardIcon /> },
     /* {value: "Referrals",slug: "/portal/lets-grow", icon: <ReferralIcon/>},
     {value: "Sales and Refunds",slug: "/portal/sales/reports", icon: <SalesIcon/>}, */
@@ -241,8 +261,16 @@ export default function PortalLayout({
     {value: "Sell Online",slug: "/portal/online/payment-links", icon: <SellOnlineIcon/>}, */
     {
       value: "Business Settings",
-      slug: "/portal/business/details",
+      slug: "/portal/business/",
       icon: <BusinessSettingsIcon />,
+      subs: [
+        { value: "Details", slug: "/portal/busisiness/details" },
+        {
+          value: "Email Notifications",
+          slug: "/portal/busisiness/email-notifications",
+        },
+        { value: "Receipt", slug: "/portal/busisiness/bill-receipt" },
+      ],
     },
     /* {value: "Capital",slug: "/portal/capital/offers", icon: <CapitalIcon/>},
     {value: "Buy Card Machines",slug: "/portal/card-machines", icon: <CardMachineIcon/>}, */
@@ -288,16 +316,13 @@ export default function PortalLayout({
       <List>
         {_menuData.slice(0, 4).map((item, index) => (
           <div key={item.value}>
-            <ListItemButton
-              onClick={item?.subs && handleClick}
-              href={item?.slug}
-            >
+            <ListItemButton onClick={() => handleClick(item?.slug)}>
               <ListItemIcon>{item.icon}</ListItemIcon>
               <ListItemText primary={item.value} />
               {item?.subs && (open ? <ExpandLess /> : <ExpandMore />)}
             </ListItemButton>
             {item?.subs && (
-              <Collapse in={open} timeout="auto" unmountOnExit>
+              <Collapse in={pathname?.includes(open) ?? false} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
                   {item?.subs.map((subItem, subIndex) => (
                     <ListItemButton
@@ -320,7 +345,7 @@ export default function PortalLayout({
       <Divider />
       <List>
         {_menuData.slice(4, 8).map((item, index) => (
-          <ListItem key={item.value} disablePadding>
+          <ListItem key={item.value} disablePadding onClick={() => handleClick(item?.slug)}>
             <ListItemButton>
               <ListItemIcon sx={{ height: 14, width: 14 }}>
                 {item.icon}
