@@ -12,7 +12,38 @@ import React from "react";
 import BootstrapInput from "../../../../components/BootstrapInput";
 
 export default function ProfilePage() {
-  const [name, setName] = React.useState("");
+  const [firstName, setFirstName] = React.useState("");
+  const [lastName, setLastName] = React.useState("");
+  const [email, setEmail] = React.useState("");
+  const [mobileNumber, setMobileNumber] = React.useState("");
+  const [staffNumber, setStaffNumber] = React.useState("");
+  const [idNumber, setIdNumber] = React.useState("");
+  const [oldPassword, setOldPassword] = React.useState("");
+  const [newPassword, setNewPassword] = React.useState("");
+  const [confirmPassword, setConfirmPassword] = React.useState("");
+
+  const onSave = () => {
+    const payload = {
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      mobileNumber: mobileNumber,
+      staffNumber: staffNumber,
+      idNumber: idNumber
+    }
+  }
+
+  const onChangePassword = () => {
+    if(newPassword !== confirmPassword){
+      //To-Do: Show message
+      return;
+    }
+
+    const payload = {
+      oldPassword: oldPassword,
+      newPassowrd: newPassword
+    }
+  }
   return (
     <>
       <Head>
@@ -60,8 +91,8 @@ export default function ProfilePage() {
                 autoFocus
                 required
                 disabled
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
               />
             </FormControl>
           </Grid>
@@ -76,8 +107,8 @@ export default function ProfilePage() {
                 name="lastName"
                 required
                 disabled
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
               />
             </FormControl>
           </Grid>
@@ -91,8 +122,8 @@ export default function ProfilePage() {
                 id="email"
                 name="email"
                 required
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </FormControl>
           </Grid>
@@ -106,8 +137,8 @@ export default function ProfilePage() {
                 id="mobileNumber"
                 name="mobileNumber"
                 required
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                value={mobileNumber}
+                onChange={(e) => setMobileNumber(e.target.value)}
               />
             </FormControl>
           </Grid>
@@ -120,8 +151,8 @@ export default function ProfilePage() {
                 placeholder="Staff Number"
                 id="staffNumber"
                 name="staffNumber"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                value={staffNumber}
+                onChange={(e) => setStaffNumber(e.target.value)}
               />
             </FormControl>
           </Grid>
@@ -135,8 +166,8 @@ export default function ProfilePage() {
                 id="idNumber"
                 name="idNumber"
                 disabled
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                value={idNumber}
+                onChange={(e) => setIdNumber(e.target.value)}
               />
             </FormControl>
           </Grid>
@@ -147,7 +178,7 @@ export default function ProfilePage() {
               variant="contained"
               color="secondary"
               disableElevation
-              onClick={() => {}}
+              onClick={onSave}
             >
               Save
             </Button>
@@ -175,8 +206,8 @@ export default function ProfilePage() {
                 name="oldPassword"
                 autoFocus
                 required
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                value={oldPassword}
+                onChange={(e) => setOldPassword(e.target.value)}
               />
             </FormControl>
           </Grid>
@@ -190,8 +221,8 @@ export default function ProfilePage() {
                 id="newPassword"
                 name="newPassword"
                 required
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
               />
             </FormControl>
           </Grid>
@@ -205,8 +236,8 @@ export default function ProfilePage() {
                 id="confimPassword"
                 name="confimPassword"
                 required
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
               />
             </FormControl>
           </Grid>
@@ -222,7 +253,7 @@ export default function ProfilePage() {
                 color: "#fff",
                 borderRadius: 2,
               }}
-              onClick={() => {}}
+              onClick={onChangePassword}
             >
               Change Password
             </Button>
