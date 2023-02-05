@@ -43,7 +43,7 @@ const receipts = [
   },
 ];
 
-export default function ProfilePage() {
+export default function EmailNotificationsPage() {
   const [name, setName] = React.useState("");
   const [receiptType, setReceiptType] = React.useState<IReceiptType>(
     IReceiptType.receipt

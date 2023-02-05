@@ -11,8 +11,7 @@ import Head from "next/head";
 import React from "react";
 import BootstrapInput from "../../../../../components/BootstrapInput";
 
-export default function ProfilePage() {
-  const [name, setName] = React.useState("");
+export default function DetailsPage() {
   const [tradingName, setTradingName] = React.useState("");
   const [mobileNumber, setMobileNumber] = React.useState("");
   const [vatNumber, setVatNumber] = React.useState("");
