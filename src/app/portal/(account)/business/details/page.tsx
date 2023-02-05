@@ -13,14 +13,47 @@ import BootstrapInput from "../../../../../components/BootstrapInput";
 
 export default function ProfilePage() {
   const [name, setName] = React.useState("");
+  const [tradingName, setTradingName] = React.useState("");
+  const [mobileNumber, setMobileNumber] = React.useState("");
+  const [vatNumber, setVatNumber] = React.useState("");
+  const [tax, setTax] = React.useState("");
+  const [street, setStreet] = React.useState("");
+  const [suburb, setSuburb] = React.useState("");
+  const [building, setBuilding] = React.useState("");
+  const [city, setCity] = React.useState("");
+  const [postalCode, setPostalCode] = React.useState("");
+
+  const onSave = () => {
+    const payload = {
+      tradingName: tradingName,
+      mobileNumber: mobileNumber,
+      vatNumber: vatNumber,
+      tax: tax,
+      address: {
+        street: street,
+        suburb: suburb,
+        building: building,
+        city: city,
+        postalCode: postalCode 
+      }
+    }
+
+    console.log("paload: ", payload);
+  }
   return (
     <>
       <Head>
         <title>ProcessX Business Portal</title>
-        <meta name="description" content="The ProcessX Business Portal allows you to track your credit card sales, view reports, manage your business and sell online." />
+        <meta
+          name="description"
+          content="The ProcessX Business Portal allows you to track your credit card sales, view reports, manage your business and sell online."
+        />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
-        <link href="https://fonts.googleapis.com/css?family=Inter:400,400i,500,700" rel="stylesheet"></link>
+        <link
+          href="https://fonts.googleapis.com/css?family=Inter:400,400i,500,700"
+          rel="stylesheet"
+        ></link>
       </Head>
       <Container
         component="main"
@@ -62,8 +95,8 @@ export default function ProfilePage() {
                 name="tradingName"
                 autoFocus
                 required
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                value={tradingName}
+                onChange={(e) => setTradingName(e.target.value)}
               />
             </FormControl>
           </Grid>
@@ -78,8 +111,8 @@ export default function ProfilePage() {
                 name="telephoneNumber"
                 required
                 disabled
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                value={mobileNumber}
+                onChange={(e) => setMobileNumber(e.target.value)}
               />
             </FormControl>
           </Grid>
@@ -92,9 +125,8 @@ export default function ProfilePage() {
                 placeholder="VAT Number"
                 id="vatNumber"
                 name="vatNumber"
-                required
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                value={vatNumber}
+                onChange={(e) => setVatNumber(e.target.value)}
               />
             </FormControl>
           </Grid>
@@ -107,9 +139,8 @@ export default function ProfilePage() {
                 placeholder="No Tax (0%)"
                 id="defaultTax"
                 name="defaultTax"
-                required
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                value={tax}
+                onChange={(e) => setTax(e.target.value)}
               />
             </FormControl>
           </Grid>
@@ -137,67 +168,67 @@ export default function ProfilePage() {
                 name="streetAddress"
                 autoFocus
                 required
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                value={street}
+                onChange={(e) => setStreet(e.target.value)}
               />
             </FormControl>
           </Grid>
           <Grid xs={12} md={6}>
             <FormControl variant="standard" fullWidth>
               <InputLabel shrink color="primary" htmlFor="suburb">
-              Suburb
+                Suburb
               </InputLabel>
               <BootstrapInput
                 placeholder="Suburb"
                 id="suburb"
                 name="suburb"
                 required
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                value={suburb}
+                onChange={(e) => setSuburb(e.target.value)}
               />
             </FormControl>
           </Grid>
           <Grid xs={12} md={6}>
             <FormControl variant="standard" fullWidth>
               <InputLabel shrink color="primary" htmlFor="building">
-              Building/Complex (optional)
+                Building/Complex (optional)
               </InputLabel>
               <BootstrapInput
                 placeholder="Building name, unit number or floor"
                 id="building"
                 name="building"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                value={building}
+                onChange={(e) => setBuilding(e.target.value)}
               />
             </FormControl>
           </Grid>
           <Grid xs={12} md={6}>
             <FormControl variant="standard" fullWidth>
               <InputLabel shrink color="primary" htmlFor="city">
-              City
+                City
               </InputLabel>
               <BootstrapInput
                 placeholder="City"
                 id="city"
                 name="city"
                 required
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
               />
             </FormControl>
           </Grid>
           <Grid xs={12} md={6}>
             <FormControl variant="standard" fullWidth>
               <InputLabel shrink color="primary" htmlFor="postalCode">
-              Postal Code
+                Postal Code
               </InputLabel>
               <BootstrapInput
                 placeholder="Postal Code"
                 id="postalCode"
                 name="postalCode"
                 required
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                value={postalCode}
+                onChange={(e) => setPostalCode(e.target.value)}
               />
             </FormControl>
           </Grid>
@@ -211,7 +242,7 @@ export default function ProfilePage() {
               sx={{
                 borderRadius: 2,
               }}
-              onClick={() => {}}
+              onClick={onSave}
             >
               Save
             </Button>
