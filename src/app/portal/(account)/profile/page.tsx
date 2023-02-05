@@ -31,6 +31,8 @@ export default function ProfilePage() {
       staffNumber: staffNumber,
       idNumber: idNumber
     }
+
+    console.log("paload: ", payload);
   }
 
   const onChangePassword = () => {
@@ -43,6 +45,8 @@ export default function ProfilePage() {
       oldPassword: oldPassword,
       newPassowrd: newPassword
     }
+
+    console.log("paload: ", payload);
   }
   return (
     <>
