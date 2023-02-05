@@ -29,7 +29,7 @@ const MenuProps = {
 
 enum IReceiptType {
   receipt = "receipt",
-  taxInvoice = "taxInvoice"
+  taxInvoice = "taxInvoice",
 }
 
 const receipts = [
@@ -45,6 +45,13 @@ const receipts = [
 
 export default function BillReceiptPage() {
   const [name, setName] = React.useState("");
+  const [businessLogo, setBusinessLogo] = React.useState("");
+  const [slogan, setSlogan] = React.useState("");
+  const [footerMsg, setFooterMsg] = React.useState("");
+  const [showPhoneNumber, setShowPhoneNumber] = React.useState(false);
+  const [facebookUsername, setFacebookUsername] = React.useState("");
+  const [twitterUsername, setTwitterUsername] = React.useState("");
+  const [instagramUsername, setInstagramUsername] = React.useState("");
   const [receiptType, setReceiptType] = React.useState<IReceiptType>(
     IReceiptType.receipt
   );
@@ -55,6 +62,10 @@ export default function BillReceiptPage() {
     console.log("value: ", value);
     setReceiptType(value);
   };
+
+  const onSave = () => {
+    
+  }
   return (
     <>
       <Head>
@@ -139,13 +150,10 @@ export default function BillReceiptPage() {
                 input={<OutlinedInput />}
                 MenuProps={MenuProps}
                 inputProps={{ "aria-label": "Without label" }}
-                sx={{ mt: 3,bgcolor: "background.paper" }}
+                sx={{ mt: 3, bgcolor: "background.paper" }}
               >
-                {receipts.map((item:any) => (
-                  <MenuItem
-                    key={item.name}
-                    value={item.type}
-                  >
+                {receipts.map((item: any) => (
+                  <MenuItem key={item.name} value={item.type}>
                     {item.name}
                   </MenuItem>
                 ))}
@@ -162,8 +170,8 @@ export default function BillReceiptPage() {
                 id="companySlogan"
                 name="companySlogan"
                 required
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                value={slogan}
+                onChange={(e) => setSlogan(e.target.value)}
               />
             </FormControl>
           </Grid>
@@ -177,8 +185,8 @@ export default function BillReceiptPage() {
                 id="receiptFooter"
                 name="receiptFooter"
                 required
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                value={footerMsg}
+                onChange={(e) => setFooterMsg(e.target.value)}
               />
             </FormControl>
           </Grid>
@@ -187,7 +195,11 @@ export default function BillReceiptPage() {
               <InputLabel shrink color="primary" htmlFor="stockTracking">
                 Show phone number
               </InputLabel>
-              <CustomSwitch sx={{ m: 0, mt: 3 }} />
+              <CustomSwitch
+                sx={{ m: 0, mt: 3 }}
+                checked={showPhoneNumber}
+                onChange={(e) => setShowPhoneNumber(e.target.checked)}
+              />
             </FormControl>
           </Grid>
         </Grid>
@@ -208,8 +220,8 @@ export default function BillReceiptPage() {
                 placeholder="eg. ProcessX"
                 id="facebook"
                 name="facebook"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                value={facebookUsername}
+                onChange={(e) => setFacebookUsername(e.target.value)}
               />
             </FormControl>
           </Grid>
@@ -222,8 +234,8 @@ export default function BillReceiptPage() {
                 placeholder="eg. ProcessX"
                 id="twitter"
                 name="twitter"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                value={twitterUsername}
+                onChange={(e) => setTwitterUsername(e.target.value)}
               />
             </FormControl>
           </Grid>
@@ -236,8 +248,8 @@ export default function BillReceiptPage() {
                 placeholder="eg. ProcessX"
                 id="instagram"
                 name="instagram"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                value={instagramUsername}
+                onChange={(e) => setInstagramUsername(e.target.value)}
               />
             </FormControl>
           </Grid>
@@ -246,7 +258,7 @@ export default function BillReceiptPage() {
               sx={{
                 display: "flex",
                 width: "100%",
-                mt: 3
+                mt: 3,
               }}
             >
               <Button
@@ -263,7 +275,7 @@ export default function BillReceiptPage() {
                 disableElevation
                 color="secondary"
                 sx={{ ml: 2 }}
-                onClick={() => {}}
+                onClick={onSave}
               >
                 Save
               </Button>
