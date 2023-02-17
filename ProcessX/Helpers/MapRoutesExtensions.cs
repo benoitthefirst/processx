@@ -10,6 +10,12 @@
 
 
             api.MapGet("/", () => Results.Ok(DateTimeOffset.UtcNow));
+
+            api.MapPost("/auth/register", async ([FromBody] RegisterRequest model, [FromServices] IAction<RegisterRequest> action) =>
+            {
+                return await action.PerformAction(model).ToResultTask();
+            });
+
             return routes;
         }
     }
