@@ -55,7 +55,7 @@
             },
             "FluentPasswordHashing": {
               "target": "Package",
-              "version": "[0.0.1-beta.3, )"
+              "version": "[0.0.1-beta.2, )"
             },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
