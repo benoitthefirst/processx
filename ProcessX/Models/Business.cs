@@ -13,6 +13,15 @@ namespace ProcessX.Models
         NonProfit,
         Trust
     }
+    public enum AdminRoles
+    {
+        [JsonPropertyName("administrator")]
+        Administrator,
+        [JsonPropertyName("manager")]
+        Manager,
+        [JsonPropertyName("viewer")]
+        Viewer
+    }
     [BsonIgnoreExtraElements]
     public class Business
     {
@@ -21,6 +30,9 @@ namespace ProcessX.Models
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; } = ObjectId.GenerateNewId().ToString();
         public string TradingName { get; set; }
+        [BsonElement("role")]
+        [BsonRepresentation(BsonType.String)]
+        public AdminRoles Role { get; set; }
         [BsonRepresentation(BsonType.String)]
         public CompanyType CompanyType { get; set; }
         public bool AcceptCard { get; set; } = false;

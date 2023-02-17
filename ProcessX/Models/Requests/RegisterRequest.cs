@@ -3,15 +3,16 @@
 namespace ProcessX.Models.Requests
 {
     public record RegisterRequest(
+        string TradingName,
         string FirstName,
         string LastName,
         string Password,
         string Email,
-        string telephoneNumber,
-        string category,
-        TradingAddress tradingAddress,
-        CompanyType companyType = CompanyType.PrivateCompany,
-        bool acceptCard = false
+        string TelephoneNumber,
+        Category Category,
+        TradingAddress TradingAddress,
+        CompanyType CompanyType = CompanyType.PrivateCompany,
+        bool AcceptCard = false
         ) : IRequest
     {
 
@@ -23,7 +24,7 @@ namespace ProcessX.Models.Requests
             if (string.IsNullOrWhiteSpace(FirstName) ||
                 string.IsNullOrWhiteSpace(LastName) ||
                 string.IsNullOrWhiteSpace(Password) ||
-                string.IsNullOrWhiteSpace(telephoneNumber) ||
+                string.IsNullOrWhiteSpace(TelephoneNumber) ||
                 string.IsNullOrWhiteSpace(Email))
                 return false;
 

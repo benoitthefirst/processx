@@ -6,9 +6,9 @@ global using MongoDB.Bson.Serialization.Attributes;
 global using MongoDB.Bson.Serialization;
 global using MongoDB.Driver;
 global using ProcessX;
-/* global using ProcessX.Exceptions; */
 global using ProcessX.Helpers;
 global using ProcessX.Helpers.Exceptions;
+global using ProcessX.Helpers.Extensions;
 global using ProcessX.Models.Jwt;
 global using ProcessX.Models.Auth;
 global using ProcessX.Models.Requests;
