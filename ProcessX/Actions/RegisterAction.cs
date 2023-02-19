@@ -65,7 +65,23 @@
             admin.Companies.Add(new CompanyId(){
                 Id = business.Id,
                 Role= AdminRoles.Administrator,
-                Permissions = new(),
+                Permissions = new(){
+                    Name = "Administrator",
+                    PermissionType = PermissionType.administrator,
+                    SalesAccess = new(){
+                        SalesPermissionType.makeSales,
+                        SalesPermissionType.viewTransactions,
+                        SalesPermissionType.refundOwnLastSale,
+                        SalesPermissionType.refundAnySale,},
+                    ManagingAccess = new(){
+                        ManagingPermissionType.manageProducts,
+                        ManagingPermissionType.manageStaff,
+                        ManagingPermissionType.viewFinancials,
+                        ManagingPermissionType.manageBusinessSettings,
+                        ManagingPermissionType.manageReports,
+                        ManagingPermissionType.manageExternalPrinters,
+                    },
+                },
             });
 
             await _businesses.InsertOneAsync(business);

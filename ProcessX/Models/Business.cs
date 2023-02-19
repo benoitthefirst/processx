@@ -97,8 +97,12 @@ namespace ProcessX.Models
     }
     public class Permission {
         public string Name {get;set;}
+        [BsonRepresentation(BsonType.String)]
         public PermissionType PermissionType {get;set;}
+        
+        [BsonRepresentation(BsonType.String)]
         public List<SalesPermissionType> SalesAccess {get;set;}
+        [BsonRepresentation(BsonType.String)]
         public List<ManagingPermissionType> ManagingAccess {get;set;}
     };
 
