@@ -57,16 +57,21 @@
 
             Staff admin = new(){
                 FirstName = request.FirstName,
-                LastName = request.FirstName,
-                Email = request.LastName,
-                Permissions = "",
+                LastName = request.LastName,
+                Email = request.Email,
                 Password = hash
             };
+
+            admin.Companies.Add(new CompanyId(){
+                Id = business.Id,
+                Role= AdminRoles.Administrator,
+                Permissions = new(),
+            });
 
             await _businesses.InsertOneAsync(business);
             await _staffs.InsertOneAsync(admin);
 
-            return await business.GenerateTokens(_authService, _accessTokenModel, _refreshTokenModel, _refreshTokens);
+            return await admin.GenerateTokens(AdminRoles.Administrator,_authService, _accessTokenModel, _refreshTokenModel, _refreshTokens);
         }
     }
 }

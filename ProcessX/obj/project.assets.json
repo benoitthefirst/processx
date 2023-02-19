@@ -68,15 +68,6 @@
           "Microsoft.CodeAnalysis.CSharp": "4.0.1"
         }
       },
-      "EnumToStringGenerator/0.0.2-beta.5": {
-        "type": "package",
-        "compile": {
-          "lib/netstandard2.0/EnumToStringGenerator.Attributes.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/EnumToStringGenerator.Attributes.dll": {}
-        }
-      },
       "FluentPasswordHashing/0.0.1-beta.2": {
         "type": "package",
         "dependencies": {
@@ -2205,20 +2196,6 @@
         "analyzers/dotnet/cs/EnumGenerator.dll",
         "enumgenerator.0.0.1-beta.2.nupkg.sha512",
         "enumgenerator.nuspec"
-      ]
-    },
-    "EnumToStringGenerator/0.0.2-beta.5": {
-      "sha512": "5evxqmugOLXiSvMjVkA61h+ZyNeK7yd21eBbVDAw9UfJnyFgb6tUD/BxBXMADa/czEkkufIX6HkRPC92Y807eA==",
-      "type": "package",
-      "path": "enumtostringgenerator/0.0.2-beta.5",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "analyzers/dotnet/cs/EnumToStringGenerator.Attributes.dll",
-        "analyzers/dotnet/cs/EnumToStringGenerator.dll",
-        "enumtostringgenerator.0.0.2-beta.5.nupkg.sha512",
-        "enumtostringgenerator.nuspec",
-        "lib/netstandard2.0/EnumToStringGenerator.Attributes.dll"
       ]
     },
     "FluentPasswordHashing/0.0.1-beta.2": {
@@ -6738,7 +6715,6 @@
   "projectFileDependencyGroups": {
     "net7.0": [
       "DotNetEnv >= 2.5.0",
-      "EnumToStringGenerator >= 0.0.2-beta.5",
       "FluentPasswordHashing >= 0.0.1-beta.2",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 6.0.14",
       "MongoDB.Bson >= 2.19.0",
@@ -6794,10 +6770,6 @@
           "DotNetEnv": {
             "target": "Package",
             "version": "[2.5.0, )"
-          },
-          "EnumToStringGenerator": {
-            "target": "Package",
-            "version": "[0.0.2-beta.5, )"
           },
           "FluentPasswordHashing": {
             "target": "Package",

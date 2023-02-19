@@ -11,7 +11,7 @@ namespace ProcessX.Models.Requests
         string TelephoneNumber,
         Category Category,
         TradingAddress TradingAddress,
-        CompanyType CompanyType = CompanyType.PrivateCompany,
+        CompanyType CompanyType,
         bool AcceptCard = false
         ) : IRequest
     {

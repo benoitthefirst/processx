@@ -1,10 +1,8 @@
 ﻿namespace ProcessX
 {
-    internal static class Configs
+    public static class Configs
     {
-        public static string AppName => GetEnv("applicationName", "SneakerHeads");
-        public static decimal ServiceAmount => GetEnv(nameof(ServiceAmount))!.ToDecimal()!;
-        public static decimal AuthenticationAmount => GetEnv(nameof(AuthenticationAmount))!.ToDecimal();
+        public static string AppName => GetEnv("applicationName", "ProcessX");
         #region Database Configs
         public static string DbName => GetEnv(nameof(DbName))!;
         public static string DbHost => GetEnv(nameof(DbHost))!;
@@ -23,8 +21,8 @@
         public static long JwtRefreshTokenExpiresIn => GetEnv(nameof(JwtRefreshTokenExpiresIn)).GetTime("52W");
         public static string JwtIssuer => GetEnv(nameof(JwtIssuer));
         public static string JwtAudience => GetEnv(nameof(JwtAudience));
-        public static bool JwtValidateIssuer => GetEnv(nameof(JwtValidateIssuer)).ToBool(true);
-        public static bool JwtValidateAudience => GetEnv(nameof(JwtValidateAudience)).ToBool(true);
+        public static bool JwtValidateIssuer => GetEnv(nameof(JwtValidateIssuer)).ToBool(false);
+        public static bool JwtValidateAudience => GetEnv(nameof(JwtValidateAudience)).ToBool(false);
 
         #endregion
 

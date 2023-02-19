@@ -1,9 +1,12 @@
 Env.Load();
+Console.WriteLine($"DBHost: {Configs.DbHost}");
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.ConfigureHttpJsonOptions(options =>
+
+builder.Services.Configure<Microsoft.AspNetCore.Http.Json.JsonOptions>(options =>
 {
-    options.SerializerOptions.Converters.Add(new JsonStringEnumConverter());
+    /* options.SerializerOptions.IncludeFields = true; */
+    options.SerializerOptions.Converters.Insert(0, new JsonStringEnumConverter());
 });
 
 builder.Services.AddCors(options =>

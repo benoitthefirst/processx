@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "AqXaiMESat0rKumRVLJBd6rOJrD6q3R2jquI4vNlXkO4c6/fRnPqAS0tDu3d781Vra0auq0KV6ep/uATes4hMA==",
+  "dgSpecHash": "+0rhu/1Qyx9Ss0vUhEtAfr5OCJY8HCJRvG4spFC+5DhWnWNF/auaSM2ooFN6G5BJ/hpIHaFAqmzo60lk9TD3bw==",
   "success": true,
   "projectFilePath": "D:\\Projects\\Visual-studio\\ProcessX\\ProcessX\\ProcessX.csproj",
   "expectedPackageFiles": [
@@ -9,7 +9,6 @@
     "C:\\Users\\thepr\\.nuget\\packages\\dnsclient\\1.6.1\\dnsclient.1.6.1.nupkg.sha512",
     "C:\\Users\\thepr\\.nuget\\packages\\dotnetenv\\2.5.0\\dotnetenv.2.5.0.nupkg.sha512",
     "C:\\Users\\thepr\\.nuget\\packages\\enumgenerator\\0.0.1-beta.2\\enumgenerator.0.0.1-beta.2.nupkg.sha512",
-    "C:\\Users\\thepr\\.nuget\\packages\\enumtostringgenerator\\0.0.2-beta.5\\enumtostringgenerator.0.0.2-beta.5.nupkg.sha512",
     "C:\\Users\\thepr\\.nuget\\packages\\fluentpasswordhashing\\0.0.1-beta.2\\fluentpasswordhashing.0.0.1-beta.2.nupkg.sha512",
     "C:\\Users\\thepr\\.nuget\\packages\\konscious.security.cryptography.argon2\\1.2.1\\konscious.security.cryptography.argon2.1.2.1.nupkg.sha512",
     "C:\\Users\\thepr\\.nuget\\packages\\konscious.security.cryptography.blake2\\1.0.9\\konscious.security.cryptography.blake2.1.0.9.nupkg.sha512",

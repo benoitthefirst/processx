@@ -3,7 +3,7 @@
     public static class UserModelExtensions
     {
         public static async Task<Response<JwtTokenModel>> GenerateTokens(
-            this Staff user,
+            this Business user,
             IAuthService authService,
             IAuthContainerModel accessTokenModel,
             IAuthRefreshTokenContainerModel refreshTokenModel,
@@ -37,7 +37,8 @@
         }
 
         public static async Task<Response<JwtTokenModel>> GenerateTokens(
-            this Business user,
+            this Staff user,
+            AdminRoles role,
             IAuthService authService,
             IAuthContainerModel accessTokenModel,
             IAuthRefreshTokenContainerModel refreshTokenModel,
@@ -61,15 +62,15 @@
             var _role = ProcessXAdminRoles.Viewer;
             var _policyToken = ConfigAuthPolicies.Roles.AccessToken;
 
-            if(user.Role == AdminRoles.Administrator){
+            if(role == AdminRoles.Administrator){
                 _role = ProcessXAdminRoles.Administrator;
                 _policyToken = ConfigAuthPolicies.Roles.AdminToken;
             }
-            else if(user.Role == AdminRoles.Manager){
+            else if(role == AdminRoles.Manager){
                 _role = ProcessXAdminRoles.Manager;
                 _policyToken = ConfigAuthPolicies.Roles.AdminManagerToken;
             }
-            else if(user.Role == AdminRoles.Viewer){
+            else if(role == AdminRoles.Viewer){
                 _role = ProcessXAdminRoles.Viewer;
                 _policyToken = ConfigAuthPolicies.Roles.AdminViewerToken;
             }
