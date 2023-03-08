@@ -62,6 +62,9 @@ namespace ProcessX.Models
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public List<Variant>? Variants { get; set; } = new();
 
+
+        [JsonConverter(typeof(DateTimeConverter))]
+        public DateTime DateCreated { get; set; } = DateTime.UtcNow;
     }
 
     public class Thubnail {

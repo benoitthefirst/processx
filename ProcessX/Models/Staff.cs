@@ -17,6 +17,9 @@ namespace ProcessX.Models
         public string? MobileNumber { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
+
+        [JsonConverter(typeof(DateTimeConverter))]
+        public DateTime DateCreated { get; set; } = DateTime.UtcNow;
     }
 
     public enum PermissionType {

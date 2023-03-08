@@ -36,6 +36,9 @@ namespace ProcessX.Models
         public TradingAddress TradingAddress { get; set; }
         public Category Category { get; set; }
         public string TelephoneNumber { get; set; }
+
+        [JsonConverter(typeof(DateTimeConverter))]
+        public DateTime DateCreated { get; set; } = DateTime.UtcNow;
     }
 
     public class TradingAddress
