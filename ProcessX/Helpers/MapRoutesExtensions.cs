@@ -1,4 +1,6 @@
-﻿namespace ProcessX.Helpers
+﻿using Microsoft.AspNetCore.Mvc;
+
+namespace ProcessX.Helpers
 {
     internal static class MapRoutesExtensions
     {
@@ -14,6 +16,17 @@
             api.MapPost("/auth/register", async (RegisterRequest model,IAction<RegisterRequest> action) =>
             {
                 return await action.PerformAction(model).ToResultTask();
+            });
+
+            api.MapPost("/products/add", async (CreateInventoryRequest model,IAction<CreateInventoryRequest> action) =>
+            {
+                return await action.PerformAction(model).ToResultTask();
+            });
+
+            api.MapGet("/products", async ([FromQuery(Name = "businessId")] string businessId, IAction<GetInventoriesRequest> action) =>
+            {
+                Console.WriteLine(businessId);
+                return await action.PerformAction(new(businessId)).ToResultTask();
             });
 
             return routes;

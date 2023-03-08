@@ -16,7 +16,8 @@ builder.Services.AddCors(options =>
         {
             policy.WithOrigins(
                 "http://localhost:3000",
-                "https://processx.theprocesse.com/").AllowAnyMethod().AllowAnyHeader();
+                "https://processx.theprocesse.com",
+                "https://crochicx.co.za").AllowAnyMethod().AllowAnyHeader();
         }
     );
 });
@@ -27,6 +28,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<IPasswordService, Argon2PasswordService>();
 builder.Services.AddSingleton<IAction<RegisterRequest>, RegisterAction>();
+builder.Services.AddSingleton<IAction<CreateInventoryRequest>, CreateInventoryAction>();
+builder.Services.AddSingleton<IAction<GetInventoriesRequest>, GetInventoriesAction>();
 builder.Services.AddSingleton<IMongoDatabase>((sp) =>
 {
     //var clientSettings = new MongoClientSettings() { };
