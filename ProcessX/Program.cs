@@ -32,6 +32,7 @@ builder.Services.AddSingleton<IAction<CreateInventoryRequest>, CreateInventoryAc
 builder.Services.AddSingleton<IAction<GetInventoriesRequest>, GetInventoriesAction>();
 builder.Services.AddSingleton<IAction<CreateOrderRequest>, CreateOrderAction>();
 builder.Services.AddSingleton<IAction<GetOrdersRequest>, GetOrdersAction>();
+builder.Services.AddSingleton<IAction<GetOrderStatusRequest>, GetOrderStatusAction>();
 builder.Services.AddSingleton<IMongoDatabase>((sp) =>
 {
     //var clientSettings = new MongoClientSettings() { };

@@ -29,13 +29,20 @@ namespace ProcessX.Helpers
                 return await action.PerformAction(model).ToResultTask();
             });
 
-            api.MapGet("/orders", async ([FromQuery(Name = "businessId")] string businessId, IAction<GetOrdersRequest> action) =>
+            api.MapGet("/{businessId}/orders", async ([FromRoute(Name = "businessId")] string businessId, IAction<GetOrdersRequest> action) =>
             {
                 return await action.PerformAction(new(businessId)).ToResultTask();
             });
 
-            api.MapPost("/orders/add", async (CreateOrderRequest model, IAction<CreateOrderRequest> action) =>
+            api.MapGet("/{businessId}/orders/{trackingNumber}", async ([FromRoute(Name = "businessId")] string businessId, 
+                [FromRoute(Name = "trackingNumber")] string trackingNumber, IAction<GetOrderStatusRequest> action) =>
             {
+                return await action.PerformAction(new(businessId, trackingNumber)).ToResultTask();
+            });
+
+            api.MapPost("/{businessId}/orders/add", async ([FromRoute(Name = "businessId")] string businessId, [FromBody] CreateOrderRequest model, IAction<CreateOrderRequest> action) =>
+            {
+                model.BusinessId = businessId;
                 return await action.PerformAction(model).ToResultTask();
             });
 

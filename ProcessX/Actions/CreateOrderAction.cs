@@ -29,7 +29,7 @@ namespace ProcessX.Actions
             Order order = new()
             {
                 Sku = "p".GenerateSku(),
-                CompanyId = "63f1e168b9182c16dbb319e7",
+                CompanyId = request.BusinessId,
                 Status = OrderStatus.ItemPlaced,
                 ContactInfo = request.ContactInfo,
                 ShippingAddress = request.ShippingAddress,
