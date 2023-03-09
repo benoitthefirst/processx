@@ -38,7 +38,7 @@ namespace ProcessX.Actions
                 LastUpdated = DateTime.UtcNow,
             };
 
-            //await _orders.InsertOneAsync(data);
+            await _orders.InsertOneAsync(order);
 
             return new(order, HttpStatusCode.OK);
         }

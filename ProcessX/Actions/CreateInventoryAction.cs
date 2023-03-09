@@ -13,7 +13,7 @@ namespace ProcessX.Actions
 
         public async Task<Response> PerformAction(CreateInventoryRequest request)
         {
-            if(request.IsValidRequest)
+            if(!request.IsValidRequest)
                 return new("Invalid request",HttpStatusCode.BadRequest);
 
             Inventory product = new()

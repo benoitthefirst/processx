@@ -13,10 +13,14 @@ namespace ProcessX.Helpers
 
             api.MapGet("/", () => Results.Ok(DateTimeOffset.UtcNow));
 
+            #region Users Methods
             api.MapPost("/auth/register", async (RegisterRequest model,IAction<RegisterRequest> action) =>
             {
                 return await action.PerformAction(model).ToResultTask();
             });
+            #endregion
+
+            #region Inventory Methods
 
             api.MapGet("/inventory", async ([FromQuery(Name = "businessId")] string businessId, IAction<GetInventoriesRequest> action) =>
             {
@@ -28,6 +32,7 @@ namespace ProcessX.Helpers
             {
                 return await action.PerformAction(model).ToResultTask();
             });
+            #endregion
 
             #region Orders Methods
             api.MapGet("/{businessId}/orders", async ([FromRoute(Name = "businessId")] string businessId, IAction<GetOrdersRequest> action) =>

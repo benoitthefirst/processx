@@ -27,7 +27,8 @@
 
                 Enum.TryParse(request.Status, out OrderStatus _status);
 
-                var updates = updateBuilder.Set(x => x.Status, _status);
+                var updates = updateBuilder.Set(x => x.Status, _status)
+                    .Set(x => x.LastUpdated, DateTime.UtcNow);
 
                 var options = new UpdateOptions { IsUpsert = false };
 
