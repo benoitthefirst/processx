@@ -30,6 +30,7 @@ builder.Services.AddSingleton<IPasswordService, Argon2PasswordService>();
 builder.Services.AddSingleton<IAction<RegisterRequest>, RegisterAction>();
 builder.Services.AddSingleton<IAction<CreateInventoryRequest>, CreateInventoryAction>();
 builder.Services.AddSingleton<IAction<GetInventoriesRequest>, GetInventoriesAction>();
+builder.Services.AddSingleton<IAction<CreateOrderRequest>, CreateOrderAction>();
 builder.Services.AddSingleton<IMongoDatabase>((sp) =>
 {
     //var clientSettings = new MongoClientSettings() { };

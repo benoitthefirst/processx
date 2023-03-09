@@ -12,10 +12,10 @@
         public OrderStatus Status { get; set; }
         public ContactInfo ContactInfo { get; set; } = new();
         public ShippingAddress ShippingAddress { get; set; } = new();
-        public PaymentMethod PaymetMethod { get; set; } = new();
-        public List<OrderProduct> OrderProducts { get; set; } = new();
+        public PaymentMethod PaymentMethod { get; set; } = new();
+        public List<OrderProduct> Products { get; set; } = new();
         [JsonConverter(typeof(NullableDateTimeConverter))]
-        public DateTime LastUpdated { get; set; } = DateTime.UtcNow;
+        public DateTime? LastUpdated { get; set; }
         [JsonConverter(typeof(DateTimeConverter))]
         public DateTime DateCreated { get; set; } = DateTime.UtcNow;
     }
