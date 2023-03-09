@@ -53,6 +53,13 @@ namespace ProcessX.Helpers
                 model.BusinessId = businessId;
                 return await action.PerformAction(model).ToResultTask();
             });
+
+            api.MapPut("/{businessId}/orders/update", async ([FromRoute(Name = "businessId")] string businessId, 
+                [FromBody] UpdateOrderStatusRequest model, IAction<UpdateOrderStatusRequest> action) =>
+            {
+                model.BusinessId = businessId;
+                return await action.PerformAction(model).ToResultTask();
+            });
             #endregion
 
             return routes;

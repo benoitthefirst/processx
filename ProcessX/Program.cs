@@ -34,6 +34,7 @@ builder.Services.AddSingleton<IAction<CreateOrderRequest>, CreateOrderAction>();
 builder.Services.AddSingleton<IAction<GetOrdersRequest>, GetOrdersAction>();
 builder.Services.AddSingleton<IAction<GetOrderStatusRequest>, GetOrderStatusAction>();
 builder.Services.AddSingleton<IAction<GetOrderByIdRequest>, GetOrderByIdAction>();
+builder.Services.AddSingleton<IAction<UpdateOrderStatusRequest>, UpdateOrderStatusAction>();
 
 builder.Services.AddSingleton<IMongoDatabase>((sp) =>
 {
