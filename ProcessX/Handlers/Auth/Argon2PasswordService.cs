@@ -1,4 +1,6 @@
-﻿namespace ProcessX.Handlers.Auth
+﻿using FluentPasswordHashing.Generated;
+
+namespace ProcessX.Handlers.Auth
 {
     internal class Argon2PasswordService : IPasswordService
     {

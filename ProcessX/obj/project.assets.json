@@ -586,6 +586,19 @@
           }
         }
       },
+      "Nanoid/2.1.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.1/Nanoid.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.1/Nanoid.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "NETStandard.Library/1.6.1": {
         "type": "package",
         "dependencies": {
@@ -2917,6 +2930,23 @@
         "runtimes/linux/native/libmongocrypt.so",
         "runtimes/osx/native/libmongocrypt.dylib",
         "runtimes/win/native/mongocrypt.dll"
+      ]
+    },
+    "Nanoid/2.1.0": {
+      "sha512": "V0eSnsq+Oeqf9uVPBH02kYE5p92s6Revskt4Cmqg3DIsiDoqrKKdlmqXvaFaehO3pS1Osu9BTtl3lMSRqPlbzw==",
+      "type": "package",
+      "path": "nanoid/2.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net45/Nanoid.dll",
+        "lib/net45/Nanoid.xml",
+        "lib/netstandard2.0/Nanoid.dll",
+        "lib/netstandard2.0/Nanoid.xml",
+        "lib/netstandard2.1/Nanoid.dll",
+        "lib/netstandard2.1/Nanoid.xml",
+        "nanoid.2.1.0.nupkg.sha512",
+        "nanoid.nuspec"
       ]
     },
     "NETStandard.Library/1.6.1": {
@@ -6719,6 +6749,7 @@
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 6.0.14",
       "MongoDB.Bson >= 2.19.0",
       "MongoDB.Driver >= 2.19.0",
+      "Nanoid >= 2.1.0",
       "Swashbuckle.AspNetCore >= 6.2.3"
     ]
   },
@@ -6786,6 +6817,10 @@
           "MongoDB.Driver": {
             "target": "Package",
             "version": "[2.19.0, )"
+          },
+          "Nanoid": {
+            "target": "Package",
+            "version": "[2.1.0, )"
           },
           "Swashbuckle.AspNetCore": {
             "target": "Package",

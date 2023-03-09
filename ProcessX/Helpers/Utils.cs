@@ -2,6 +2,12 @@
 {
     public static class Utils
     {
+        public static string GenerateSku(this string value)
+        {
+            var id = Nanoid.Nanoid.Generate("1234567890", 10);
+
+            return value + id;
+        }
         public static async Task<List<T>> ToListAsync<T>(this Task<IEnumerable<T>> values)
         {
             var list = await values;

@@ -1,4 +1,6 @@
-﻿namespace ProcessX.Actions
+﻿using ProcessX.Helpers;
+
+namespace ProcessX.Actions
 {
     public class CreateOrderAction : IAction<CreateOrderRequest>
     {
@@ -13,11 +15,12 @@
         }
         public async Task<Response> PerformAction(CreateOrderRequest request)
         {
-            /*if (request.IsValidRequest)
-                return new("Invalid request", HttpStatusCode.BadRequest);*/
+            if (request.IsValidRequest)
+                return new("Invalid request", HttpStatusCode.BadRequest);
+
             Order order = new()
             {
-                Sku = "p64t475867",
+                Sku = "p".GenerateSku(),
                 Status = OrderStatus.ItemPlaced,
                 ContactInfo = request.ContactInfo,
                 ShippingAddress = request.ShippingAddress,

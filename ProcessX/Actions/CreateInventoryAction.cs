@@ -59,7 +59,7 @@ namespace ProcessX.Actions
 
             if(string.IsNullOrWhiteSpace(request.Sku)){
                 //To-Do: Generate Sku
-                product.Sku = "p435988589";
+                product.Sku = "p".GenerateSku();
             }else{
                 product.Sku = request.Sku;
             }
