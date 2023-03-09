@@ -15,7 +15,15 @@ namespace ProcessX.Actions
         }
         public async Task<Response> PerformAction(CreateOrderRequest request)
         {
-            if (request.IsValidRequest)
+            //TO-DO
+            //seriliaze the data to generate a signiture
+            //that we will compare with signiture sent
+            //from the frontend
+            //send order email to admin
+            //send order received email to customer
+            //Save to database
+
+            if (!request.IsValidRequest)
                 return new("Invalid request", HttpStatusCode.BadRequest);
 
             Order order = new()

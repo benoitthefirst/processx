@@ -9,8 +9,8 @@ namespace ProcessX.Models.Requests
         public DateTimeOffset Now { get; set; } = DateTimeOffset.UtcNow;
         public bool IsValidUpdateRequest()
         {
-            /*if (string.IsNullOrWhiteSpace(Name))
-                return false;*/
+            if (ContactInfo is null || ShippingAddress is null || PaymentMethod is null || Products is null)
+                return false;
 
             return true;
 

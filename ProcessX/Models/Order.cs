@@ -52,13 +52,13 @@
     public class DeliveryMethod
     {
         public string Name { get; set; } = string.Empty;
-        public decimal Price { get; set; }
+        public string Price { get; set; } = string.Empty;
     }
 
     public class PaymentMethod
     {
         public string Name { get; set; } = string.Empty;
-        public decimal Price { get; set; }
+        public string Price { get; set; } = string.Empty;
     }
 
     public class OrderProduct
