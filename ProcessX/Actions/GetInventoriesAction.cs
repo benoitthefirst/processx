@@ -17,8 +17,8 @@
 
         public async Task<Response> PerformAction(GetInventoriesRequest request)
         {
-            //if (request.IsValidRequest)
-              //  return new("Invalid request", HttpStatusCode.BadRequest);
+            if (!request.IsValidRequest)
+                return new("Invalid request", HttpStatusCode.BadRequest);
 
             var products = await _inventories.Find(x => x.CompanyId == request.BusinessId).ToListAsync();
 

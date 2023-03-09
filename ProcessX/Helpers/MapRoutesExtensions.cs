@@ -29,11 +29,10 @@ namespace ProcessX.Helpers
                 return await action.PerformAction(model).ToResultTask();
             });
 
-            /*api.MapGet("/orders", async ([FromQuery(Name = "businessId")] string businessId, IAction<GetInventoriesRequest> action) =>
+            api.MapGet("/orders", async ([FromQuery(Name = "businessId")] string businessId, IAction<GetOrdersRequest> action) =>
             {
-                Console.WriteLine(businessId);
                 return await action.PerformAction(new(businessId)).ToResultTask();
-            });*/
+            });
 
             api.MapPost("/orders/add", async (CreateOrderRequest model, IAction<CreateOrderRequest> action) =>
             {

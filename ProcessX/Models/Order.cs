@@ -8,6 +8,8 @@
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; } = ObjectId.GenerateNewId().ToString();
         public string Sku { get; set; } = string.Empty;
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string CompanyId { get; set; } = string.Empty;
         [BsonRepresentation(BsonType.String)]
         public OrderStatus Status { get; set; }
         public ContactInfo ContactInfo { get; set; } = new();
