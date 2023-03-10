@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "5mtdcv4ghhdihjz7VHDFf1yxPSqK+wWAcvlv8/5XrrTNhRaWtWAbnkzvFNsXOjeF/FIdcM2fJ1mz42XiVhsosQ==",
+  "dgSpecHash": "vC7cf18Av3B2Q/uUogsdabGNdMinkD51Ys1UML+o2HeSu5LRNNeDvuMteujt0acr83p1JSldi8z2CHRzEO3yxQ==",
   "success": true,
   "projectFilePath": "D:\\Projects\\Visual-studio\\ProcessX\\ProcessX\\ProcessX.csproj",
   "expectedPackageFiles": [
@@ -10,13 +10,14 @@
     "C:\\Users\\thepr\\.nuget\\packages\\dotnetenv\\2.5.0\\dotnetenv.2.5.0.nupkg.sha512",
     "C:\\Users\\thepr\\.nuget\\packages\\enumgenerator\\0.0.1-beta.2\\enumgenerator.0.0.1-beta.2.nupkg.sha512",
     "C:\\Users\\thepr\\.nuget\\packages\\fluentpasswordhashing\\0.0.1-beta.2\\fluentpasswordhashing.0.0.1-beta.2.nupkg.sha512",
+    "C:\\Users\\thepr\\.nuget\\packages\\handlebars.net\\2.1.4\\handlebars.net.2.1.4.nupkg.sha512",
     "C:\\Users\\thepr\\.nuget\\packages\\konscious.security.cryptography.argon2\\1.2.1\\konscious.security.cryptography.argon2.1.2.1.nupkg.sha512",
     "C:\\Users\\thepr\\.nuget\\packages\\konscious.security.cryptography.blake2\\1.0.9\\konscious.security.cryptography.blake2.1.0.9.nupkg.sha512",
     "C:\\Users\\thepr\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.14\\microsoft.aspnetcore.authentication.jwtbearer.6.0.14.nupkg.sha512",
     "C:\\Users\\thepr\\.nuget\\packages\\microsoft.codeanalysis.analyzers\\3.3.2\\microsoft.codeanalysis.analyzers.3.3.2.nupkg.sha512",
     "C:\\Users\\thepr\\.nuget\\packages\\microsoft.codeanalysis.common\\4.0.1\\microsoft.codeanalysis.common.4.0.1.nupkg.sha512",
     "C:\\Users\\thepr\\.nuget\\packages\\microsoft.codeanalysis.csharp\\4.0.1\\microsoft.codeanalysis.csharp.4.0.1.nupkg.sha512",
-    "C:\\Users\\thepr\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
+    "C:\\Users\\thepr\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\thepr\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "C:\\Users\\thepr\\.nuget\\packages\\microsoft.extensions.configuration\\1.1.2\\microsoft.extensions.configuration.1.1.2.nupkg.sha512",
     "C:\\Users\\thepr\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\1.1.2\\microsoft.extensions.configuration.abstractions.1.1.2.nupkg.sha512",

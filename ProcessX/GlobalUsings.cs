@@ -24,6 +24,7 @@ global using ProcessX.Models;
 global using ProcessX.Handlers.Interfaces;
 global using ProcessX.Handlers.Auth;
 global using ProcessX.Actions;
+global using ProcessX.Services;
 global using ProcessX.Actions.Interfaces;
 global using ProcessX.Helpers.Converters;
 global using Microsoft.IdentityModel.Tokens;
