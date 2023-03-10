@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Order Placed</title>
+  </head>
+  <body>
+    <table
+      width="100%"
+      border="0"
+      cellpadding="0"
+      cellspacing="0"
+      style="
+        background-color: #d6d6d5;
+        border: 0;
+        border-collapse: collapse;
+        border-spacing: 0;
+        margin: 0;
+      "
+      bgcolor="#d6d6d5"
+    >
+      <tbody>
+        <tr>
+          <td align="center" style="display: block">
+            <table
+              width="100%"
+              border="0"
+              cellpadding="0"
+              cellspacing="0"
+              style="
+                border: 0;
+                border-collapse: collapse;
+                border-spacing: 0;
+                max-width: 700px;
+              "
+            >
+              <tbody>
+                <tr>
+                  <td style="background-color: #ffffff">
+                    <table>
+                      <tbody>
+                        <tr>
+                          <td>
+                            <a
+                              href="https://localhost:7172/orders"
+                              style="text-decoration: none"
+                              target="_blank"
+                              data-saferedirecturl="https://localhost:7172/orders"
+                            >
+                              <img
+                                src="./logo.svg"
+                                height="43"
+                                alt="Luxbae"
+                                style="
+                                  clear: both;
+                                  display: block;
+                                  max-width: 100%;
+                                  outline: none;
+                                  text-decoration: none;
+                                  padding: 10px 10px 0 30px;
+                                "
+                                class="CToWUd"
+                              />
+                            </a>
+                          </td>
+                          <td
+                            style="
+                              width: 30%;
+                              font-size: 30px;
+                              text-align: right;
+                              padding-right: 30px;
+                            "
+                          >
+                            <strong>Order placed</strong>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <table
+                      width="100%"
+                      border="0"
+                      cellpadding="0"
+                      cellspacing="0"
+                      style="
+                        background-color: #fff;
+                        border: 0;
+                        border-collapse: collapse;
+                        border-spacing: 0;
+                        margin: auto;
+                        max-width: 700px;
+                      "
+                      bgcolor="#ffffff"
+                    >
+                      <tbody>
+                        <tr>
+                          <td align="center">
+                            <table
+                              width="100%"
+                              border="0"
+                              cellpadding="0"
+                              cellspacing="0"
+                              style="
+                                background-color: #eeeeee;
+                                border: none;
+                                border-collapse: collapse;
+                                border-spacing: 0;
+                                width: 100%;
+                                padding: 30px 40px 0px 50px;
+                              "
+                            >
+                              <tbody>
+                                <tr>
+                                  <td
+                                    style="
+                                      background-color: #000;
+                                      padding: 15px 0px 15px 50px;
+                                      direction: ltr;
+                                      text-align: left;
+                                    "
+                                  >
+                                    <p
+                                      style="
+                                        direction: ltr;
+                                        text-align: left;
+                                        color: #fff;
+                                        font-family: 'UberMove-Medium',
+                                          'HelveticaNeue', Helvetica, Arial,
+                                          sans-serif;
+                                        font-size: 16px;
+                                      "
+                                    >
+                                      Order Number: <strong>{{OrderNumber}}</strong>
+                                    </p>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td
+                                    align="center"
+                                    style="
+                                      padding: 30px 40px 0px 50px;
+                                      direction: ltr;
+                                      text-align: left;
+                                    "
+                                  >
+                                      <p style="
+                                        direction: ltr;
+                                        text-align: left;
+                                        color: #000000;
+                                        font-family: 'UberMove-Medium',
+                                          'HelveticaNeue', Helvetica, Arial,
+                                          sans-serif;
+                                        font-size: 16px;
+                                        line-height: 40px;
+                                        padding-bottom: 12px;
+                                        padding-top: 7px;
+                                      ">
+                                          Hi {{FullName}},
+                                      </p>
+                                    <p
+                                      style="
+                                        direction: ltr;
+                                        text-align: left;
+                                        color: #000000;
+                                        font-family: 'UberMoveText-Regular',
+                                          'HelveticaNeue', Helvetica, Arial,
+                                          sans-serif;
+                                        font-size: 16px;
+                                        line-height: 22px;
+                                        padding-bottom: 32px;
+                                        padding-top: 7px;
+                                      "
+                                    >
+                                      Thank you for ordering from Luxbae.
+                                      <br />
+                                      <br />
+                                      Your order is being processed and your
+                                      estimated delivery date is
+                                      <strong>{{DeliveryDate}}</strong>.
+                                      <br />
+                                      <br />
+                                      Once your order is ready to be delivered,
+                                      you'll receive an email confirming your
+                                      scheduled delivery date.
+                                      <br />
+                                      <br />
+                                      Please have your cash ready for when the
+                                      driver arrives.
+                                    </p>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                            <table
+                              width="100%"
+                              border="0"
+                              cellpadding="0"
+                              cellspacing="0"
+                              style="
+                                background-color: #eeeeee;
+                                border: none;
+                                border-collapse: collapse;
+                                border-spacing: 0;
+                                width: 100%;
+                              "
+                            >
+                              <tbody>
+                                <tr>
+                                  <td
+                                    align="left"
+                                    style="
+                                      direction: ltr;
+                                      text-align: left;
+                                      padding: 0px 0px 0px 0px;
+                                    "
+                                  >
+                                    <table
+                                      border="0"
+                                      cellpadding="30"
+                                      cellspacing="0"
+                                      align="center"
+                                      style="
+                                        margin: 0 auto;
+                                        background-color: #ffffff;
+                                        border: none;
+                                        border-collapse: collapse;
+                                        border-spacing: 0;
+                                        max-width: 588px;
+                                        width: 100%;
+                                        padding: 15px;
+                                      "
+                                    >
+                                      <tbody>
+                                        <tr>
+                                          <td
+                                            style="
+                                              background-color: #000;
+                                              padding: 10px 0px 10px 50px;
+                                              direction: ltr;
+                                              text-align: left;
+                                            "
+                                          >
+                                            <p
+                                              style="
+                                                text-align: left;
+                                                color: #fff;
+                                                font-family: 'UberMove-Medium',
+                                                  'HelveticaNeue', Helvetica,
+                                                  Arial, sans-serif;
+                                                font-size: 16px;
+                                              "
+                                            >
+                                              Order Details
+                                            </p>
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td>
+                                            <table>
+                                              <tbody>
+                                                <tr>
+                                                  <td
+                                                    style="
+                                                      width: 70%;
+                                                      text-align: left;
+                                                      color: #000000;
+                                                      font-family: 'UberMoveText-Regular',
+                                                        'HelveticaNeue',
+                                                        Helvetica, Arial,
+                                                        sans-serif;
+                                                      font-size: 16px;
+                                                      line-height: 22px;
+                                                      padding-bottom: 7px;
+                                                      padding-top: 30px;
+                                                    "
+                                                  >
+                                                    <strong>Deliver To:</strong>
+                                                  </td>
+                                                  <td
+                                                    style="
+                                                      width: 50%;
+                                                      text-align: left;
+                                                      color: #000000;
+                                                      font-family: 'UberMoveText-Regular',
+                                                        'HelveticaNeue',
+                                                        Helvetica, Arial,
+                                                        sans-serif;
+                                                      font-size: 16px;
+                                                      line-height: 22px;
+                                                      padding-bottom: 7px;
+                                                      padding-top: 30px;
+                                                    "
+                                                  >
+                                                      <p>
+                                                          {{Street}}
+                                                          <br />
+                                                          {{City}}
+                                                          <br />
+                                                          {{State}}
+                                                          <br />
+                                                          {{ZipCode}}
+                                                      </p>
+                                                  </td>
+                                                </tr>
+                                                <tr>
+                                                  <td
+                                                    style="
+                                                      width: 70%;
+                                                      text-align: left;
+                                                      color: #000000;
+                                                      font-family: 'UberMoveText-Regular',
+                                                        'HelveticaNeue',
+                                                        Helvetica, Arial,
+                                                        sans-serif;
+                                                      font-size: 16px;
+                                                      line-height: 22px;
+                                                      padding-bottom: 7px;
+                                                      padding-top: 30px;
+                                                    "
+                                                  >
+                                                    <strong
+                                                      >Delivery Method:</strong
+                                                    >
+                                                  </td>
+                                                  <td style="
+                                                      text-align: left;
+                                                      color: #000000;
+                                                      font-family: 'UberMoveText-Regular',
+                                                        'HelveticaNeue',
+                                                        Helvetica, Arial,
+                                                        sans-serif;
+                                                      font-size: 16px;
+                                                      line-height: 22px;
+                                                      padding-bottom: 7px;
+                                                      padding-top: 7px;
+                                                    ">
+                                                      {{DeliveryMethod}}
+                                                  </td>
+                                                </tr>
+                                              </tbody>
+                                            </table>
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td
+                                            style="
+                                              background-color: #000;
+                                              padding: 10px 0px 10px 50px;
+                                              direction: ltr;
+                                              text-align: left;
+                                            "
+                                          >
+                                            <p
+                                              style="
+                                                text-align: left;
+                                                color: #fff;
+                                                font-family: 'UberMove-Medium',
+                                                  'HelveticaNeue', Helvetica,
+                                                  Arial, sans-serif;
+                                                font-size: 16px;
+                                              "
+                                            >
+                                              Items in this order
+                                            </p>
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td
+                                            style="
+                                              direction: ltr;
+                                              text-align: left;
+                                              color: #000000;
+                                              font-family: 'UberMoveText-Regular',
+                                                'HelveticaNeue', Helvetica,
+                                                Arial, sans-serif;
+                                              font-size: 16px;
+                                              line-height: 22px;
+                                              padding-bottom: 7px;
+                                              padding-top: 7px;
+                                            "
+                                          >
+                                            <table>
+                                                <tbody>
+                                                    {{Orders}}
+                                                    
+                                                </tbody>
+                                            </table>
+                                            <hr />
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td
+                                            style="
+                                              text-align: left;
+                                              color: #000000;
+                                              font-family: 'UberMoveText-Regular',
+                                                'HelveticaNeue', Helvetica,
+                                                Arial, sans-serif;
+                                              font-size: 16px;
+                                              line-height: 22px;
+                                              padding-bottom: 30px;
+                                              padding-top: 7px;
+                                            "
+                                          >
+                                            <table>
+                                              <tbody>
+                                                <tr>
+                                                  <td>Subtotal:</td>
+                                                  <td
+                                                    style="
+                                                      width: 100%;
+                                                      text-align: right;
+                                                    "
+                                                  >
+                                                      <strong>R {{Subtotal}}</strong>
+                                                  </td>
+                                                </tr>
+                                                <tr>
+                                                  <td>Shipping:</td>
+                                                  <td
+                                                    style="
+                                                      width: 100%;
+                                                      text-align: right;
+                                                    "
+                                                  >
+                                                      <strong>R {{ShippingCost}}</strong>
+                                                  </td>
+                                                </tr>
+                                                <tr>
+                                                  <td>Total:</td>
+                                                  <td
+                                                    style="
+                                                      width: 100%;
+                                                      text-align: right;
+                                                    "
+                                                  >
+                                                      <strong>R {{TotalPrice}}</strong>
+                                                  </td>
+                                                </tr>
+                                              </tbody>
+                                            </table>
+                                          </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                            <table
+                              width="100%"
+                              border="0"
+                              cellpadding="0"
+                              cellspacing="0"
+                              style="
+                                background-color: #eeeeee;
+                                border: none;
+                                border-collapse: collapse;
+                                border-spacing: 0;
+                                width: 100%;
+                              "
+                            >
+                              <tbody>
+                                <tr>
+                                  <td
+                                    align="left"
+                                    style="
+                                      direction: ltr;
+                                      text-align: left;
+                                      padding: 0 14px 0 14px;
+                                    "
+                                  >
+                                    <table
+                                      border="0"
+                                      cellpadding="0"
+                                      cellspacing="0"
+                                      style="
+                                        border: none;
+                                        border-collapse: collapse;
+                                        border-spacing: 0;
+                                        width: 100%;
+                                      "
+                                    >
+                                      <tbody>
+                                        <tr>
+                                          <td
+                                            style="
+                                              direction: ltr;
+                                              text-align: left;
+                                              padding-top: 33px;
+                                            "
+                                          >
+                                            <table
+                                              border="0"
+                                              cellpadding="0"
+                                              cellspacing="0"
+                                              class="m_479712035388409971t10of12"
+                                              align="center"
+                                              style="
+                                                border: none;
+                                                border-collapse: collapse;
+                                                border-spacing: 0;
+                                                max-width: 560px;
+                                                width: 100%;
+                                              "
+                                            >
+                                              <tbody>
+                                                <tr>
+                                                  <td
+                                                    style="
+                                                      direction: ltr;
+                                                      text-align: left;
+                                                      padding-left: 0;
+                                                      padding-right: 0;
+                                                    "
+                                                  >
+                                                    <table
+                                                      border="0"
+                                                      cellpadding="0"
+                                                      cellspacing="0"
+                                                      width="100%"
+                                                      align="left"
+                                                      style="
+                                                        border: none;
+                                                        border-collapse: collapse;
+                                                        border-spacing: 0;
+                                                        table-layout: fixed;
+                                                        width: 100%;
+                                                      "
+                                                    >
+                                                      <tbody>
+                                                        <tr>
+                                                          <td
+                                                            style="
+                                                              direction: ltr;
+                                                              text-align: left;
+                                                            "
+                                                          >
+                                                            <table
+                                                              border="0"
+                                                              cellpadding="0"
+                                                              cellspacing="0"
+                                                              class="m_479712035388409971t7of12"
+                                                              align="left"
+                                                              style="
+                                                                border: none;
+                                                                border-collapse: collapse;
+                                                                border-spacing: 0;
+                                                                max-width: 392px;
+                                                                width: 100%;
+                                                              "
+                                                            >
+                                                              <tbody>
+                                                                <tr>
+                                                                  <td
+                                                                    style="
+                                                                      direction: ltr;
+                                                                      text-align: left;
+                                                                      padding-left: 12px;
+                                                                      padding-right: 12px;
+                                                                    "
+                                                                  >
+                                                                    <table
+                                                                      border="0"
+                                                                      cellpadding="0"
+                                                                      cellspacing="0"
+                                                                      width="100%"
+                                                                      align="left"
+                                                                      style="
+                                                                        border: none;
+                                                                        border-collapse: collapse;
+                                                                        border-spacing: 0;
+                                                                        table-layout: fixed;
+                                                                        width: 100%;
+                                                                      "
+                                                                    >
+                                                                      <tbody>
+                                                                        <tr>
+                                                                          <td
+                                                                            style="
+                                                                              direction: ltr;
+                                                                              text-align: left;
+                                                                              padding-top: 15px;
+                                                                            "
+                                                                          >
+                                                                            <div
+                                                                              lang="x-btn"
+                                                                              style="
+                                                                                font-family: 'UberMoveText-Bold',
+                                                                                  'HelveticaNeueMedium',
+                                                                                  'HelveticaNeue-Medium',
+                                                                                  'Helvetica Neue Medium',
+                                                                                  Helvetica,
+                                                                                  Arial,
+                                                                                  sans-serif;
+                                                                                font-size: 16px;
+                                                                                line-height: 22px;
+                                                                              "
+                                                                            >
+                                                                              <a
+                                                                                href="https://localhost:7172/trackorder/{{OrderNumber}}"
+                                                                                style="
+                                                                                  background-color: #000000;
+                                                                                  border-color: #000000;
+                                                                                  border-radius: 0px;
+                                                                                  border-style: solid;
+                                                                                  border-width: 13px
+                                                                                    18px;
+                                                                                  color: #ffffff;
+                                                                                  display: inline-block;
+                                                                                  letter-spacing: 1px;
+                                                                                  max-width: 300px;
+                                                                                  min-width: 100px;
+                                                                                  text-align: center;
+                                                                                  text-decoration: none;
+                                                                                "
+                                                                                target="_blank"
+                                                                                data-saferedirecturl="https://localhost:7172/trackorder/{{OrderNumber}}"
+                                                                                ><span
+                                                                                  style="
+                                                                                    float: left;
+                                                                                    text-align: left;
+                                                                                  "
+                                                                                  >Track
+                                                                                  Order</span
+                                                                                ><span
+                                                                                  style="
+                                                                                    float: right;
+                                                                                    padding-top: 3px;
+                                                                                    display: inline-block;
+                                                                                  "
+                                                                                >
+                                                                                  <img
+                                                                                    src="https://ci6.googleusercontent.com/proxy/ohx4WvTp9e9LMntKbOKylKNtaEdL7b7Yyu6NR9-RLoxRfe5fB6OodI7YF-SYh9WvhYhlZomHoRkfi8E8kIUEWpjLv7mtiKkGspMLkVD8YafKAtNp7H5Sou50NPHendgzv4GJ0EXRcA=s0-d-e1-ft#https://s3.amazonaws.com/uber-static/emails/2018/global/arrows/arrow2_white_left.png"
+                                                                                    width="14"
+                                                                                    height="13"
+                                                                                    style="
+                                                                                      margin-left: 7px;
+                                                                                      border: none;
+                                                                                      clear: both;
+                                                                                      display: block;
+                                                                                      margin-top: 2px;
+                                                                                      max-width: 100%;
+                                                                                      outline: none;
+                                                                                      text-decoration: none;
+                                                                                    "
+                                                                                    alt=""
+                                                                                    class="CToWUd" /></span
+                                                                              ></a>
+                                                                            </div>
+                                                                          </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                          <td
+                                                                            style="
+                                                                              direction: ltr;
+                                                                              text-align: left;
+                                                                              color: #000000;
+                                                                              font-family: 'UberMoveText-Regular',
+                                                                                'HelveticaNeue',
+                                                                                Helvetica,
+                                                                                Arial,
+                                                                                sans-serif;
+                                                                              font-size: 16px;
+                                                                              line-height: 22px;
+                                                                              padding-bottom: 7px;
+                                                                              padding-top: 7px;
+                                                                            "
+                                                                          >
+                                                                            <p>
+                                                                              Regards,<br />The
+                                                                              Luxbae
+                                                                              Team
+                                                                            </p>
+                                                                          </td>
+                                                                        </tr>
+                                                                      </tbody>
+                                                                    </table>
+                                                                  </td>
+                                                                </tr>
+                                                              </tbody>
+                                                            </table>
+                                                          </td>
+                                                        </tr>
+                                                      </tbody>
+                                                    </table>
+                                                  </td>
+                                                </tr>
+                                              </tbody>
+                                            </table>
+                                          </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                            <table
+                              width="100%"
+                              border="0"
+                              cellpadding="0"
+                              cellspacing="0"
+                              style="
+                                background-color: #ffffff;
+                                border: none;
+                                border-collapse: collapse;
+                                border-spacing: 0;
+                                width: 100%;
+                              "
+                            >
+                              <tbody>
+                                <tr>
+                                  <td
+                                    align="left"
+                                    style="
+                                      direction: ltr;
+                                      text-align: left;
+                                      padding: 0 14px 0 14px;
+                                    "
+                                  >
+                                    <table
+                                      border="0"
+                                      cellpadding="0"
+                                      cellspacing="0"
+                                      style="
+                                        border: none;
+                                        border-collapse: collapse;
+                                        border-spacing: 0;
+                                        width: 100%;
+                                      "
+                                    >
+                                      <tbody>
+                                        <tr>
+                                          <td
+                                            style="
+                                              direction: ltr;
+                                              text-align: left;
+                                              padding-top: 40px;
+                                              padding-bottom: 30px;
+                                            "
+                                          >
+                                            <table
+                                              border="0"
+                                              cellpadding="0"
+                                              cellspacing="0"
+                                              class="m_479712035388409971t10of12"
+                                              align="center"
+                                              style="
+                                                margin: 0 auto;
+                                                border: none;
+                                                border-collapse: collapse;
+                                                border-spacing: 0;
+                                                max-width: 560px;
+                                                width: 100%;
+                                              "
+                                            >
+                                              <tbody>
+                                                <tr>
+                                                  <td
+                                                    style="
+                                                      direction: ltr;
+                                                      text-align: left;
+                                                      padding-left: 12px;
+                                                      padding-right: 12px;
+                                                    "
+                                                  >
+                                                    <table
+                                                      border="0"
+                                                      cellpadding="0"
+                                                      cellspacing="0"
+                                                      width="100%"
+                                                      align="left"
+                                                      style="
+                                                        border: none;
+                                                        border-collapse: collapse;
+                                                        border-spacing: 0;
+                                                        table-layout: fixed;
+                                                        width: 100%;
+                                                      "
+                                                    >
+                                                      <tbody>
+                                                        <tr>
+                                                          <td
+                                                            style="
+                                                              direction: ltr;
+                                                              text-align: left;
+                                                              vertical-align: top;
+                                                            "
+                                                            valign="top"
+                                                          >
+                                                            <table
+                                                              border="0"
+                                                              cellpadding="0"
+                                                              cellspacing="0"
+                                                              width="100%"
+                                                              align="left"
+                                                              style="
+                                                                border: none;
+                                                                border-collapse: collapse;
+                                                                border-spacing: 0;
+                                                                table-layout: fixed;
+                                                                width: 100%;
+                                                              "
+                                                            >
+                                                              <tbody>
+                                                                <tr>
+                                                                  <td
+                                                                    style="
+                                                                      direction: ltr;
+                                                                      text-align: left;
+                                                                      color: #000000;
+                                                                      font-family: 'UberMoveText-Bold',
+                                                                        'HelveticaNeue',
+                                                                        Helvetica,
+                                                                        Arial,
+                                                                        sans-serif;
+                                                                      font-size: 20px;
+                                                                      line-height: 26px;
+                                                                      padding-bottom: 7px;
+                                                                      padding-top: 0px;
+                                                                    "
+                                                                  >
+                                                                    <p>
+                                                                      Wish to
+                                                                      continue
+                                                                      shopping?
+                                                                    </p>
+                                                                  </td>
+                                                                </tr>
+                                                                <tr>
+                                                                  <td
+                                                                    style="
+                                                                      direction: ltr;
+                                                                      text-align: left;
+                                                                      color: #000000;
+                                                                      font-family: 'UberMoveText-Regular',
+                                                                        'HelveticaNeue',
+                                                                        Helvetica,
+                                                                        Arial,
+                                                                        sans-serif;
+                                                                      font-size: 16px;
+                                                                      line-height: 22px;
+                                                                      padding-bottom: 7px;
+                                                                      padding-top: 0px;
+                                                                    "
+                                                                  >
+                                                                    <p>
+                                                                      Go
+                                                                      <a
+                                                                        style="
+                                                                          color: #266ef1;
+                                                                          text-decoration: none;
+                                                                        "
+                                                                        href=""
+                                                                        target="_blank"
+                                                                        data-saferedirecturl=""
+                                                                        >Shopping</a
+                                                                      >
+                                                                      Now
+                                                                    </p>
+                                                                  </td>
+                                                                </tr>
+                                                              </tbody>
+                                                            </table>
+                                                          </td>
+                                                        </tr>
+                                                      </tbody>
+                                                    </table>
+                                                  </td>
+                                                </tr>
+                                              </tbody>
+                                            </table>
+                                          </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <table
+                      width="100%"
+                      border="0"
+                      cellpadding="0"
+                      cellspacing="0"
+                      style="
+                        background-color: #000000;
+                        border: none;
+                        border-collapse: collapse;
+                        border-spacing: 0;
+                        width: 100%;
+                      "
+                    >
+                      <tbody>
+                        <tr>
+                          <td
+                            style="
+                              direction: ltr;
+                              text-align: left;
+                              width: 70%;
+                              padding: 30px;
+                            "
+                          >
+                            <p
+                              style="
+                                color: #fff;
+                                font-family: 'UberMoveText-Regular',
+                                  'HelveticaNeue', Helvetica, Arial, sans-serif;
+                                font-size: 12px;
+                                line-height: 18px;
+                                padding: 3px 0px;
+                                direction: ltr;
+                                text-align: left;
+                              "
+                            >
+                              Luxbae - the place to find amenity for your hair
+                              and stomach. From ranges of snack boxes created
+                              for your pleasure with your favorite treats to
+                              hair products and oils that grow and protect your
+                              hair. Our naturally hand made hair maskes restort
+                              growth and damaged hair. Luxabe - we aim to wow.
+                            </p>
+                          </td>
+                          <td
+                            style="direction:ltr;text-align:right  padding: 10px; padding-left: 30px;"
+                          >
+                            <p
+                              style="
+                                color: rgb(229, 229, 229);
+                                font-family: 'UberMoveText-Regular',
+                                  'HelveticaNeue', Helvetica, Arial, sans-serif;
+                                font-size: 10px;
+                                line-height: 18px;
+                                direction: ltr;
+                                text-align: left;
+                              "
+                            >
+                              Address:
+                              <br />
+                              Cape Town,
+                              <br />
+                              7405, South Africa
+                              <br />
+                              <a
+                                href="https://luxbae.co.za"
+                                style="text-decoration: none; color: #e5e5e5"
+                                target="_blank"
+                                data-saferedirecturl="https://luxbae.co.za"
+                                >Luxbae.co.za</a
+                              >
+                            </p>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
