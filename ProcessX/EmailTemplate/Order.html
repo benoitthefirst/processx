@@ -1,14 +1,36 @@
 ﻿<tr>
-    <td style="width: 5%;text-align: left;">
-        <p>{{Quantity}}</p>
+    <td width="135">
+        <a href="http://www.crochicx.co.za"
+           target="_blank"
+           data-saferedirecturl="https://www.google.com/url?q=http://www.crochicx.co.za&amp;source=gmail&amp;ust=1674220284997000&amp;usg=AOvVaw0p49FGqbRbpxnZQVG41Sn8">
+            <img src={{thumbnail}} alt=""
+                 width="115" class="CToWUd"
+                 data-bit="iit">
+        </a>
+        <img src="https://crochicx.co.za/api/brand-logo.jpg"
+             alt="" width="115"
+             class="CToWUd" data-bit="iit">
     </td>
-    <td style="width: 15%">
-        <img src="{{Image}}" style="width: 50px;height: 50px;"alt="#" />
-    </td>
-    <td style="width: 71%">
-        <a href="{{Href}}" style="color: #266ef1">{{Name}}</a>
-    </td>
-    <td style="width: 15%;text-align: right;">
-        <strong>{{TotalPrice}}</strong>
+    <td valign="top" width="475">
+        <div style="font-family:sans-serif;font-weight:bold;text-transform:uppercase">
+            <div style="font-size:14px;color:#3b4348;margin-bottom:5px">
+                {{title}}
+            </div>
+            <div style="font-size:12px;color:#3b4348;margin-bottom:5px">
+                {{sku}}
+            </div>
+            <div style="font-size:14px;color:#3b4348;margin-bottom:5px">
+                {{currency }} {{price}}
+            </div>
+            <div style="font-size:14px;color:#3b4348;text-transform:none">
+                Qty: {{quantity}}
+            </div>
+            <div style="font-size:14px;color:#3b4348;text-transform:none">
+                Color: {{color}}
+            </div>
+            <div style="font-size:14px;color:#3b4348;text-transform:none">
+                Size: {{size}}
+            </div>
+        </div>
     </td>
 </tr>

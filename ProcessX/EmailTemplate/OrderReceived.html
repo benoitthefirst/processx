@@ -1,0 +1,579 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <div style="margin:0;padding:0;background-color:#f3f3f3">
+        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+            <tbody>
+                <tr>
+                    <td>
+                        <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%"
+                               style="background-color:#ffffff">
+                            <tbody>
+                                <tr>
+                                    <td align="center">
+                                        <img src="https://crochicx.co.za/api/header.jpg" alt=""
+                                             width="100%" class="CToWUd a6T" data-bit="iit" tabindex="0">
+                                        <div class="a6S" dir="ltr" style="opacity: 0.01; left: 562px; top: 108px;">
+                                            <div id=":oi" class="T-I J-J5-Ji aQv T-I-ax7 L3 a5q" title="Download"
+                                                 role="button" tabindex="0" aria-label="Download attachment "
+                                                 jslog="91252; u014N:cOuCgd,Kr2w4b,xr6bB" data-tooltip-class="a1V">
+                                                <div class="akn">
+                                                    <div class="aSK J-J5-Ji aYr"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table align="center" border="0" cellpadding="0" cellspacing="0" width="610"
+                               style="background-color:#ffffff">
+                            <tbody>
+                                <tr>
+                                    <td colspan="3" height="20"></td>
+                                </tr>
+                                <tr>
+                                    <td width="20"></td>
+                                    <td style="font-family:sans-serif;font-size:20px;font-weight:bold;color:#3b4348;text-align:center">
+                                        WE'VE GOT YOUR ORDER
+                                    </td>
+                                    <td width="20"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table align="center" border="0" cellpadding="0" cellspacing="0" width="610"
+                               style="background-color:#ffffff">
+                            <tbody>
+                                <tr>
+                                    <td colspan="3" height="20"></td>
+                                </tr>
+                                <tr>
+                                    <td width="20"></td>
+                                    <td style="font-family:sans-serif;font-size:14px;color:#3b4348">
+                                        <p>
+                                            Thanks for shopping with our Crochicx brands, we have received
+                                            your order <span style="color:#3b4348;font-weight:bold">{{sku}}</span>.
+                                        </p>
+                                        <p>
+                                            If you have already successfully completed payment, please
+                                            disregard this notice.
+                                        </p>
+                                        <p>
+                                            You have 24 hours to pay for your order. Once your payment
+                                            reflects on our side, we'll send you a payment confirmation
+                                            (via email or SMS) and begin processing your order. If
+                                            payment is not received, your order will be cancelled.
+                                        </p>
+                                        <p>
+                                            Click <span style="color:#3b4348;font-weight:bold">
+                                                <a href="http://www.crochicx.co.za/order/orderdetails/viewOrderDetails.jsp?orderId={{sku}}"
+                                                   style="color:#3b4348" target="_blank"
+                                                   data-saferedirecturl="https://www.google.com/url?q=http://www.crochicx.co.za/order/orderdetails/viewOrderDetails.jsp?orderId%3D{{sku}}&amp;source=gmail&amp;ust=1674220284997000&amp;usg=AOvVaw0pllUzs4fTE1VSnvvhu7Ax">HERE</a>
+                                            </span>
+                                            to access your order details and make payment. It may take a
+                                            few minutes for the payment link to appear.
+                                        </p>
+                                        <p>Regards,<br>Crochicx <br>Online Shopping Team</p>
+                                    </td>
+                                    <td width="20"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" height="20"></td>
+                                </tr>
+                                <tr>
+                                    <td width="20"></td>
+                                    <td style="font-family:sans-serif;font-size:14px;color:#3b4348">
+                                        <table width="100%" cellpadding="0" cellspacing="0" border="0" align="center">
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <table cellpadding="0" cellspacing="0" border="0" align="center">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td height="30"
+                                                                        style="background-color:#303133;border-color:#303133;font-family:sans-serif;font-size:14px;color:white;padding:5px 5px 5px 5px">
+                                                                        <b>ORDER ITEMS</b>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td height="30"
+                                                                        style="background-color:#eaeaec;border-color:#eaeaec;font-family:sans-serif;font-size:14px;color:#3b4348;padding:5px 5px 5px 5px">
+                                                                        <b>Order Placed</b>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td height="10"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td height="10"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <table border="0" cellpadding="0" cellspacing="0"
+                                                                               width="100%">
+                                                                            <tbody>
+                                                                                {{orders}}
+                                                                                <tr>
+                                                                                    <td width="135"></td>
+                                                                                    <td valign="top" width="475">
+                                                                                        <div style="font-family:sans-serif;font-weight:bold;text-transform:uppercase">
+                                                                                            <div style="font-size:11px;color:#3b4348;margin-top:10px">
+                                                                                                Status: {{orderStatus}}
+                                                                                            </div>
+                                                                                            <div style="font-size:11px;color:#3b4348;margin-top:10px">
+                                                                                                Last
+                                                                                                Updated: {{lastUpdated}}
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td height="10" colspan="2"
+                                                                                        style="border-bottom:1px solid #cccccc">
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr style="background-color:#eaeaec;font-family:sans-serif">
+                                                                    <td>
+                                                                        <table border="0" cellpadding="10" cellspacing="0"
+                                                                               width="100%"
+                                                                               style="font-family:sans-serif;background-color:#eaeaec;color:#3b4348;border-bottom:1px solid #cccccc">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td width="50%" valign="top"
+                                                                                        style="color:#3b4348;border-right:1px solid #eaeaec">
+                                                                                        <div style="padding:5px 5px 5px 5px;font-size:14px">
+                                                                                            <div style="font-weight:bold;color:#3b4348;padding:5px 5px 5px 5px">
+                                                                                                <div style="margin-bottom:5px">
+                                                                                                    Delivery
+                                                                                                    details:
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div style="color:#3b4348;padding:5px 5px 5px 5px;font-family:sans-serif">
+                                                                                                <div>
+                                                                                                    {{shippingAddress.street}}
+                                                                                                </div>
+                                                                                                <div>
+                                                                                                    {{shippingAddress.suburb}}
+                                                                                                </div>
+                                                                                                <div>
+                                                                                                    {{shippingAddress.city}}
+                                                                                                </div>
+                                                                                                <div>
+                                                                                                    {{shippingAddress.postalCode}}
+                                                                                                </div>
+                                                                                                <div>
+                                                                                                    {{shippingAddress.country}}
+                                                                                                </div>
+                                                                                                <div>
+                                                                                                    {{contactInfo.contactNumber}}
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </td>
+                                                                                    <td width="50%" valign="top"
+                                                                                        style="font-family:sans-serif;font-size:14px;color:#3b4348">
+                                                                                        <div style="padding:5px 5px 5px 5px;font-size:14px">
+                                                                                            <div style="font-weight:bold;color:#3b4348;padding:5px 5px 5px 5px">
+                                                                                                <div style="margin-bottom:5px">
+                                                                                                    Delivery
+                                                                                                    method:
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div>
+                                                                                                {{shippingAddress.deliveryMethod.name}}
+                                                                                            </div>
+                                                                                            <div style="color:#3b4348;padding:5px 5px 5px 5px">
+                                                                                                Delivery
+                                                                                                Fee:
+                                                                                                {{shippingAddress.deliveryMethod.price}}
+                                                                                            </div>
+                                                                                            <div style="color:#3b4348;padding:5px 5px 5px 5px">
+                                                                                                Message for your courier:
+                                                                                                {{shippingAddress.deliveryMethod.deliveryNote}}
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                    <td width="20"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" height="20"></td>
+                                </tr>
+                                <tr>
+                                    <td width="20"></td>
+                                    <td>
+                                        <table width="100%" cellpadding="0" cellspacing="0" border="0" align="center">
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <table border="0" cellpadding="10" cellspacing="0" width="100%"
+                                                               style="font-family:sans-serif;background-color:#eaeaec;color:#3b4348;border-bottom:1px solid #cccccc">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td width="50%" valign="top"
+                                                                        style="color:#3b4348;border-right:1px solid #eaeaec;vertical-align:top">
+                                                                        <div style="padding:5px 5px 5px 5px;font-size:14px">
+                                                                            <div style="font-weight:bold;color:#3b4348;font-size:14px;padding-bottom:5px">
+                                                                                Payment Summary
+                                                                            </div>
+                                                                            <table border="0" cellpadding="2"
+                                                                                   cellspacing="0" width="99%">
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                        <td width="55%"
+                                                                                            style="font-family:sans-serif;font-size:14px;color:#3b4348">
+                                                                                            <div style="color:#3b4348">
+                                                                                                Subtotal:
+                                                                                            </div>
+                                                                                        </td>
+                                                                                        <td width="45%" align="right"
+                                                                                            style="font-family:sans-serif;font-size:14px;color:#3b4348">
+                                                                                            <div style="color:#3b4348">
+                                                                                                {{paymentSummary.subtotal}}
+                                                                                            </div>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td width="55%"
+                                                                                            style="font-family:sans-serif;font-size:14px;color:#3b4348">
+                                                                                            <div style="color:#3b4348">
+                                                                                                Delivery:
+                                                                                            </div>
+                                                                                        </td>
+                                                                                        <td width="45%" align="right"
+                                                                                            style="font-family:sans-serif;font-size:14px;color:#3b4348">
+                                                                                            <div>
+                                                                                                {{paymentSummary.delivery}}
+                                                                                            </div>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td width="55%"
+                                                                                            style="font-family:sans-serif;font-size:14px;color:#3b4348">
+                                                                                            <div style="color:#3b4348">
+                                                                                                Total:
+                                                                                            </div>
+                                                                                        </td>
+                                                                                        <td width="45%" align="right"
+                                                                                            style="font-family:sans-serif;font-size:14px;color:#3b4348">
+                                                                                            <div style="color:#3b4348">
+                                                                                                {{paymentSummary.total}}
+                                                                                            </div>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td width="50%" valign="top"
+                                                                        style="font-family:sans-serif;font-size:14px;color:#3b4348;vertical-align:top">
+                                                                        <div style="padding:5px 5px 5px 5px;font-size:14px">
+                                                                            <div style="color:#3b4348;font-weight:bold;font-size:14px;padding-bottom:5px">
+                                                                                Payment Method
+                                                                            </div>
+                                                                            <table border="0" cellpadding="2"
+                                                                                   cellspacing="0" width="99%">
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                        <td width="55%"
+                                                                                            style="font-family:sans-serif;font-size:13px;color:#3b4348">
+                                                                                            <div style="color:#3b4348">
+                                                                                                {{paymentMethod.name}}
+                                                                                            </div>
+                                                                                        </td>
+                                                                                        <td width="45%" align="right"
+                                                                                            style="font-family:sans-serif;font-size:13px;color:#3b4348">
+                                                                                            <div>
+                                                                                                {{paymentMethod.price}}
+                                                                                            </div>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                    <td width="20"></td>
+                                </tr>
+                                <tr>
+                                    <td width="20"></td>
+                                    <td>
+                                        <table width="100%" cellpadding="0" cellspacing="0" border="0" align="center">
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <div style="padding:15px 10px 10px 10px;font-size:14px; font-family:sans-serif;color:#3b4348">
+                                                            <div style="font-weight:bold;color:#3b4348;font-size:14px;padding-bottom:5px">
+                                                                Banking Details
+                                                            </div>
+                                                            <p>
+                                                                Use our banking details to make the payment.
+                                                            </p>
+                                                            <table border="0" cellpadding="2" cellspacing="0" width="99%">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td width="20%"
+                                                                            style="font-family:sans-serif;font-size:14px;color:#3b4348">
+                                                                            <div style="color:#3b4348">
+                                                                                BANK:
+                                                                            </div>
+                                                                        </td>
+                                                                        <td width="45%" align="left"
+                                                                            style="font-family:sans-serif;font-size:14px;color:#3b4348">
+                                                                            <div style="color:#3b4348">
+                                                                                {{bank.bankName}}
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td width="20%"
+                                                                            style="font-family:sans-serif;font-size:14px;color:#3b4348">
+                                                                            <div style="color:#3b4348">
+                                                                                Account Type:
+                                                                            </div>
+                                                                        </td>
+                                                                        <td width="45%" align="left"
+                                                                            style="font-family:sans-serif;font-size:14px;color:#3b4348">
+                                                                            <div style="color:#3b4348">
+                                                                                {{bank.accountType}}
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td width="20%"
+                                                                            style="font-family:sans-serif;font-size:14px;color:#3b4348">
+                                                                            <div style="color:#3b4348">
+                                                                                Account Name:
+                                                                            </div>
+                                                                        </td>
+                                                                        <td width="45%" align="left"
+                                                                            style="font-family:sans-serif;font-size:14px;color:#3b4348">
+                                                                            <div style="color:#3b4348">
+                                                                                {{bank.accountName}}
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td width="20%"
+                                                                            style="font-family:sans-serif;font-size:14px;color:#3b4348">
+                                                                            <div style="color:#3b4348">
+                                                                                Account Number:
+                                                                            </div>
+                                                                        </td>
+                                                                        <td width="45%" align="left"
+                                                                            style="font-family:sans-serif;font-size:14px;color:#3b4348">
+                                                                            <div style="color:#3b4348">
+                                                                                {{bank.accountNumber}}
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td width="20%"
+                                                                            style="font-family:sans-serif;font-size:14px;color:#3b4348">
+                                                                            <div style="color:#3b4348">
+                                                                                Branch Name:
+                                                                            </div>
+                                                                        </td>
+                                                                        <td width="45%" align="left"
+                                                                            style="font-family:sans-serif;font-size:14px;color:#3b4348">
+                                                                            <div style="color:#3b4348">
+                                                                                {{bank.branchName}}
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td width="20%"
+                                                                            style="font-family:sans-serif;font-size:14px;color:#3b4348">
+                                                                            <div style="color:#3b4348">
+                                                                                Branch Code:
+                                                                            </div>
+                                                                        </td>
+                                                                        <td width="45%" align="left"
+                                                                            style="font-family:sans-serif;font-size:14px;color:#3b4348">
+                                                                            <div style="color:#3b4348">
+                                                                                {{bank.branchCode}}
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td width="20%"
+                                                                            style="font-family:sans-serif;font-size:14px;color:#3b4348">
+                                                                            <div style="color:#3b4348">
+                                                                                Branch Name:
+                                                                            </div>
+                                                                        </td>
+                                                                        <td width="45%" align="left"
+                                                                            style="font-family:sans-serif;font-size:14px;color:#3b4348">
+                                                                            <div style="color:#3b4348">
+                                                                                {{bank.swiftCode}}
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td width="20%"
+                                                                            style="font-family:sans-serif;font-size:14px;color:#3b4348">
+                                                                            <div style="color:#3b4348">
+                                                                                Payment Reference:
+                                                                            </div>
+                                                                        </td>
+                                                                        <td width="45%" align="left"
+                                                                            style="font-family:sans-serif;font-size:14px;color:#3b4348">
+                                                                            <div style="color:#3b4348">
+                                                                                {{sku}}
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                    <td width="20"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" height="20"></td>
+                                </tr>
+                                <tr>
+                                    <td width="20"></td>
+                                    <td style="text-align:left">
+                                        <a style="font-family:sans-serif;font-size:14px;color:#3b4348;text-decoration:none"
+                                           href="http://www.crochicx.co.za/browse/staticContent.jsp?pageName=faq"
+                                           target="_blank"
+                                           data-saferedirecturl="https://www.google.com/url?q=http://www.crochicx.co.za/browse/staticContent.jsp?pageName%3Dfaq&amp;source=gmail&amp;ust=1674220284997000&amp;usg=AOvVaw2eeJIAA-o-kAWHah8YiUIm">
+                                            <b>
+                                                Frequently
+                                                Asked Questions
+                                            </b>
+                                        </a>
+                                    </td>
+                                    <td width="20"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" height="20"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+            <tbody>
+                <tr>
+                    <td>
+                        <table align="center" border="0" cellpadding="0" cellspacing="0" width="610"
+                               style="background-color:#ffffff">
+
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <a href="http://www.crochicx.co.za" target="_blank"
+                                           data-saferedirecturl="https://www.google.com/url?q=http://www.crochicx.co.za&amp;source=gmail&amp;ust=1674220284997000&amp;usg=AOvVaw2Kb95WjFTe5jyeLeeE4ZlS">
+                                            <img src="https://crochicx.co.za/api/emailbanners.jpg" alt=""
+                                                 width="610" class="CToWUd" data-bit="iit">
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="20"></td>
+                                </tr>
+
+                                <tr>
+                                    <td style="text-align:center">
+                                        <table>
+                                            <tbody>
+                                                <tr>
+                                                    <td style="font-family:'Century Gothic';color:#3b4348;font-size:16px;font-weight:bold">
+                                                        FOLLOW US ON:
+                                                    </td>
+                                                    <td width="30" align="center" style="padding:2px 2px 2px 2px">
+                                                        <a href="https://www.facebook.com/crochicx?fref=ts" target="_blank"
+                                                           data-saferedirecturl="https://www.google.com/url?q=https://www.facebook.com/crochicx?fref%3Dts&amp;source=gmail&amp;ust=1674220284998000&amp;usg=AOvVaw13Sh1mGo-4KEqFyhmKhFvi">
+                                                            <img src="https://ci6.googleusercontent.com/proxy/LZtIhAp6gh5OKZmnIf3CoFEjqxYc7_BCjyXim4iuIBbmHtuUgSldHXq78b9GSCweJYcMeZe1E0Q8NWXV4n9RLYT4KGBQHx6I_W7nxvuFwLiLbz5lXFiVOJowTdGP6U6sLWqZwbbllN8Iv8A_xClATujOIxh4PbaexTkBgOLPQcWeHf2MnUUdavgvUJKLSP-L7NPPzrMGQGJ_GiYnwCWx3wfN6g=s0-d-e1-ft#http://image.tfgmedia.co.za/image/1/process/30x30?imageQuality=95&amp;source=http://cdn.tfgmedia.co.za/Communication/SocialMedia/Facebook_black.png"
+                                                                 alt="" border="0" class="CToWUd" data-bit="iit">
+                                                        </a>
+                                                    </td>
+                                                    <td width="30" align="center" style="padding:2px 2px 2px 2px">
+                                                        <a href="mailto:info@crochicx.co.za" target="_blank">
+                                                            <img src="https://ci4.googleusercontent.com/proxy/w9RDyTTcB0R15tyAcZjLsrUzUEwszcq6X4XATSXL32ZZQFrtDrW_P-KxeSuuJDTqm_kV5q_MDHTwfkxB2k-a7hdnk_uYC4TDDk_SzjNjv5nCChupnO1F2i8QYFCSIwp0BXAvp05qwm8Zmlovk7UKOt3U8ov2Vss8JiCNdUc3Md5TXo3qxFjkd6Rq1JgJYdS30GcHkf_6uxzMUVg9JV0TrQ=s0-d-e1-ft#http://image.tfgmedia.co.za/image/1/process/30x30?imageQuality=95&amp;source=http://cdn.tfgmedia.co.za/Communication/SocialMedia/Email_black.png"
+                                                                 alt="" border="0" class="CToWUd" data-bit="iit">
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="10"></td>
+                                </tr>
+                                <tr>
+                                    <td align="center">
+                                        <div style="font-family:sans-serif;color:#3b4348;font-size:10px">
+                                            This email is subject to the Crochicx Email Legal Notice that is
+                                            displayed in <span>
+                                                <a href="http://www.crochicx.co.za/docs/2804/TFG%20Email%20Legal%20Notice%20JAN%202014.pdf"
+                                                   style="text-decoration:none;color:#131617;font-weight:bold"
+                                                   target="_blank"
+                                                   data-saferedirecturl="https://www.google.com/url?q=http://www.crochicx.co.za/docs/2804/TFG%2520Email%2520Legal%2520Notice%2520JAN%25202014.pdf&amp;source=gmail&amp;ust=1674220284998000&amp;usg=AOvVaw2_0EkOF46lTnws1mvwyrro">
+                                                    this
+                                                    link
+                                                </a>
+                                            </span>
+                                        </div>
+                                        <div style="font-family:sans-serif;color:#3b4348;font-size:10px">
+                                            For reporting any unethical or fraudulent behaviour, please
+                                            contact us via email.
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td height="10"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

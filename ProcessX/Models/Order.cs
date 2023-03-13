@@ -39,6 +39,11 @@
         public string Email { get; set; } = string.Empty;
         public string MobileNumber { get; set; } = string.Empty;
         public string? Company { get; set; }
+
+        public string ToFullName()
+        {
+            return FirstName + " " + LastName;
+        }
     }
 
     public class ShippingAddress
@@ -55,6 +60,7 @@
     {
         public string Name { get; set; } = string.Empty;
         public string Price { get; set; } = string.Empty;
+        public string? DeliveryNote { get; set; } = string.Empty;
     }
 
     public class PaymentMethod

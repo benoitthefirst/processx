@@ -15,6 +15,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="EmailTemplate\Order.html" />
+    <None Remove="EmailTemplate\OrderEmail.html" />
+    <None Remove="EmailTemplate\Orders.html" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="EmailTemplate\Order.html" />
+    <EmbeddedResource Include="EmailTemplate\OrderEmail.html" />
+    <EmbeddedResource Include="EmailTemplate\Orders.html" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="DotNetEnv" Version="2.5.0" />
     <!-- <PackageReference Include="EnumToStringGenerator" Version="0.0.2-beta.5" /> -->
     <PackageReference Include="FluentPasswordHashing" Version="0.0.1-beta.2" />
@@ -24,6 +36,7 @@
     <PackageReference Include="MongoDB.Driver" Version="2.19.0" />
     <PackageReference Include="Nanoid" Version="2.1.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+	<PackageReference Include="MailKit" Version="3.6.0" />
   </ItemGroup>
 
 </Project>

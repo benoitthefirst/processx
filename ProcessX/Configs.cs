@@ -66,6 +66,16 @@
 
         #endregion
 
+        #region Banking Details Configs
+
+        public static string BankName => GetEnv(nameof(BankName))!;
+        public static string AccountType => GetEnv(nameof(AccountType))!;
+        public static string AccountName => GetEnv(nameof(AccountName))!;
+        public static string AccountNumber => GetEnv(nameof(AccountNumber))!;
+        public static string BranchCode => GetEnv(nameof(BranchCode))!;
+        public static string SwiftCode => GetEnv(nameof(SwiftCode));
+        #endregion
+
         public static string? GetEnv(string key)
         {
             return Environment.GetEnvironmentVariable(key);
